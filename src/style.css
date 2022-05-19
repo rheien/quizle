@@ -1,0 +1,49 @@
+body{
+    background-image: url('images/enso.jpeg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: inherit;
+}
+
+.logo {
+    width: 234px;
+    height: 222px;
+
+    font-size: 48px;
+    line-height: 225px;
+    text-align: center;
+
+    background-color: green;
+    border-radius: 150px;
+    border-top: 15px solid #CACD94;
+    border-right: 15px solid #CACD94;
+    border-left: 15px solid #CACD94;
+    border-bottom: 15px solid #CACD94;
+}
+
+.center{
+    text-align: center;
+}
+
+.color--green{
+    color: #CACD94;
+}
+
+.btn{
+    width: 288px;
+    height: 40px;
+    background-color: white;
+
+    border-radius: 150px;
+    border-top: 5px solid #CACD94;
+    border-right: 5px solid #CACD94;
+    border-left: 5px solid #CACD94;
+    border-bottom: 5px solid #CACD94;
+
+    border-top-left-radius: 20px ;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
