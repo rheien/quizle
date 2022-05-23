@@ -1,4 +1,4 @@
-const textInputQuestions = [
+let textInputQuestions = [
     
     {
         question : "Wie lautet der Vorname von Frau Srpinger?",
@@ -36,5 +36,3 @@ const textInputQuestions = [
         correctAnswer : '2020'
     },
 ];
-
-export{textInputQuestions}

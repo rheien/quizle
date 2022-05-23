@@ -1,4 +1,4 @@
-const singleChoiceQuestions = [
+let singleChoiceQuestions = [
     
     {
         question : "Wie schreibt man",
@@ -60,5 +60,3 @@ const singleChoiceQuestions = [
         correctAnswer : 'c'
     },
 ];
-
-export{singleChoiceQuestions}
