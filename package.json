@@ -1,5 +1,15 @@
 {
-  "devDependencies": {
+  "name": "quizle",
+   "description": "2nd Azubi Project - Quiz App",
+   "version": "1.0.0",
+   "source": "src/index.html",
+   "scripts": {
+     "start": "parcel",
+     "build": "parcel build"
+   },
+   "author": "Ryan Le",
+   "license": "ISC",
+   "devDependencies": {
     "parcel": "^2.5.0"
   }
 }

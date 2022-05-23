@@ -1,4 +1,4 @@
-let multipleChoiceQuestions = [
+const multipleChoiceQuestions = [
     
     {
         question : "Pi = 3,1415...",
@@ -66,3 +66,4 @@ let multipleChoiceQuestions = [
         correctAnswers : ['a','b','c','d']
     },
 ];
+export{multipleChoiceQuestions} 

@@ -6,15 +6,12 @@ body{
     background-attachment: fixed;
     background-size: inherit;
 }
-
 .logo {
     width: 234px;
     height: 222px;
-
     font-size: 48px;
     line-height: 225px;
     text-align: center;
-
     background-color: green;
     border-radius: 150px;
     border-top: 15px solid #CACD94;
@@ -22,28 +19,72 @@ body{
     border-left: 15px solid #CACD94;
     border-bottom: 15px solid #CACD94;
 }
-
 .center{
     text-align: center;
 }
 
-.color--green{
-    color: #CACD94;
-}
+ .color--green{
+     color: #CACD94;
+     text-shadow: 0 0 1px black;
+ }
 
-.btn{
+ .btn{
     width: 288px;
     height: 40px;
     background-color: white;
-
     border-radius: 150px;
     border-top: 5px solid #CACD94;
     border-right: 5px solid #CACD94;
     border-left: 5px solid #CACD94;
     border-bottom: 5px solid #CACD94;
-
     border-top-left-radius: 20px ;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
+     border-top-right-radius: 20px;
+     border-bottom-left-radius: 20px;
+     border-bottom-right-radius: 20px;
+ }
+
+ .bar{
+     width: 500px;
+     height: 100px;
+     font-size: 30px;
+
+     background-color: white;
+     border-top: 12px solid #CACD94;
+     border-right: 12px solid #CACD94;
+     border-left: 12px solid #CACD94;
+     border-bottom: 12px solid #CACD94;
+
+     border-top-left-radius: 50px ;
+     border-top-right-radius: 50px;
+     border-bottom-left-radius: 50px;
+     border-bottom-right-radius: 50px;
+ }
+
+ ul{
+     list-style-type:none;
+ }
+
+ li{
+     display: inline;
+     border-radius: 80px;
+     border-top: 12px solid #CACD94;
+     border-right: 12px solid #CACD94;
+     border-left: 12px solid #CACD94;
+     border-bottom: 12px solid #CACD94
+ }
+
+ .container{
+     width: 1050px;
+     height: 375px;
+
+     background-color: white;
+     border-top: 12px solid #CACD94;
+     border-right: 12px solid #CACD94;
+     border-left: 12px solid #CACD94;
+     border-bottom: 12px solid #CACD94;
+
+     border-top-left-radius: 50px ;
+     border-top-right-radius: 50px;
+     border-bottom-left-radius: 50px;
+     border-bottom-right-radius: 50px;
+ }
