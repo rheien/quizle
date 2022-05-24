@@ -31,6 +31,8 @@ body {
     text-shadow: 0 0 1px black;
 }
 
+/* for later refactor with BEM like with border */
+
 .btn {
     width: 288px;
     height: 40px;
@@ -77,19 +79,15 @@ body {
     border-top-right-radius: 50px;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .submit {
-    position: relative;
-    top: 320px;
-    left: 350px;
-}
-
-.header {
-    box-sizing: border-box;
-    display: flexbox;
-    flex-direction: row;
-    flex-wrap: wrap;
+    position: absolute;
+    bottom: -300px;
+    right: 250px;
 }
 
 .circle {
@@ -102,4 +100,17 @@ body {
     border-left: 15px solid;
     border-bottom: 1px solid;
     margin: 15px;
+}
+
+.question{
+    position:absolute;
+    top: 500px;
+    right: 550px;
+    font-size: 40;
+}
+
+.answerType{
+    position: absolute;
+    top: 600px;
+    right: 800px
 }
