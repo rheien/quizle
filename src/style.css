@@ -21,6 +21,7 @@ body{
 }
 .center{
     text-align: center;
+    margin: auto;
 }
 
  .color--green{
@@ -88,3 +89,5 @@ body{
      border-bottom-left-radius: 50px;
      border-bottom-right-radius: 50px;
  }
+
+ 

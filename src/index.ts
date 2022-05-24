@@ -22,12 +22,22 @@ import {multipleChoiceQuestions} from "./Questions/multipleChoiceQuestions.js";
 
 
      let circleList = document.createElement('ul');
-     let circle = document.createElement('li');
-     circleList.appendChild(circle);
-     scoreBar.appendChild(circleList);
-     body.appendChild(scoreBar);
+     for(let i = 1; i < 7 ; i++){
+        let circle = document.createElement('li');
+        circleList.id = 'Question'+i;
+        circleList.appendChild(circle);
+        scoreBar.appendChild(circleList);
+        body.appendChild(scoreBar);
+     }
 
-     let questionBox = document.createElement('div');
-     questionBox.className = 'center container';
-     body.appendChild(questionBox);
+     let questionContainer = document.createElement('div');
+     questionContainer.className = 'center container';
+     
+
+     let submitButton = document.createElement('button');
+     submitButton.className = 'btn submit';
+     submitButton.setAttribute('type','button');
+     submitButton.textContent = 'SUBMIT';
+     questionContainer.appendChild(submitButton);
+     body.appendChild(questionContainer);
  };
