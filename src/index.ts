@@ -11,23 +11,21 @@ button.addEventListener("click", buildQuizPage);
 
 function buildQuizPage() {
     let body = document.body;
-    body.removeChild(body.children[1])
+    body.removeChild(body.children[1]);
 
     /* create score bar */
     let scoreBar = document.createElement('div');
-    scoreBar.className = 'center bar';
+    scoreBar.className = 'center bar header';
     scoreBar.textContent = 'Number of answered questions:';
+    scoreBar.appendChild(document.createElement('br'));
 
-    let circleList = document.createElement('ul');
     for (let i = 1; i < 7; i++) {
-        let circle = document.createElement('li');
-        circleList.id = 'Question' + i;
-        circleList.appendChild(circle);
-        scoreBar.appendChild(circleList);
+        let circle = document.createElement('span');
+        circle.className = 'circle';
+        circle.id = 'Question'+i;
+        scoreBar.appendChild(circle);
     }
-    let header = document.getElementsByClassName('header')[0];
-    header.appendChild(scoreBar);
-
+    body.appendChild(scoreBar);
     body.appendChild(document.createElement('br'));
 
     /* create container for question, answer options & submit button  */
