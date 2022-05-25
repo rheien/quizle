@@ -1,4 +1,4 @@
-body{
+body {
     background-image: url('images/enso.jpeg');
     background-size: contain;
     background-position: center center;
@@ -6,11 +6,12 @@ body{
     background-attachment: fixed;
     background-size: inherit;
 }
+
 .logo {
     width: 234px;
     height: 222px;
     font-size: 48px;
-    line-height: 225px;
+    line-height: 200px;
     text-align: center;
     background-color: green;
     border-radius: 150px;
@@ -19,17 +20,20 @@ body{
     border-left: 15px solid #CACD94;
     border-bottom: 15px solid #CACD94;
 }
-.center{
+
+.center {
     text-align: center;
     margin: auto;
 }
 
- .color--green{
-     color: #CACD94;
-     text-shadow: 0 0 1px black;
- }
+.color--green {
+    color: #CACD94;
+    text-shadow: 0 0 1px black;
+}
 
- .btn{
+/* for later refactor with BEM like with border */
+
+.btn {
     width: 288px;
     height: 40px;
     background-color: white;
@@ -38,56 +42,75 @@ body{
     border-right: 5px solid #CACD94;
     border-left: 5px solid #CACD94;
     border-bottom: 5px solid #CACD94;
-    border-top-left-radius: 20px ;
-     border-top-right-radius: 20px;
-     border-bottom-left-radius: 20px;
-     border-bottom-right-radius: 20px;
- }
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
 
- .bar{
-     width: 500px;
-     height: 100px;
-     font-size: 30px;
+.bar {
+    width: 500px;
+    height: 100px;
+    font-size: 30px;
 
-     background-color: white;
-     border-top: 12px solid #CACD94;
-     border-right: 12px solid #CACD94;
-     border-left: 12px solid #CACD94;
-     border-bottom: 12px solid #CACD94;
+    background-color: white;
+    border-top: 12px solid #CACD94;
+    border-right: 12px solid #CACD94;
+    border-left: 12px solid #CACD94;
+    border-bottom: 12px solid #CACD94;
 
-     border-top-left-radius: 50px ;
-     border-top-right-radius: 50px;
-     border-bottom-left-radius: 50px;
-     border-bottom-right-radius: 50px;
- }
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
 
- ul{
-     list-style-type:none;
- }
+.container {
+    width: 1050px;
+    height: 375px;
 
- li{
-     display: inline;
-     border-radius: 80px;
-     border-top: 12px solid #CACD94;
-     border-right: 12px solid #CACD94;
-     border-left: 12px solid #CACD94;
-     border-bottom: 12px solid #CACD94
- }
+    background-color: white;
+    border-top: 12px solid #CACD94;
+    border-right: 12px solid #CACD94;
+    border-left: 12px solid #CACD94;
+    border-bottom: 12px solid #CACD94;
 
- .container{
-     width: 1050px;
-     height: 375px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 
-     background-color: white;
-     border-top: 12px solid #CACD94;
-     border-right: 12px solid #CACD94;
-     border-left: 12px solid #CACD94;
-     border-bottom: 12px solid #CACD94;
+    display: flex;
+    flex-direction: column;
+}
 
-     border-top-left-radius: 50px ;
-     border-top-right-radius: 50px;
-     border-bottom-left-radius: 50px;
-     border-bottom-right-radius: 50px;
- }
+.submit {
+    position: absolute;
+    bottom: -300px;
+    right: 250px;
+}
 
- 
+.circle {
+    width: 40px;
+    height: 60px;
+    color: #7c7c7c;
+    border-radius: 100px;
+    border-top: 1px solid;
+    border-right: 20px solid;
+    border-left: 15px solid;
+    border-bottom: 1px solid;
+    margin: 15px;
+}
+
+.question{
+    position:absolute;
+    top: 500px;
+    right: 550px;
+    font-size: 40;
+}
+
+.answerType{
+    position: absolute;
+    top: 600px;
+    right: 800px
+}

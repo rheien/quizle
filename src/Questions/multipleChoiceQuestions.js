@@ -1,4 +1,4 @@
-const multipleChoiceQuestions = [
+export const multipleChoiceQuestions = [
     
     {
         question : "Pi = 3,1415...",
@@ -66,4 +66,3 @@ const multipleChoiceQuestions = [
         correctAnswers : ['a','b','c','d']
     },
 ];
-export{multipleChoiceQuestions} 

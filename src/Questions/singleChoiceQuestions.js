@@ -1,4 +1,4 @@
-const singleChoiceQuestions = [
+export const singleChoiceQuestions = [
     
     {
         question : "Wie schreibt man",
@@ -60,4 +60,3 @@ const singleChoiceQuestions = [
         correctAnswer : 'c'
     },
 ];
-export{singleChoiceQuestions} 
