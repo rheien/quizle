@@ -1,9 +1,6 @@
-const button : Element = document.querySelector("#start")
-button.addEventListener("click", buildQuizPage);
-
+ 
 function buildQuizPage() :void {
     let body : HTMLElement = document.body;
-    body.removeChild(body.children[1]);
 
     /* create score bar */
     let scoreBar : HTMLElement = document.createElement('div');
@@ -55,3 +52,5 @@ function buildQuizPage() :void {
     questionContainer.appendChild(submitButton);
     body.appendChild(questionContainer);
 };
+
+buildQuizPage();
