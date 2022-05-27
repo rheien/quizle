@@ -1,15 +1,18 @@
 {
   "name": "quizle",
-   "description": "2nd Azubi Project - Quiz App",
-   "version": "1.0.0",
-   "source": "src/index.html",
-   "scripts": {
-     "start": "parcel",
-     "build": "parcel build"
-   },
-   "author": "Ryan Le",
-   "license": "ISC",
-   "devDependencies": {
-    "parcel": "^2.5.0"
+  "description": "2nd Azubi Project - Quiz App",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "Ryan Le",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "assert": "^2.0.0",
+    "parcel": "^2.5.0",
+    "process": "^0.11.10"
   }
 }
