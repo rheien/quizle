@@ -1,7 +1,7 @@
 export const textInputQuestions = [
     
     {
-        question : "Wie lautet der Vorname von Frau Srpinger?",
+        question : "Wie lautet der Vorname von Frau Springer?",
         answer : "Friede",
         correctAnswer : 'Friede'
     },
