@@ -97,12 +97,11 @@ function randomPick(questions: object) {
 
 function checkRepetition(list: {}[], card: {}): number {
     //console.dir(typeof(card))
-    let assert = require('assert');
     //console.dir(list)
     list.forEach((element, index) => {
         //console.dir(element.question)
         //console.dir(card.question)
-        if (assert.equal(element[index], card[0])) {
+        if (element[index] === card[0]) {
             //console.dir(element[index])
             //console.dir(card[0])
         }
