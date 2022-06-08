@@ -1,38 +1,39 @@
-export const textInputQuestions = [
+import { Question } from "../components/QuizBuilder";
+export const textInputQuestions : Question[] = [
     
     {
         question : "Wie lautet der Vorname von Frau Springer?",
-        answer : "Friede",
-        correctAnswer : 'Friede'
+        answers : ["Friede"],
+        correctAnswers : ['Friede']
     },
 
     {
         question : "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
-        answer : "Sommerrolle", 
-        correctAnswer : 'Sommerrolle'
+        answers : ["Sommerrolle"], 
+        correctAnswers : ['Sommerrolle']
     },
 
     {
         question : "In welcher Sportart nutzt man den 'Fadeaway'?",
-        answer : "Basketball", 
-        correctAnswer : 'Basketball'
+        answers : ["Basketball"], 
+        correctAnswers : ['Basketball']
     },
 
     {
         question : "In welcher Stadt befindet sich die Goldelse?",
-        answer : "Berlin", 
-        correctAnswer : 'Berlin'
+        answers : ["Berlin"], 
+        correctAnswers : ['Berlin']
     },
 
     {
         question : "Wie heißt die eSport News App von Upday?",
-        answer : "Jaxon", 
-        correctAnswer : 'Jaxon'
+        answers : ["Jaxon"], 
+        correctAnswers : ['Jaxon']
     },
 
     {
         question : "In welchem jahr entstand der Axel Springer Neubau?",
-        answer : "2020", 
-        correctAnswer : '2020'
+        answers : ["2020"], 
+        correctAnswers : ['2020']
     },
 ];

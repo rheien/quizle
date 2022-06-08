@@ -1,62 +1,63 @@
-export const singleChoiceQuestions = [
+import { Question } from "../components/QuizBuilder";
+export const singleChoiceQuestions : Question[]= [
     
     {
         question : "Wie schreibt man",
-        answers : {
-            a : 'Portemonnaie',
-            b : 'Portmonnaie',
-            c : 'Portemonaie'
-        }, 
-        correctAnswer : 'a'
+        answers : [
+             'Portemonnaie',
+             'Portmonnaie',
+             'Portemonaie'
+        ], 
+        correctAnswers : ['a']
     },
 
     {
         question : "Wie schreibt man",
-        answers : {
-            a : 'Lapallie',
-            b : 'Lapalie',
-            c : 'Lappalie'
-        }, 
-        correctAnswer : 'c'
+        answers : [
+             'Lapallie',
+             'Lapalie',
+             'Lappalie'
+        ],
+        correctAnswers : ['c']
     },
 
     {
         question : "Wie schreibt man",
-        answers : {
-            a : 'dillettantisch',
-            b : 'dilletantisch',
-            c : 'dilettantisch'
-        }, 
-        correctAnswer : 'c'
+        answers : [
+            'dillettantisch',
+            'dilletantisch',
+            'dilettantisch'
+        ], 
+        correctAnswers : ['c']
     },
 
     {
         question : "Wie schreibt man",
-        answers : {
-            a : 'unentgeltlich',
-            b : 'unentgeldlich',
-            c : 'unendgeltlich'
-        }, 
-        correctAnswer : 'a'
+        answers : [
+            'unentgeltlich',
+            'unentgeldlich',
+            'unendgeltlich'
+        ], 
+        correctAnswers : ['a']
     },
 
     {
         question : "Wie schreibt man",
-        answers : {
-            a : 'Renomee',
-            b : 'Renommee',
-            c : 'Renomme'
-        }, 
-        correctAnswer : 'b'
+        answers : [
+            'Renomee',
+            'Renommee',
+            'Renomme'
+        ], 
+        correctAnswers : ['b']
     },
 
     {
         question : "Wie hieß Ryan früher mal?",
-        answers : {
-            a : 'Le Linh Tung',
-            b : 'Le Chinh Tuan',
-            c : 'Le Duc Anh'
-        }, 
-        correctAnswer : 'c'
+        answers : [
+            'Le Linh Tung',
+            'Le Chinh Tuan',
+            'Le Duc Anh'
+        ], 
+        correctAnswers : ['c']
     },
 ];

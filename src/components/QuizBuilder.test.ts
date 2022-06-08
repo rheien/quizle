@@ -14,7 +14,13 @@ describe('QuizBuilder', () => {
         const quiz = quizBuilder.buildQuiz(); 
         const quiz2 = quizBuilder.buildQuiz();
         expect(quiz.questions).not.toEqual(quiz2.questions);
-    })
+    });
+
+    it ('Quiz has no duplicate questions', () => {
+        const quizBuilder = new QuizBuilder();
+        const quiz = quizBuilder.buildQuiz();
+        
+    });
 });
 
 /**
