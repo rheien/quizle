@@ -9,8 +9,8 @@ export interface Question {
 };
 
 class Quiz {
-    questions: Question[];
-    score: number;
+    questions: Question[] = [];
+    score: number = 0;
 };
 
 export class QuizBuilder {
@@ -22,45 +22,46 @@ export class QuizBuilder {
         questions = questions.concat(this.poseQuestion(singleChoiceQuestions));
         questions = questions.concat(this.poseQuestion(textInputQuestions));
         
-        quiz.questions = questions;
+        quiz.questions = this.shuffle(questions);
         return quiz;
     };
 
-    poseQuestion(typeOfAnwers: Question[]) : Question[]{
+    /* pick questions for the quiz */
+    poseQuestion(typeOfAnswers: Question[]) : Question[]{
         const picks : Question[] = [];
         for (let index = 0; index < 2; index++) {
-            let pickNumber: number = this.randomPick(typeOfAnwers);
-            picks.push(typeOfAnwers[pickNumber]);
+            let pickNumber: number = this.randomPick(typeOfAnswers);
+
+            while(picks.includes(typeOfAnswers[pickNumber]) ){
+                pickNumber = this.randomPick(typeOfAnswers);
+            }
+
+            picks.push(typeOfAnswers[pickNumber]);
         }
         return picks;
     }
 
+    /* get random number for picking a question */
     randomPick(questions: Question[]) : number{
         return Math.floor(Math.random() * questions.length)
     }
 
-    //checkDuplicate(questions: Question[]) : 
-}
-
-
-    /** later a shuffle function? */
-
-
-    /*______________________________________________________*/
-
-
-
-function checkRepetition(list: {}[], card: {}): number {
-    //console.dir(typeof(card))
-    //console.dir(list)
-    list.forEach((element, index) => {
-        //console.dir(element.question)
-        //console.dir(card.question)
-        if (element[index] === card[0]) {
-            //console.dir(element[index])
-            //console.dir(card[0])
+    /* shuffle function */
+    shuffle(array : any[]) {
+        let currentIndex = array.length,  randomIndex;
+      
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+      
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
         }
-    });
-
-    return 1
-};
+      
+        return array;
+      }
+}

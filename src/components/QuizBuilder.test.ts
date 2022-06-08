@@ -21,4 +21,6 @@ describe('QuizBuilder', () => {
         const uniqueQuestion = new Set(quiz.questions);
         expect(quiz.questions.length).toBe(uniqueQuestion.size);
     });
+
+    /** test shuffle */
 });
