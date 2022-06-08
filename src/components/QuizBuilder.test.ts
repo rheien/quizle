@@ -1,4 +1,3 @@
-
 import { QuizBuilder } from "./QuizBuilder";
 
 
@@ -19,15 +18,7 @@ describe('QuizBuilder', () => {
     it ('Quiz has no duplicate questions', () => {
         const quizBuilder = new QuizBuilder();
         const quiz = quizBuilder.buildQuiz();
-        
+        const uniqueQuestion = new Set(quiz.questions);
+        expect(quiz.questions.length).toBe(uniqueQuestion.size);
     });
 });
-
-/**
- * Quiz ist zusammengestellt
- * bestehend aus 6 Fragen
- * 
- * keine doppelten Fragen
- * 
- * Fragen sind zufällig
- */
