@@ -22,7 +22,7 @@ export class QuizBuilder {
         questions = questions.concat(this.poseQuestion(singleChoiceQuestions));
         questions = questions.concat(this.poseQuestion(textInputQuestions));
         
-        quiz.questions = this.shuffle(questions);
+        quiz.questions = this.shuffleQuestionsOrder(questions);
         return quiz;
     };
 
@@ -30,10 +30,10 @@ export class QuizBuilder {
     poseQuestion(typeOfAnswers: Question[]) : Question[]{
         const picks : Question[] = [];
         for (let index = 0; index < 2; index++) {
-            let pickNumber: number = this.randomPick(typeOfAnswers);
+            let pickNumber: number = this.randomPickQuestion(typeOfAnswers);
 
             while(picks.includes(typeOfAnswers[pickNumber]) ){
-                pickNumber = this.randomPick(typeOfAnswers);
+                pickNumber = this.randomPickQuestion(typeOfAnswers);
             }
 
             picks.push(typeOfAnswers[pickNumber]);
@@ -42,12 +42,12 @@ export class QuizBuilder {
     }
 
     /* get random number for picking a question */
-    randomPick(questions: Question[]) : number{
+    randomPickQuestion(questions: Question[]) : number{
         return Math.floor(Math.random() * questions.length)
     }
 
     /* shuffle function */
-    shuffle(array : any[]) {
+    shuffleQuestionsOrder(array : any[]) {
         let currentIndex = array.length,  randomIndex;
       
         // While there remain elements to shuffle.

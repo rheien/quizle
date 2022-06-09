@@ -8,7 +8,7 @@ export const singleChoiceQuestions : Question[]= [
              'Portmonnaie',
              'Portemonaie'
         ], 
-        correctAnswers : ['a']
+        correctAnswers : ['Portemonnaie']
     },
 
     {
@@ -18,7 +18,7 @@ export const singleChoiceQuestions : Question[]= [
              'Lapalie',
              'Lappalie'
         ],
-        correctAnswers : ['c']
+        correctAnswers : ['Lappalie']
     },
 
     {
@@ -28,7 +28,7 @@ export const singleChoiceQuestions : Question[]= [
             'dilletantisch',
             'dilettantisch'
         ], 
-        correctAnswers : ['c']
+        correctAnswers : ['dilettantisch']
     },
 
     {
@@ -38,7 +38,7 @@ export const singleChoiceQuestions : Question[]= [
             'unentgeldlich',
             'unendgeltlich'
         ], 
-        correctAnswers : ['a']
+        correctAnswers : ['unentgeltlich']
     },
 
     {
@@ -48,7 +48,7 @@ export const singleChoiceQuestions : Question[]= [
             'Renommee',
             'Renomme'
         ], 
-        correctAnswers : ['b']
+        correctAnswers : ['Renommee']
     },
 
     {
@@ -58,6 +58,6 @@ export const singleChoiceQuestions : Question[]= [
             'Le Chinh Tuan',
             'Le Duc Anh'
         ], 
-        correctAnswers : ['c']
+        correctAnswers : ['Le Duc Anh']
     },
 ];

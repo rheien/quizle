@@ -9,7 +9,7 @@ export const multipleChoiceQuestions : Question[]= [
             '94',
             '95'
         ], 
-        correctAnswers : ['a']
+        correctAnswers : ['92']
     },
 
     {
@@ -20,7 +20,7 @@ export const multipleChoiceQuestions : Question[]= [
             'PORSCHE',
             'FIAT'
         ], 
-        correctAnswers : ['b','d']
+        correctAnswers : ['OPEL','FIAT']
     },
 
     {
@@ -31,7 +31,7 @@ export const multipleChoiceQuestions : Question[]= [
             'Panaden',
             'Weizenbrot'
         ], 
-        correctAnswers : ['a','b','c']
+        correctAnswers : ['Bier','Nougat','Panaden']
     },
 
     {
@@ -42,7 +42,7 @@ export const multipleChoiceQuestions : Question[]= [
             'Es ist mir egal!',
             'Wir müssen Wurst wie Stulle kaufen!'
         ], 
-        correctAnswers : ['a','b','d']
+        correctAnswers : ['Das ist meine Wurst mit Stulle!','Es ist Wurst mit Stulle','Wir müssen Wurst wie Stulle kaufen!']
     },
 
     {
@@ -53,7 +53,7 @@ export const multipleChoiceQuestions : Question[]= [
             'eine Beule im Auto',
             'Stulle'
         ], 
-        correctAnswers : ['b','d']
+        correctAnswers : ['Belegte Brotscheibe','Stulle']
     },
 
     {
@@ -64,6 +64,6 @@ export const multipleChoiceQuestions : Question[]= [
             'Le Ruan',
             'Rhein'
         ], 
-        correctAnswers : ['a','b','c','d']
+        correctAnswers : ['Reiner','Ryani','Le Rien','Rhein']
     },
 ];
