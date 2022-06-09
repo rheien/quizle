@@ -1,6 +1,7 @@
 import { multipleChoiceQuestions } from "../questions/multipleChoiceQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 import { textInputQuestions } from "../questions/textInputQuestions";
+import { shuffleOrder } from "./shuffle";
 
 export interface Question {
     question: string;
@@ -13,55 +14,44 @@ class Quiz {
     score: number = 0;
 };
 
+/**
+ * 
+ * This class 'QuizBuilder' assemble a list of questions for a quiz.
+ * At the end, a list of questions is returned unsorted.
+ * 
+ */
 export class QuizBuilder {
+
+    /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
         const quiz: Quiz = new Quiz();
         let questions = [];
 
-        questions = questions.concat(this.poseQuestion(multipleChoiceQuestions));
-        questions = questions.concat(this.poseQuestion(singleChoiceQuestions));
-        questions = questions.concat(this.poseQuestion(textInputQuestions));
-        
-        quiz.questions = this.shuffleQuestionsOrder(questions);
+        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
+        questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
+        questions = questions.concat(this.poseQuestions(textInputQuestions));
+
+        quiz.questions = shuffleOrder(questions);
         return quiz;
     };
 
-    /* pick questions for the quiz */
-    poseQuestion(typeOfAnswers: Question[]) : Question[]{
-        const picks : Question[] = [];
+    /** This method pick two random questions for the question list */
+    poseQuestions(typeOfAnswers: Question[]): Question[] {
+        const picks: Question[] = [];
         for (let index = 0; index < 2; index++) {
-            let pickNumber: number = this.randomPickQuestion(typeOfAnswers);
+            let pickNumber: number = this.randomNumber(typeOfAnswers);
 
-            while(picks.includes(typeOfAnswers[pickNumber]) ){
-                pickNumber = this.randomPickQuestion(typeOfAnswers);
-            }
+            while (picks.includes(typeOfAnswers[pickNumber])) {
+                pickNumber = this.randomNumber(typeOfAnswers);
+            };
 
             picks.push(typeOfAnswers[pickNumber]);
-        }
+        };
         return picks;
     }
 
-    /* get random number for picking a question */
-    randomPickQuestion(questions: Question[]) : number{
+    /** This method give a random number back */
+    randomNumber(questions: Question[]): number {
         return Math.floor(Math.random() * questions.length)
     }
-
-    /* shuffle function */
-    shuffleQuestionsOrder(array : any[]) {
-        let currentIndex = array.length,  randomIndex;
-      
-        // While there remain elements to shuffle.
-        while (currentIndex != 0) {
-      
-          // Pick a remaining element.
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-      
-        return array;
-      }
 }
