@@ -1,7 +1,7 @@
  
 function buildQuizPage() :void {
     let body : HTMLElement = document.body;
-
+    
     /* create score bar */
     let scoreBar : HTMLElement = document.createElement('div');
     scoreBar.className = 'center bar';

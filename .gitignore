@@ -2,3 +2,5 @@
 .parcel-cache
 dist
 node_modules
+coverage
+OOA_LeMer.drawio
