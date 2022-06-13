@@ -1,51 +1,75 @@
- 
-function buildQuizPage() :void {
-    let body : HTMLElement = document.body;
-    
+import { Question } from "./QuizBuilder";
+import { QuizMaster } from "./QuizMaster";
+
+function buildQuizPage(): void {
+    const quizMaster = new QuizMaster();
+    const quiz = quizMaster.handleQuizRound();
+    let questionCards: Question[] = quiz.questions;
+    let round = 0;
+
+    let body: HTMLElement = document.body;
+
     /* create score bar */
-    let scoreBar : HTMLElement = document.createElement('div');
+    let scoreBar: HTMLElement = document.createElement('div');
     scoreBar.className = 'center bar';
     scoreBar.textContent = 'Number of answered questions:';
     scoreBar.appendChild(document.createElement('br'));
 
     for (let i = 1; i < 7; i++) {
-        let circle : HTMLElement = document.createElement('span');
+        let circle: HTMLElement = document.createElement('span');
         circle.className = 'circle';
-        circle.id = 'Question'+i;
+        circle.id = 'Question' + i;
         scoreBar.appendChild(circle);
     }
-    let header : HTMLElement = document.getElementsByTagName('header')[0];
+    let header: HTMLElement = document.getElementsByTagName('header')[0];
     header.appendChild(scoreBar);
     body.appendChild(document.createElement('br'));
 
     /* create container for question, answer options & submit button  */
-    let questionContainer : HTMLElement = document.createElement('div');
+    let questionContainer: HTMLElement = document.createElement('div');
     questionContainer.className = 'center container';
 
     /* rendering the question */
-    let question : HTMLElement = document.createElement('div');
+    let question: HTMLElement = document.createElement('div');
     question.className = 'question';
-    question.textContent = 'What is Lorem Ipsum?';
+    question.textContent = questionCards[round].question;
     questionContainer.appendChild(question);
 
     /* rendering the answer type */
-    let answerType : HTMLElement = document.createElement('div');
+    let answerType: HTMLElement = document.createElement('div');
     answerType.className = 'answerType';
 
     /* checkbox as an example */
-    let answerOption : HTMLElement = document.createElement('input');
-    answerOption.id = 'a';
-    answerOption.setAttribute('type','checkbox');
-    answerOption.setAttribute('name','a');
-    answerType.appendChild(answerOption);
-    let label_answerOption : HTMLElement = document.createElement('label');
-    label_answerOption.setAttribute('for','a');
-    label_answerOption.textContent = 'blub'
-    answerType.appendChild(label_answerOption);
-    questionContainer.appendChild(answerType);
+    if (questionCards[round].answers.length === 4) {
+        answerOptions(questionCards[round].answers, 'checkbox');
+    } else if (questionCards[round].answers.length === 3) {
+        answerOptions(questionCards[round].answers, 'radio');
+    } else {
+        let answerOption: HTMLElement = document.createElement('input');
+        answerOption.id = 'text_input';
+        answerOption.setAttribute('type', 'text');
+        answerType.appendChild(answerOption);
+        questionContainer.appendChild(answerType);
+    }
+
+    function answerOptions(answers, inputType) {
+        answers.forEach((answer, index) => {
+            let answerOption: HTMLElement = document.createElement('input');
+            answerOption.id = (index + 1);
+            answerOption.setAttribute('type', inputType);
+            answerOption.setAttribute('name', 'answer_btn_' + inputType);
+            answerOption.setAttribute('value', answer);
+            answerType.appendChild(answerOption);
+            let label_answerOption: HTMLElement = document.createElement('label');
+            label_answerOption.setAttribute('for', 'answer_btn_' + (index + 1));
+            label_answerOption.textContent = answer;
+            answerType.appendChild(label_answerOption);
+            questionContainer.appendChild(answerType);
+        });
+    };
 
     /* submit button */
-    let submitButton : HTMLElement = document.createElement('button');
+    let submitButton: HTMLElement = document.createElement('button');
     submitButton.className = 'btn submit hidden';
     submitButton.setAttribute('type', 'button');
     submitButton.textContent = 'SUBMIT';
