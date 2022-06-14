@@ -65,28 +65,33 @@ describe('QuizMaster', () => {
     
     describe('handleQuiz()', () => {
 
-        //selected answers is empty at the moment
-        it('should answer all questions incorrectly', () => {
+
+        it('should score 0 when answer incorrectly', () => {
+            const quizBuilder = new QuizBuilder();
+            const quiz = quizBuilder.buildQuiz();
             const quizHandler = new QuizMaster();
-            const quizGame = quizHandler.handleQuiz();
-            const answering = 
-            expect(quizGame.score).toBe(0);
+            
+            const roundNumber = Math.floor(Math.random() * quiz.questions.length);
+
+            const incorrectAnswers: string[] = ['incorrect answer'];
+
+            quizHandler.handleQuizScore(quiz, roundNumber, incorrectAnswers);
+
+            expect(quiz.score).toBe(0);
         });
 
-        //prepare correct selected answers
-        it('should answer all questions correctly', () => {
-            const quizHandler = new QuizMaster();
-            const quizGame = quizHandler.handleQuiz();
-            
-            //expect(quizGame.score).toBe(6);
-        });
 
-        //prepare some correct selected answers
-        it('should answer some questions correctly', () => {
+        it('should score 1 when answer correctly', () => {
+            const quizBuilder = new QuizBuilder();
+            const quiz = quizBuilder.buildQuiz();
             const quizHandler = new QuizMaster();
-            const quizGame = quizHandler.handleQuiz();
             
-            //expect(quizGame.score).toBe(4);
+            const roundNumber = Math.floor(Math.random() * quiz.questions.length);
+            const correctAnswers = quiz.questions[roundNumber].correctAnswers;
+
+            quizHandler.handleQuizScore(quiz, roundNumber, correctAnswers);
+
+            expect(quiz.score).toBe(1);
         });
     });
 });
