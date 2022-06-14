@@ -5,7 +5,7 @@ function buildQuizPage(): void {
     const quizMaster = new QuizMaster();
     const quiz = quizMaster.handleQuizRound();
     let questionCards: Question[] = quiz.questions;
-    let round = 0;
+    let round = quiz.round;
 
     let body: HTMLElement = document.body;
 
@@ -35,35 +35,43 @@ function buildQuizPage(): void {
     question.textContent = questionCards[round].question;
     questionContainer.appendChild(question);
 
-    /* rendering the answer type */
+    /* container for answer type */
     let answerType: HTMLElement = document.createElement('div');
     answerType.className = 'answerType';
 
-    /* checkbox as an example */
+    /* 3 cases for rendering answer types */
     if (questionCards[round].answers.length === 4) {
         answerOptions(questionCards[round].answers, 'checkbox');
     } else if (questionCards[round].answers.length === 3) {
         answerOptions(questionCards[round].answers, 'radio');
     } else {
-        let answerOption: HTMLElement = document.createElement('input');
+        let answerOption: HTMLInputElement = document.createElement('input');
         answerOption.id = 'text_input';
         answerOption.setAttribute('type', 'text');
-        answerType.appendChild(answerOption);
+        answerOption.setAttribute('name', 'input_answer')
+        let containerAnswerOption = document.createElement('div');
+        containerAnswerOption.appendChild(answerOption);
+        answerType.appendChild(containerAnswerOption);
         questionContainer.appendChild(answerType);
     }
 
+    /** This method render type radio and checkbox */
     function answerOptions(answers, inputType) {
         answers.forEach((answer, index) => {
-            let answerOption: HTMLElement = document.createElement('input');
+            let answerOption: HTMLInputElement = document.createElement('input');
             answerOption.id = (index + 1);
             answerOption.setAttribute('type', inputType);
             answerOption.setAttribute('name', 'answer_btn_' + inputType);
             answerOption.setAttribute('value', answer);
-            answerType.appendChild(answerOption);
+            let containerAnswerOption = document.createElement('div');
+            containerAnswerOption.appendChild(answerOption);
+            answerType.appendChild(containerAnswerOption);
+            
             let label_answerOption: HTMLElement = document.createElement('label');
             label_answerOption.setAttribute('for', 'answer_btn_' + (index + 1));
             label_answerOption.textContent = answer;
-            answerType.appendChild(label_answerOption);
+            containerAnswerOption.appendChild(label_answerOption);
+            answerType.appendChild(containerAnswerOption);
             questionContainer.appendChild(answerType);
         });
     };
@@ -73,6 +81,7 @@ function buildQuizPage(): void {
     submitButton.className = 'btn submit hidden';
     submitButton.setAttribute('type', 'button');
     submitButton.textContent = 'SUBMIT';
+    submitButton.addEventListener("click", quizMaster.handleQuiz);
     questionContainer.appendChild(submitButton);
     body.appendChild(questionContainer);
 };
