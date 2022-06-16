@@ -10,10 +10,10 @@ import { compile, registerHelper } from "handlebars";
     let questionCards: Question[] = quiz.questions;
 
     let data = {
-        title: 'hello',
+        title: "hello for quiz",
         questionCards,
     };
-
+/**
     registerHelper('text_input', function (answers) {
         return answers.question.length === 1;
     })
@@ -24,13 +24,21 @@ import { compile, registerHelper } from "handlebars";
 
     registerHelper('checkbox', function (answers) {
         return answers.question.length === 4;
-    })
-
-    const quizTemplate = document.querySelector('link[rel="import"] [href="./view/quizPage.hbs"]');
-    //const quizTemplate = link;
-
-    const template = compile(quizTemplate);
-    const filled = template(data);
-    document.querySelector('#quizData').innerHTML = filled;
+    }) */
+    
+    
+    
+    fetch('view/example.html')
+        .then(response => {
+            if (!response.ok){
+                throw new Error ("no templates found")
+            }
+            return response.text();
+        })
+        .then(response =>  {
+            const template = compile(response);
+            const filled = template(data);
+            document.getElementById('quizData').innerHTML =filled;
+            console.log(filled)
+        });
 }())
-
