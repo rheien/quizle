@@ -4,7 +4,7 @@ import { compile } from "handlebars";
 
 function buildQuizPage(): void {
     const quizMaster = new QuizMaster();
-    const quiz = quizMaster.handleQuizRound();
+    const quiz = quizMaster.newQuiz();
     let questionCards: Question[] = quiz.questions;
     let round = quiz.round;
 
@@ -35,12 +35,12 @@ function fill_template(question: Question) {
         answers: question.answers,
     };
 
-    let questionTemplate : string = null;
-    if(question.type === QuestionType.FREE_TEXT){
+    let questionTemplate: string = null;
+    if (question.type === QuestionType.FREE_TEXT) {
         questionTemplate = 'freeTextQuestion.hbs';
-    } else if ( question.type === QuestionType.SINGLE_CHOICE){
+    } else if (question.type === QuestionType.SINGLE_CHOICE) {
         questionTemplate = 'singleChoiceQuestion.hbs';
-    } else if (question.type === QuestionType.MULTIPLE_CHOICE){
+    } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
         questionTemplate = 'multipleChoiceQuestion.hbs';
     }
 
@@ -56,6 +56,35 @@ function fill_template(question: Question) {
             const filled = template(data);
             document.getElementById('quizData').innerHTML = filled;
         });
+};
+
+/** This method collect the answers for QuizMaster */
+function collectSelectedAnswers(): string[] {
+    let collectedAnswers: string[] = [];
+    let currentAnswerType = document.querySelector('input').type;
+    if (currentAnswerType === 'text') {
+        collectedAnswers.push((<HTMLInputElement>document.querySelector('input[type="text"]')).value);
+        return collectedAnswers;
+    }
+    else if (currentAnswerType === 'checkbox') {
+        for (let index = 1; index <= 4; index++) {
+            const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
+            if (answerType.checked === true) {
+                collectedAnswers.push(answerType.value);
+            }
+        }
+        return collectedAnswers;
+    }
+    else if (currentAnswerType === 'radio') {
+        for (let index = 1; index <= 3; index++) {
+            const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
+
+            if (answerType.checked === true) {
+                collectedAnswers.push(answerType.value);
+            }
+        }
+        return collectedAnswers;
+    }
 };
 
 buildQuizPage();

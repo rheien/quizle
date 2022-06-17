@@ -1,4 +1,5 @@
-import { Question, QuizBuilder } from "./QuizBuilder";
+import { Question, QuestionType } from "../questions/types";
+import { QuizBuilder } from "./QuizBuilder";
 import { QuizMaster } from "./QuizMaster";
 
 
@@ -14,7 +15,8 @@ describe('QuizMaster', () => {
                     '94',
                     '95'
                 ],
-                correctAnswers: ['92']
+                correctAnswers: ['92'],
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -33,7 +35,8 @@ describe('QuizMaster', () => {
                     'PORSCHE',
                     'FIAT'
                 ],
-                correctAnswers: ['OPEL', 'FIAT']
+                correctAnswers: ['OPEL', 'FIAT'],
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -52,7 +55,8 @@ describe('QuizMaster', () => {
                     '94',
                     '95'
                 ],
-                correctAnswers: ['92']
+                correctAnswers: ['92'],
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const incorrectAnswers: string[] = ['incorrect answer'];
 
