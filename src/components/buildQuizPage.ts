@@ -1,4 +1,4 @@
-import { Question } from "./QuizBuilder";
+import { Question, QuestionType } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
 import { compile } from "handlebars";
 
@@ -26,71 +26,36 @@ function buildQuizPage(): void {
     header.appendChild(scoreBar);
     body.appendChild(document.createElement('br'));
 
+    fill_template(questionCards[round])
+};
 
-//   create container for question, answer options & submit button  */
-//     let questionContainer: HTMLElement = document.createElement('div');
-//     questionContainer.className = 'center container';
- 
-//     /* rendering the question */
-//     let question: HTMLElement = document.createElement('div');
-//     question.className = 'question';
-//     question.textContent = questionCards[round].question;
-//     questionContainer.appendChild(question);
+function fill_template(question: Question) {
+    let data = {
+        question: question.question,
+        answers: question.answers,
+    };
 
-//     /* container for answer type */
-//     let answerType: HTMLElement = document.createElement('div');
-//     answerType.className = 'answerType';
+    let questionTemplate : string = null;
+    if(question.type === QuestionType.FREE_TEXT){
+        questionTemplate = 'freeTextQuestion.hbs';
+    } else if ( question.type === QuestionType.SINGLE_CHOICE){
+        questionTemplate = 'singleChoiceQuestion.hbs';
+    } else if (question.type === QuestionType.MULTIPLE_CHOICE){
+        questionTemplate = 'multipleChoiceQuestion.hbs';
+    }
 
-//     /* 3 cases for rendering answer types */
-//     if (questionCards[round].answers.length === 4) {
-//         answerOptions(questionCards[round].answers, 'checkbox');
-//     } else if (questionCards[round].answers.length === 3) {
-//         answerOptions(questionCards[round].answers, 'radio');
-//     } else {
-//         let answerOption: HTMLInputElement = document.createElement('input');
-//         answerOption.id = 'text_input';
-//         answerOption.setAttribute('type', 'text');
-//         answerOption.setAttribute('name', 'input_answer')
-//         let containerAnswerOption = document.createElement('div');
-//         containerAnswerOption.appendChild(answerOption);
-//         answerType.appendChild(containerAnswerOption);
-//         questionContainer.appendChild(answerType);
-//     }
-
-//     /** This method render type radio and checkbox */
-//     function answerOptions(answers, inputType) {
-//         answers.forEach((answer, index) => {
-//             let answerOption: HTMLInputElement = document.createElement('input');
-//             answerOption.id = (index + 1);
-//             answerOption.setAttribute('type', inputType);
-//             answerOption.setAttribute('name', 'answer_btn_' + inputType);
-//             answerOption.setAttribute('value', answer);
-//             let containerAnswerOption = document.createElement('div');
-//             containerAnswerOption.appendChild(answerOption);
-//             answerType.appendChild(containerAnswerOption);
-            
-//             let label_answerOption: HTMLElement = document.createElement('label');
-//             label_answerOption.setAttribute('for', 'answer_btn_' + (index + 1));
-//             label_answerOption.textContent = answer;
-//             containerAnswerOption.appendChild(label_answerOption);
-//             answerType.appendChild(containerAnswerOption);
-//             questionContainer.appendChild(answerType);
-//         });
-//     };
-
-//     /* submit button */
-//     let submitButton: HTMLElement = document.createElement('button');
-//     submitButton.className = 'btn submit hidden';
-//     submitButton.setAttribute('type', 'button');
-//     submitButton.textContent = 'SUBMIT';
-//     submitButton.addEventListener("click", function () {
-//         quizMaster.handleQuiz();
-//     });
-//     questionContainer.appendChild(submitButton);
-//     body.appendChild(questionContainer); 
-    
-
-
+    fetch(questionTemplate)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("no templates found")
+            }
+            return response.text();
+        })
+        .then(response => {
+            const template = compile(response);
+            const filled = template(data);
+            document.getElementById('quizData').innerHTML = filled;
+        });
 };
 
 buildQuizPage();

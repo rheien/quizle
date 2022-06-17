@@ -1,4 +1,4 @@
-import { Question } from "../components/QuizBuilder";
+import { Question, QuestionType } from "./types";
 export const singleChoiceQuestions : Question[]= [
     
     {
@@ -8,7 +8,8 @@ export const singleChoiceQuestions : Question[]= [
              'Portmonnaie',
              'Portemonaie'
         ], 
-        correctAnswers : ['Portemonnaie']
+        correctAnswers : ['Portemonnaie'],
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -18,7 +19,8 @@ export const singleChoiceQuestions : Question[]= [
              'Lapalie',
              'Lappalie'
         ],
-        correctAnswers : ['Lappalie']
+        correctAnswers : ['Lappalie'],
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -28,7 +30,8 @@ export const singleChoiceQuestions : Question[]= [
             'dilletantisch',
             'dilettantisch'
         ], 
-        correctAnswers : ['dilettantisch']
+        correctAnswers : ['dilettantisch'],
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -38,7 +41,8 @@ export const singleChoiceQuestions : Question[]= [
             'unentgeldlich',
             'unendgeltlich'
         ], 
-        correctAnswers : ['unentgeltlich']
+        correctAnswers : ['unentgeltlich'],
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -48,7 +52,8 @@ export const singleChoiceQuestions : Question[]= [
             'Renommee',
             'Renomme'
         ], 
-        correctAnswers : ['Renommee']
+        correctAnswers : ['Renommee'],
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -58,6 +63,7 @@ export const singleChoiceQuestions : Question[]= [
             'Le Chinh Tuan',
             'Le Duc Anh'
         ], 
-        correctAnswers : ['Le Duc Anh']
+        correctAnswers : ['Le Duc Anh'],
+        type: QuestionType.SINGLE_CHOICE
     },
 ];

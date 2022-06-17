@@ -63,7 +63,7 @@ describe('QuizMaster', () => {
     });
 
     
-    describe('handleQuiz()', () => {
+    describe('handleQuizScore()', () => {
 
 
         it('should score 0 when answer incorrectly', () => {

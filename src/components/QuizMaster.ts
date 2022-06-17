@@ -9,34 +9,19 @@ import { Question, Quiz, QuizBuilder } from "./QuizBuilder";
  */
 export class QuizMaster {
     
-
-    handleQuiz(){
-        const quiz : Quiz = this.handleQuizRound();
-        const collectedAnswers : string[] = this.collectSelectedAnswers();
-        //let currentQuestions = document.querySelector('question');
-        
-        this.handleQuizScore(quiz, quiz.round, collectedAnswers);
-        quiz.round++;
-        console.log(quiz.score)
-    }
-
     handleQuizRound() : Quiz{
 
         const quizBuilder = new QuizBuilder();
         const quiz : Quiz = quizBuilder.buildQuiz();
-        /*
-        let question : Question[] = quiz.questions;
-        //let currentQuestions : Question = question.shift();
-        let posedQuestions : Question[]= [];
-        //posedQuestions.push(currentQuestions);
         
-        let selectedAnswers : string[]= []//this.collectSelectedAnswers();
-        //this.handleQuiz(quiz, posedQuestions.length-1, selectedAnswers);
-        
-        */
         return quiz
     }
 
+    handleQuiz(){
+        const quiz : Quiz = this.handleQuizRound();
+        this.handleQuizScore(quiz, quiz.round, this.collectSelectedAnswers());
+        quiz.round++;
+    }
 
     handleQuizScore( quiz: Quiz, questionRound: number, selectedAnswers : string[]) {
         //let score = quiz.score;
@@ -69,7 +54,6 @@ export class QuizMaster {
                 const answerType = (<HTMLInputElement>document.querySelector('input[id="'+index+'"]'));
                 
                 if (answerType.checked === true){
-                    console.log(answerType.value)
                     collectedAnswers.push(answerType.value);
                 }
             }
