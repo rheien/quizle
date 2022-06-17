@@ -1,0 +1,33 @@
+<div class="entry">
+    <h1> This is a {{title}} for testing</h1>
+</div>
+
+<div class="question">{{question}}</div>
+
+{{!--
+<div class="answerType">
+    
+    {{#if text_input answers}}
+    <div>
+        <input id="text_input" type="text" name="input_answer">
+    </div> 
+
+    {{else if radio answers}}
+    {{#each answers}}
+    <div>
+        <input id={{@index+1}} type="radio" name="answer_btn_radio" value={{answers}}>
+        <label for="answer_btn_" +{{@index+1}}>{{answers}}</label>
+    </div>
+    {{/each}}    
+
+    {{else if checkbox answers}}
+    {{#each answers}}
+    <div>
+        <input id={{@index+1}} type="checkbox" name="answer_btn_checkbox" value={{answers}}>
+        <label for="answer_btn_" +{{@index+1}}>{{answers}}</label>
+    </div>
+    {{/each}}
+    {{/if}}
+</div>
+<button class="btn submit hidden" type="button">{{button}}</button> 
+--}}

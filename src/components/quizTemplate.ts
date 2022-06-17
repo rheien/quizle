@@ -13,7 +13,8 @@ import { compile, registerHelper } from "handlebars";
         title: "hello for quiz",
         questionCards,
     };
-/**
+
+    /*
     registerHelper('text_input', function (answers) {
         return answers.question.length === 1;
     })
@@ -24,11 +25,11 @@ import { compile, registerHelper } from "handlebars";
 
     registerHelper('checkbox', function (answers) {
         return answers.question.length === 4;
-    }) */
+    }) 
+    */
     
     
-    
-    fetch('view/example.html')
+    fetch('quizContainer.hbs')
         .then(response => {
             if (!response.ok){
                 throw new Error ("no templates found")
