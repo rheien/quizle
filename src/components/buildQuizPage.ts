@@ -58,6 +58,9 @@ function fill_template(question: Question) {
         });
 };
 
+
+// type is now givn -> refactor currentAnswerType
+
 /** This method collect the answers for QuizMaster */
 function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];

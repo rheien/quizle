@@ -27,6 +27,6 @@
     "handlebars": "^4.7.7"
   },
   "staticFiles": {
-    "staticPath": "src/view"
+    "staticPath": "src/templates"
   }
 }
