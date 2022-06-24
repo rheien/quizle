@@ -23,7 +23,7 @@ export class QuizBuilder {
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
         const quiz: Quiz = new Quiz();
-        let questions = [];
+        let questions : Question[] = [];
 
         questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(singleChoiceQuestions));

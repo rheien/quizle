@@ -1,6 +1,6 @@
 import { Question } from "../questions/types";
 import { Quiz, QuizBuilder } from "./QuizBuilder";
-
+import { collectSelectedAnswers } from "./buildQuizPage"
 
 /**
  * 
@@ -9,7 +9,18 @@ import { Quiz, QuizBuilder } from "./QuizBuilder";
  * 
  */
 export class QuizMaster {
-    
+    /**Konzeptfluss
+    game(){
+    input des users holen ->    let selectedAnswers : string[] = collectSelectedAnswers();
+    anrworten auswerten ->    this.handleQuizScore(quiz, quiz.round, selectedAnswers);
+    next button für nächste frage
+    }
+*/
+    game(){
+        //let collectAnswers = collectSelectedAnswers();
+        //this.handleQuizScore(this.newQuiz(),collectAnswers);
+    }
+
     newQuiz() : Quiz{
 
         const quizBuilder = new QuizBuilder();
@@ -18,11 +29,13 @@ export class QuizMaster {
         return quiz
     }
 
-    handleQuizScore( quiz: Quiz, questionRound: number, selectedAnswers : string[]) {
+    handleQuizScore( quiz: Quiz, selectedAnswers : string[]) {
 
-        if (this.evaluateAnswers(quiz.questions[questionRound], selectedAnswers)){
+        if (this.evaluateAnswers(quiz.questions[quiz.round], selectedAnswers)){
             quiz.score++;
+            
         }
+        quiz.round++;
     };
 
 

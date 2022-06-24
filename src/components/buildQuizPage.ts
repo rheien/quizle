@@ -6,7 +6,6 @@ function buildQuizPage(): void {
     const quizMaster = new QuizMaster();
     const quiz = quizMaster.newQuiz();
     let questionCards: Question[] = quiz.questions;
-    let round = quiz.round;
 
     let body: HTMLElement = document.body;
 
@@ -26,7 +25,13 @@ function buildQuizPage(): void {
     header.appendChild(scoreBar);
     body.appendChild(document.createElement('br'));
 
-    fill_template(questionCards[round])
+    fill_template(questionCards[quiz.round])
+
+    let submitButton = document.querySelector('button');
+    submitButton.addEventListener("click", function(){
+        quizMaster.handleQuizScore(quiz,collectSelectedAnswers());
+    });
+    
 };
 
 function fill_template(question: Question) {
@@ -35,7 +40,7 @@ function fill_template(question: Question) {
         answers: question.answers,
     };
 
-    let questionTemplate: string = null;
+    let questionTemplate: string = "null";
     if (question.type === QuestionType.FREE_TEXT) {
         questionTemplate = 'freeTextQuestion.hbs';
     } else if (question.type === QuestionType.SINGLE_CHOICE) {
@@ -62,7 +67,7 @@ function fill_template(question: Question) {
 // type is now givn -> refactor currentAnswerType
 
 /** This method collect the answers for QuizMaster */
-function collectSelectedAnswers(): string[] {
+ export function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
     let currentAnswerType = document.querySelector('input').type;
     if (currentAnswerType === 'text') {
@@ -70,7 +75,7 @@ function collectSelectedAnswers(): string[] {
         return collectedAnswers;
     }
     else if (currentAnswerType === 'checkbox') {
-        for (let index = 1; index <= 4; index++) {
+        for (let index = 0; index <= 3; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
             if (answerType.checked === true) {
                 collectedAnswers.push(answerType.value);
@@ -79,7 +84,7 @@ function collectSelectedAnswers(): string[] {
         return collectedAnswers;
     }
     else if (currentAnswerType === 'radio') {
-        for (let index = 1; index <= 3; index++) {
+        for (let index = 0; index <= 2; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
 
             if (answerType.checked === true) {

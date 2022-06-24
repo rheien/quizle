@@ -1,12 +1,11 @@
 import { Question, QuestionType } from "../questions/types";
-import { QuizBuilder } from "./QuizBuilder";
 import { QuizMaster } from "./QuizMaster";
 
 
 describe('QuizMaster', () => {
     describe('evaluateAnswer()', () => {
         it('evaluateAnswers should return true for one correct Answer', () => {
-            const quizHandler = new QuizMaster();
+            const quizMaster = new QuizMaster();
             const question: Question = {
                 question: "Pi = 3,1415...",
                 answers: [
@@ -20,13 +19,13 @@ describe('QuizMaster', () => {
             };
             const correctAnswers: string[] = question.correctAnswers;
 
-            const result = quizHandler.evaluateAnswers(question, correctAnswers);
+            const result = quizMaster.evaluateAnswers(question, correctAnswers);
 
             expect(result).toBe(true);
         });
 
         it('evaluateAnswers should return true for two correct Answers', () => {
-            const quizHandler = new QuizMaster();
+            const quizMaster = new QuizMaster();
             const question: Question = {
                 question: "Welche Automarken gehören nicht zu Volkswagen?",
                 answers: [
@@ -40,13 +39,13 @@ describe('QuizMaster', () => {
             };
             const correctAnswers: string[] = question.correctAnswers;
 
-            const result = quizHandler.evaluateAnswers(question, correctAnswers);
+            const result = quizMaster.evaluateAnswers(question, correctAnswers);
 
             expect(result).toBe(true);
         });
 
         it('evaluateAnswers should return false for the incorrect Answer', () => {
-            const quizHandler = new QuizMaster();
+            const quizMaster = new QuizMaster();
             const question: Question = {
                 question: "Pi = 3,1415...",
                 answers: [
@@ -60,7 +59,7 @@ describe('QuizMaster', () => {
             };
             const incorrectAnswers: string[] = ['incorrect answer'];
 
-            const result = quizHandler.evaluateAnswers(question, incorrectAnswers);
+            const result = quizMaster.evaluateAnswers(question, incorrectAnswers);
 
             expect(result).toBe(false);
         });
@@ -71,29 +70,25 @@ describe('QuizMaster', () => {
 
 
         it('should score 0 when answer incorrectly', () => {
-            const quizBuilder = new QuizBuilder();
-            const quiz = quizBuilder.buildQuiz();
-            const quizHandler = new QuizMaster();
-            
-            const roundNumber = Math.floor(Math.random() * quiz.questions.length);
+            const quizMaster = new QuizMaster();
+            const quiz = quizMaster.newQuiz();
 
             const incorrectAnswers: string[] = ['incorrect answer'];
 
-            quizHandler.handleQuizScore(quiz, roundNumber, incorrectAnswers);
+            quizMaster.handleQuizScore(quiz,  incorrectAnswers);
 
             expect(quiz.score).toBe(0);
         });
 
 
         it('should score 1 when answer correctly', () => {
-            const quizBuilder = new QuizBuilder();
-            const quiz = quizBuilder.buildQuiz();
-            const quizHandler = new QuizMaster();
+            const quizMaster = new QuizMaster();
+            const quiz = quizMaster.newQuiz();
             
-            const roundNumber = Math.floor(Math.random() * quiz.questions.length);
-            const correctAnswers = quiz.questions[roundNumber].correctAnswers;
+            quiz.round = Math.floor(Math.random() * quiz.questions.length);
+            const correctAnswers = quiz.questions[quiz.round].correctAnswers;
 
-            quizHandler.handleQuizScore(quiz, roundNumber, correctAnswers);
+            quizMaster.handleQuizScore(quiz,  correctAnswers);
 
             expect(quiz.score).toBe(1);
         });
