@@ -33,7 +33,9 @@ export class QuizBuilder {
         return quiz;
     };
 
-    /** This method pick two random questions for the question list */
+    /** This method pick two random questions for the question list
+     *  and shuffle the order of the given answers
+     */
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
         for (let index = 0; index < 2; index++) {
@@ -43,6 +45,7 @@ export class QuizBuilder {
                 pickNumber = this.randomNumber(typeOfAnswers);
             };
 
+            typeOfAnswers[pickNumber].answers = shuffleOrder(typeOfAnswers[pickNumber].answers);
             picks.push(typeOfAnswers[pickNumber]);
         };
         return picks;

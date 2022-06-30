@@ -81,7 +81,7 @@ describe('QuizMaster', () => {
         });
 
 
-        it('should score 1 when answer correctly', () => {
+        it('must score 1 when only one answer is correct', () => {
             const quizMaster = new QuizMaster();
             const quiz = quizMaster.newQuiz();
             
@@ -91,6 +91,17 @@ describe('QuizMaster', () => {
             quizMaster.handleQuizScore(quiz,  correctAnswers);
 
             expect(quiz.score).toBe(1);
+        });
+
+        it('should change the number of rounds to 1 after answering once', () => {
+            const quizMaster = new QuizMaster();
+            const quiz = quizMaster.newQuiz();
+            
+            const correctAnswers = ['null'];
+
+            quizMaster.handleQuizScore(quiz,  correctAnswers);
+
+            expect(quiz.round).toBe(1);
         });
     });
 });

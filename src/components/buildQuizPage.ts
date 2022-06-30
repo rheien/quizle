@@ -2,10 +2,13 @@ import { Question, QuestionType } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
 import { compile } from "handlebars";
 
+/**
+ * Build the Quiz Page 
+ */
 function buildQuizPage(): void {
     const quizMaster = new QuizMaster();
     const quiz = quizMaster.newQuiz();
-    let questionCards: Question[] = quiz.questions;
+    const questionCards: Question[] = quiz.questions;
 
     let body: HTMLElement = document.body;
 
@@ -27,13 +30,38 @@ function buildQuizPage(): void {
 
     fill_template(questionCards[quiz.round])
 
+    /* using a new template after each submit */
     let submitButton = document.querySelector('button');
-    submitButton.addEventListener("click", function(){
-        quizMaster.handleQuizScore(quiz,collectSelectedAnswers());
+    submitButton.addEventListener("click", function () {
+    quizMaster.handleQuizScore(quiz, collectSelectedAnswers());
+        if(quiz.round===6){
+            fill_result(quiz.score);
+        }
+        else{
+            fill_template(questionCards[quiz.round]);
+        }
     });
-    
 };
 
+/**
+ * after the quiz the result template will show up
+ */
+function fill_result(score : number) {
+    fetch('quizResult.hbs')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("no templates found")
+            }
+            return response.text();
+        })
+        .then(response => {
+            const template = compile(response);
+            const filled = template(score);
+            document.getElementById('quizData').innerHTML = filled;
+        });
+}
+
+/* fetch templates to quiz page */
 function fill_template(question: Question) {
     let data = {
         question: question.question,
@@ -64,25 +92,27 @@ function fill_template(question: Question) {
 };
 
 
-// type is now givn -> refactor currentAnswerType
-
-/** This method collect the answers for QuizMaster */
- export function collectSelectedAnswers(): string[] {
+/* This method collect the answers for QuizMaster */
+export function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
     let currentAnswerType = document.querySelector('input').type;
+    
     if (currentAnswerType === 'text') {
         collectedAnswers.push((<HTMLInputElement>document.querySelector('input[type="text"]')).value);
         return collectedAnswers;
     }
+
     else if (currentAnswerType === 'checkbox') {
         for (let index = 0; index <= 3; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
+            
             if (answerType.checked === true) {
                 collectedAnswers.push(answerType.value);
             }
         }
         return collectedAnswers;
     }
+    
     else if (currentAnswerType === 'radio') {
         for (let index = 0; index <= 2; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
