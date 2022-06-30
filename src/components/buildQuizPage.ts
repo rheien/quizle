@@ -2,6 +2,11 @@ import { Question, QuestionType } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
 import { compile } from "handlebars";
 
+window.onload = function () {
+    buildQuizPage();
+};
+
+
 /**
  * Build the Quiz Page 
  */
@@ -32,12 +37,14 @@ function buildQuizPage(): void {
 
     /* using a new template after each submit */
     let submitButton = document.querySelector('button');
-    submitButton.addEventListener("click", function () {
-    quizMaster.handleQuizScore(quiz, collectSelectedAnswers());
-        if(quiz.round===6){
+    submitButton?.addEventListener("click", function () {
+        changeButton();
+        quizMaster.handleQuizScore(quiz, collectSelectedAnswers());
+        
+        if (quiz.hasReachedEnd()) {
             fill_result(quiz.score);
         }
-        else{
+        else {
             fill_template(questionCards[quiz.round]);
         }
     });
@@ -46,7 +53,7 @@ function buildQuizPage(): void {
 /**
  * after the quiz the result template will show up
  */
-function fill_result(score : number) {
+function fill_result(score: number) {
     fetch('quizResult.hbs')
         .then(response => {
             if (!response.ok) {
@@ -96,7 +103,7 @@ function fill_template(question: Question) {
 export function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
     let currentAnswerType = document.querySelector('input').type;
-    
+
     if (currentAnswerType === 'text') {
         collectedAnswers.push((<HTMLInputElement>document.querySelector('input[type="text"]')).value);
         return collectedAnswers;
@@ -105,14 +112,14 @@ export function collectSelectedAnswers(): string[] {
     else if (currentAnswerType === 'checkbox') {
         for (let index = 0; index <= 3; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
-            
+
             if (answerType.checked === true) {
                 collectedAnswers.push(answerType.value);
             }
         }
         return collectedAnswers;
     }
-    
+
     else if (currentAnswerType === 'radio') {
         for (let index = 0; index <= 2; index++) {
             const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
@@ -124,5 +131,3 @@ export function collectSelectedAnswers(): string[] {
         return collectedAnswers;
     }
 };
-
-buildQuizPage();
