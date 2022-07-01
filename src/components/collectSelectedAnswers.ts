@@ -38,12 +38,12 @@ export function markTheAnswers(quiz: Quiz, collectedAnswers: string[]){
     collectedAnswers.forEach(answer => {
         if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
             let indexAnswer = question.answers.indexOf(answer);
-            let coloredAnswer = document.getElementById(indexAnswer.toString());
+            let coloredAnswer = document.getElementById("answer_"+indexAnswer.toString());
             coloredAnswer?.setAttribute("id", "right");
         }
         else {
             let indexAnswer = question.answers.indexOf(answer);
-            let coloredAnswer = document.getElementById(indexAnswer.toString());
+            let coloredAnswer = document.getElementById("answer_"+indexAnswer.toString());
             coloredAnswer?.setAttribute("id", "wrong");
         }
     });

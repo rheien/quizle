@@ -133,12 +133,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: baseline;
+    justify-content: space-evenly;
 }
 
 #right{
-
+    border: 5px solid green;
 }
 
 #wrong{
-    
+    border: 5px solid red;
 }
