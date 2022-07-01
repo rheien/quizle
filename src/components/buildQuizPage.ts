@@ -24,7 +24,7 @@ function buildQuizPage(): void {
     scoreBar.textContent = 'Number of answered questions:';
     scoreBar.appendChild(document.createElement('br'));
 
-    for (let i = 1; i < 7; i++) {
+    for (let i = 1; i < quiz.maxRound+1; i++) {
         let circle: HTMLElement = document.createElement('span');
         circle.className = 'circle';
         circle.id = 'Question' + i;
@@ -35,6 +35,11 @@ function buildQuizPage(): void {
 
     fill_template(questionCards[quiz.round])
 
+    addSubmitButton(quizMaster, quiz);
+    
+};
+
+function addSubmitButton(quizMaster,quiz) {
     let button = document.createElement('button');
     button.className = 'btn submit hidden';
     button.id = 'submit';
@@ -43,7 +48,7 @@ function buildQuizPage(): void {
     button.addEventListener("click", function () {
 
         //nextButton();
-        let collectedAnswers = collectSelectedAnswers();
+        let collectedAnswers = collectSelectedAnswers(quiz);
         markTheAnswers(quiz, collectedAnswers);
         quizMaster.handleQuizScore(quiz, collectedAnswers);
 
@@ -51,6 +56,7 @@ function buildQuizPage(): void {
             fill_result(quiz.score);
         }
         else {
+            let questionCards = quiz.questions;
             fill_template(questionCards[quiz.round]);
         }
 
@@ -60,7 +66,7 @@ function buildQuizPage(): void {
     buttonContainer.appendChild(button);
     let container = document.getElementById('container');
     container.appendChild(buttonContainer);
-};
+}
 
 /** change submit button to next */
 function nextButton() {

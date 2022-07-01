@@ -1,3 +1,5 @@
+import { Quiz } from "./Quiz";
+
 /* This method collect the answers for QuizMaster */
 export function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
