@@ -1,0 +1,13 @@
+<div class="center container">
+    <div class="question">{{question}}</div> 
+    <div class="answerType">
+    
+        {{#each answers}}
+        <div>
+            <input id={{@index}} type="radio" name="answer_btn_checkbox" value="{{this}}">
+            <label for="answer_btn_{{@index}}">{{this}}</label>
+        </div>   
+        {{/each}}
+    </div>
+
+</div>

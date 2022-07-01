@@ -1,17 +1,19 @@
 import { multipleChoiceQuestions } from "../questions/multipleChoiceQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 import { textInputQuestions } from "../questions/textInputQuestions";
+import { Question } from "../questions/types";
 import { shuffleOrder } from "./shuffle";
 
-export interface Question {
-    question: string;
-    answers: string[];
-    correctAnswers: string[];
-};
 
-class Quiz {
+
+export class Quiz {
     questions: Question[] = [];
     score: number = 0;
+    round: number = 0;
+
+    hasReachedEnd() : boolean {
+        return this.round === 6;
+    }
 };
 
 /**
@@ -25,7 +27,7 @@ export class QuizBuilder {
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
         const quiz: Quiz = new Quiz();
-        let questions = [];
+        let questions : Question[] = [];
 
         questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
@@ -35,7 +37,9 @@ export class QuizBuilder {
         return quiz;
     };
 
-    /** This method pick two random questions for the question list */
+    /** This method pick two random questions for the question list
+     *  and shuffle the order of the given answers
+     */
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
         for (let index = 0; index < 2; index++) {
@@ -45,6 +49,7 @@ export class QuizBuilder {
                 pickNumber = this.randomNumber(typeOfAnswers);
             };
 
+            typeOfAnswers[pickNumber].answers = shuffleOrder(typeOfAnswers[pickNumber].answers);
             picks.push(typeOfAnswers[pickNumber]);
         };
         return picks;
