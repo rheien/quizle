@@ -96,6 +96,10 @@ body {
     text-align: center;
 }
 
+.next{
+    text-align: center;
+}
+
 #buttonContainer{
     display: flex;
     align-items: flex-end;
