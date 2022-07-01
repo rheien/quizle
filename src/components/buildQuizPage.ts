@@ -8,6 +8,11 @@ window.onload = function () {
 };
 
 
+window.onload = function () {
+    buildQuizPage();
+};
+
+
 /**
  * Build the Quiz Page 
  */
@@ -57,6 +62,7 @@ function addSubmitButton(quizMaster,quiz) {
         }
         else {
             let questionCards = quiz.questions;
+
             fill_template(questionCards[quiz.round]);
         }
 
