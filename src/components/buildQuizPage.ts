@@ -1,6 +1,12 @@
 import { Question, QuestionType } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
 import { compile } from "handlebars";
+import { Quiz } from "./Quiz";
+
+window.onload = function () {
+    buildQuizPage();
+};
+
 
 /**
  * Build the Quiz Page 
@@ -26,27 +32,66 @@ function buildQuizPage(): void {
     }
     let header: HTMLElement = document.getElementsByTagName('header')[0];
     header.appendChild(scoreBar);
-    body.appendChild(document.createElement('br'));
 
     fill_template(questionCards[quiz.round])
 
-    /* using a new template after each submit */
-    let submitButton = document.querySelector('button');
-    submitButton.addEventListener("click", function () {
-    quizMaster.handleQuizScore(quiz, collectSelectedAnswers());
-        if(quiz.round===6){
+    let button = document.createElement('button');
+    button.className = 'btn submit hidden';
+    button.id = 'submit';
+    button.type = 'button';
+    button.textContent = 'SUBMIT';
+    button.addEventListener("click", function () {
+
+        //nextButton();
+        let collectedAnswers = collectSelectedAnswers();
+        markTheCorrectness(quiz, collectedAnswers);
+        quizMaster.handleQuizScore(quiz, collectedAnswers);
+    
+        if (quiz.hasReachedEnd()) {
             fill_result(quiz.score);
         }
-        else{
+        else {
             fill_template(questionCards[quiz.round]);
         }
+        
     });
+    let buttonContainer = document.createElement('div');
+    buttonContainer.className = ('buttonContainer');
+    buttonContainer.appendChild(button);
+    let container = document.getElementById('container');
+    container.appendChild(buttonContainer);
+
+};
+
+
+
+/**  */
+function markTheCorrectness(quiz: Quiz, collectedAnswers: string[]){
+    let question = quiz.questions[quiz.round];
+    collectedAnswers.forEach(answer => {
+        if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
+            let indexAnswer = question.answers.indexOf(answer);
+            let coloredAnswer = document.getElementById(indexAnswer.toString());
+            coloredAnswer?.setAttribute("id", "right");
+        }
+        else {
+            let indexAnswer = question.answers.indexOf(answer);
+            let coloredAnswer = document.getElementById(indexAnswer.toString());
+            coloredAnswer?.setAttribute("id", "wrong");
+        }
+    });
+};
+
+/** change submit button to next */
+function nextButton() {
+    let button = document.querySelector('button');
+    button.innerText = "NEXT";
 };
 
 /**
  * after the quiz the result template will show up
  */
-function fill_result(score : number) {
+function fill_result(score: number) {
     fetch('quizResult.hbs')
         .then(response => {
             if (!response.ok) {
@@ -57,7 +102,7 @@ function fill_result(score : number) {
         .then(response => {
             const template = compile(response);
             const filled = template(score);
-            document.getElementById('quizData').innerHTML = filled;
+            document.getElementById('container').innerHTML = filled;
         });
 }
 
@@ -76,6 +121,7 @@ function fill_template(question: Question) {
     } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
         questionTemplate = 'multipleChoiceQuestion.hbs';
     }
+    
 
     fetch(questionTemplate)
         .then(response => {
@@ -85,37 +131,36 @@ function fill_template(question: Question) {
             return response.text();
         })
         .then(response => {
-            const template = compile(response);
-            const filled = template(data);
-            document.getElementById('quizData').innerHTML = filled;
+            let template = compile(response);
+            let filled = template(data);
+            document.getElementById('questionContainer').innerHTML = filled;
         });
 };
 
 
 /* This method collect the answers for QuizMaster */
-export function collectSelectedAnswers(): string[] {
+function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
-    let currentAnswerType = document.querySelector('input').type;
-    
-    if (currentAnswerType === 'text') {
-        collectedAnswers.push((<HTMLInputElement>document.querySelector('input[type="text"]')).value);
+
+    if(document.getElementById('0').type ==='text'){
+        collectedAnswers.push(<HTMLInputElement>document.getElementById('0').value);
         return collectedAnswers;
     }
 
-    else if (currentAnswerType === 'checkbox') {
+    else if (document.getElementById('0').type === 'checkbox') {
         for (let index = 0; index <= 3; index++) {
-            const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
-            
+            const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
+
             if (answerType.checked === true) {
                 collectedAnswers.push(answerType.value);
             }
         }
         return collectedAnswers;
     }
-    
-    else if (currentAnswerType === 'radio') {
+
+    else if (document.getElementById('0').type === 'radio') {
         for (let index = 0; index <= 2; index++) {
-            const answerType = (<HTMLInputElement>document.querySelector('input[id="' + index + '"]'));
+            const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
 
             if (answerType.checked === true) {
                 collectedAnswers.push(answerType.value);
@@ -124,5 +169,3 @@ export function collectSelectedAnswers(): string[] {
         return collectedAnswers;
     }
 };
-
-buildQuizPage();

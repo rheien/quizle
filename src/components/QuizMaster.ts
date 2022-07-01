@@ -1,5 +1,6 @@
 import { Question } from "../questions/types";
-import { Quiz, QuizBuilder } from "./QuizBuilder";
+import { QuizBuilder } from "./QuizBuilder";
+import { Quiz } from "./Quiz";
 
 /**
  * 

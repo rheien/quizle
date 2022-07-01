@@ -2,15 +2,8 @@ import { multipleChoiceQuestions } from "../questions/multipleChoiceQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 import { textInputQuestions } from "../questions/textInputQuestions";
 import { Question } from "../questions/types";
+import { Quiz } from "./Quiz";
 import { shuffleOrder } from "./shuffle";
-
-
-
-export class Quiz {
-    questions: Question[] = [];
-    score: number = 0;
-    round: number = 0;
-};
 
 /**
  * 
