@@ -1,5 +1,3 @@
-import { Quiz } from "./Quiz";
-
 /* This method collect the answers for QuizMaster */
 export function collectSelectedAnswers(): string[] {
     let collectedAnswers: string[] = [];
@@ -30,21 +28,4 @@ export function collectSelectedAnswers(): string[] {
         }
         return collectedAnswers;
     }
-};
-
-/**  */
-export function markTheAnswers(quiz: Quiz, collectedAnswers: string[]){
-    let question = quiz.questions[quiz.round];
-    collectedAnswers.forEach(answer => {
-        if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
-            let indexAnswer = question.answers.indexOf(answer);
-            let coloredAnswer = document.getElementById("answer_"+indexAnswer.toString());
-            coloredAnswer?.setAttribute("id", "right");
-        }
-        else {
-            let indexAnswer = question.answers.indexOf(answer);
-            let coloredAnswer = document.getElementById("answer_"+indexAnswer.toString());
-            coloredAnswer?.setAttribute("id", "wrong");
-        }
-    });
 };

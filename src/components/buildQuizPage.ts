@@ -7,12 +7,6 @@ window.onload = function () {
     buildQuizPage();
 };
 
-
-window.onload = function () {
-    buildQuizPage();
-};
-
-
 /**
  * Build the Quiz Page 
  */

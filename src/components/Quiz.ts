@@ -11,6 +11,8 @@ export class Quiz {
     };
 
     answeredCorrectly(correctAnswers: string[], answer: string): boolean {
+        correctAnswers=correctAnswers.map(element => element.toLowerCase());
+        answer.toLowerCase();
         return correctAnswers.includes(answer);
     };
 }
