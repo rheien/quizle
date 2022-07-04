@@ -14,8 +14,8 @@ export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
         hideButton('submit');
         hideButton('next');
 
-        let question = quiz.questions[quiz.round];
-        let collectedAnswers = collectSelectedAnswers(question);
+        let questions = quiz.questions[quiz.round];
+        let collectedAnswers = collectSelectedAnswers(questions);
         quizMaster.handleQuizScore(quiz, collectedAnswers);
     });
     let buttonContainer = document.createElement('div');

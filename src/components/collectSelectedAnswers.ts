@@ -11,7 +11,7 @@ export function collectSelectedAnswers(question: Question): string[] {
     }
 
     else if (question.type === QuestionType.MULTIPLE_CHOICE) {
-        for (let index = 0; index <= 3; index++) {
+        for (let index = 0; index < question.answers.length; index++) {
             const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
 
             if (answerType.checked === true) {
@@ -22,7 +22,7 @@ export function collectSelectedAnswers(question: Question): string[] {
     }
 
     else if (question.type === QuestionType.SINGLE_CHOICE) {
-        for (let index = 0; index <= 2; index++) {
+        for (let index = 0; index < question.answers.length; index++) {
             const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
 
             if (answerType.checked === true) {
