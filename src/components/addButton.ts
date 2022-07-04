@@ -1,8 +1,10 @@
 import { collectSelectedAnswers } from "./collectSelectedAnswers";
 import { fill_result, fill_template } from "./fill_template";
 import { hideButton } from "./hideButton";
+import { Quiz } from "./Quiz";
+import { QuizMaster } from "./QuizMaster";
 
-export function addSubmitButton(quizMaster, quiz) {
+export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     let button = document.createElement('button');
     button.className = 'btn submit';
     button.id = 'submit';
@@ -12,7 +14,8 @@ export function addSubmitButton(quizMaster, quiz) {
         hideButton('submit');
         hideButton('next');
 
-        let collectedAnswers = collectSelectedAnswers();
+        let question = quiz.questions[quiz.round];
+        let collectedAnswers = collectSelectedAnswers(question);
         quizMaster.handleQuizScore(quiz, collectedAnswers);
     });
     let buttonContainer = document.createElement('div');
@@ -22,7 +25,7 @@ export function addSubmitButton(quizMaster, quiz) {
     container.appendChild(buttonContainer);
 };
 
-export function addNextButton(quiz) {
+export function addNextButton(quiz: Quiz) {
     let button = document.createElement('button');
     button.className = 'btn next';
     button.id = 'next';

@@ -1,13 +1,16 @@
+import { Question, QuestionType } from "../questions/types";
+
 /* This method collect the answers for QuizMaster */
-export function collectSelectedAnswers(): string[] {
+export function collectSelectedAnswers(question: Question): string[] {
     let collectedAnswers: string[] = [];
 
-    if (document.getElementById('0').type === 'text') {
+
+    if(question.type === QuestionType.FREE_TEXT){
         collectedAnswers.push(<HTMLInputElement>document.getElementById('0').value);
         return collectedAnswers;
     }
 
-    else if (document.getElementById('0').type === 'checkbox') {
+    else if (question.type === QuestionType.MULTIPLE_CHOICE) {
         for (let index = 0; index <= 3; index++) {
             const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
 
@@ -18,7 +21,7 @@ export function collectSelectedAnswers(): string[] {
         return collectedAnswers;
     }
 
-    else if (document.getElementById('0').type === 'radio') {
+    else if (question.type === QuestionType.SINGLE_CHOICE) {
         for (let index = 0; index <= 2; index++) {
             const answerType = (<HTMLInputElement>document.getElementById(index.toString()));
 
