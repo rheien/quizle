@@ -4,8 +4,6 @@ import { nextQuizRound } from "./nextQuizRound";
 import { Quiz } from "./Quiz";
 
 export function nextQuestion(quiz: Quiz) {
-    hideButton('next');
-    hideButton('submit');
 
     if (quiz.hasReachedEnd()) {
 
@@ -18,4 +16,7 @@ export function nextQuestion(quiz: Quiz) {
 
         fill_template(questionCards[quiz.round]);
     }
-}
+
+    hideButton('next');
+    hideButton('submit');
+};

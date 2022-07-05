@@ -14,6 +14,4 @@ export function submitAnswer(quizMaster: QuizMaster, quiz: Quiz) {
         markTheAnswers(quiz,collectedAnswers);
         quizMaster.handleQuizScore(quiz, collectedAnswers);
     }
-   
-
 };

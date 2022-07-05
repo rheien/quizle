@@ -6,8 +6,9 @@ export function collectSelectedAnswers(question: Question): string[] {
 
     if(question.type === QuestionType.FREE_TEXT){
         const input = document.getElementById('0') as HTMLInputElement;
-
-        collectedAnswers.push(input.value);
+        if(haveToAnswer(input.value)){
+            collectedAnswers.push(input.value);
+        }
         return collectedAnswers;
     }
 
@@ -34,4 +35,8 @@ export function collectSelectedAnswers(question: Question): string[] {
     }
 
     throw new Error(`Unsupported questionType: ${question.type}`)
+};
+
+function haveToAnswer(input): boolean{
+    return input.length !== 0
 };
