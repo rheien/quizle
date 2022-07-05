@@ -8,6 +8,6 @@ export function hideButton(button: string) {
         element?.removeAttribute("hidden");
     }
     else {
-        element?.setAttribute("hidden", "hidden");
+        element?.setAttribute("hidden", "true");
     }
 };
