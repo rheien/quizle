@@ -136,15 +136,11 @@ body {
     justify-content: space-evenly;
 }
 
-<<<<<<< Updated upstream
-#correct{
-=======
 .answer{
-    align-items: center;
+    
 }
 
-#right{
->>>>>>> Stashed changes
+#correct{
     border: 5px solid green;
 }
 
