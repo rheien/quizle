@@ -1,5 +1,7 @@
 import { Question } from "../questions/types";
-import { Quiz, QuizBuilder } from "./QuizBuilder";
+import { QuizBuilder } from "./QuizBuilder";
+import { Quiz } from "./Quiz";
+import { markTheAnswers } from "./markTheAnswers";
 
 /**
  * 
@@ -22,6 +24,7 @@ export class QuizMaster {
         if (this.evaluateAnswers(quiz.questions[quiz.round], selectedAnswers)) {
             quiz.score++;
         }
+        markTheAnswers(quiz,selectedAnswers);
         quiz.round++;
     };
 

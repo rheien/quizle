@@ -31,8 +31,6 @@ body {
     text-shadow: 0 0 1px black;
 }
 
-/* for later refactor with BEM like with border */
-
 .btn {
     width: 288px;
     height: 40px;
@@ -82,12 +80,29 @@ body {
 
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
+
+    align-items: center;
+}
+
+#questionContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .submit {
-    position: absolute;
-    bottom: -300px;
-    right: 250px;
+    
+    text-align: center;
+}
+
+.next{
+    text-align: center;
+}
+
+#buttonContainer{
+    display: flex;
+    align-items: flex-end;
 }
 
 .circle {
@@ -103,14 +118,28 @@ body {
 }
 
 .question{
-    position:absolute;
-    top: 500px;
-    right: 550px;
+    text-align: center;
+    
     font-size: 40;
+    padding: 5px;
+
+    display: flex;
+    align-items: flex-start;
 }
 
 .answerType{
-    position: absolute;
-    top: 600px;
-    right: 800px
+    padding: 5px ;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
+#correct{
+    border: 5px solid green;
+}
+
+#wrong{
+    border: 5px solid red;
 }

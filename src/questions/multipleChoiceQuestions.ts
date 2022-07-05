@@ -67,7 +67,7 @@ export const multipleChoiceQuestions : Question[]= [
         answers : [
             'Reiner',
             'Ryani',
-            'Le Ruan',
+            'Le Rien',
             'Rhein'
         ], 
         correctAnswers : ['Reiner','Ryani','Le Rien','Rhein'],
