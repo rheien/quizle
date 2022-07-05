@@ -8,12 +8,12 @@ export function markTheAnswers(quiz: Quiz, collectedAnswers: string[]) {
         let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString());
 
         if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
-            coloredAnswer?.setAttribute("id", "right");
+            coloredAnswer?.setAttribute("id", "correct");
             
             // in case of lower case answer in free text input
             if (indexAnswer === -1) {
                 coloredAnswer = document.getElementById("answer_0");
-                coloredAnswer?.setAttribute("id", "right");
+                coloredAnswer?.setAttribute("id", "correct");
             }
         }
         else {
