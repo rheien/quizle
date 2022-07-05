@@ -9,14 +9,16 @@ export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     button.id = 'submit';
     button.type = 'button';
     button.textContent = 'SUBMIT';
+    
     button.addEventListener("click", function () {
         submitAnswer(quizMaster, quiz);
     });
+    
     let buttonContainer = document.createElement('div');
     buttonContainer.id = ('buttonContainer');
     buttonContainer.appendChild(button);
     let container = document.getElementById('container');
-    container.appendChild(buttonContainer);
+    container?.appendChild(buttonContainer);
 };
 
 export function addNextButton(quiz: Quiz) {
@@ -26,11 +28,13 @@ export function addNextButton(quiz: Quiz) {
     button.type = 'button';
     button.textContent = 'NEXT';
     button.setAttribute("hidden", "hidden");
+    
     button.addEventListener("click",function() {
         nextQuestion(quiz);
     });
+    
     let buttonContainer = document.getElementById('buttonContainer')
-    buttonContainer.appendChild(button);
+    buttonContainer?.appendChild(button);
     let container = document.getElementById('container');
-    container.appendChild(buttonContainer);
+    container?.appendChild(buttonContainer);
 };

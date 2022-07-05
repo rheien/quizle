@@ -6,14 +6,13 @@ export function nextQuizRound(quiz: Quiz) {
     restartButton.id = 'restart';
     restartButton.type = 'button';
     restartButton.textContent = 'NEXT QUIZ';
-    restartButton.addEventListener("click",function() {
-        
-        //quiz.round = 0;
-        window.location.reload();
     
+    restartButton.addEventListener("click",function() {
+        window.location.reload();
     });
+    
     let buttonContainer = document.getElementById('buttonContainer')
-    buttonContainer.appendChild(restartButton);
+    buttonContainer?.appendChild(restartButton);
     let container = document.getElementById('container');
-    container.appendChild(buttonContainer);
+    container?.appendChild(buttonContainer);
 };
