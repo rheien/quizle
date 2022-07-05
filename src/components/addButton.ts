@@ -1,6 +1,7 @@
 import { collectSelectedAnswers } from "./collectSelectedAnswers";
 import { fill_result, fill_template } from "./fill_template";
 import { hideButton } from "./hideButton";
+import { nextQuizRound } from "./nextQuizRound";
 import { Quiz } from "./Quiz";
 import { QuizMaster } from "./QuizMaster";
 
@@ -11,6 +12,8 @@ export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     button.type = 'button';
     button.textContent = 'SUBMIT';
     button.addEventListener("click", function () {
+        
+        //rausnehmen
         hideButton('submit');
         hideButton('next');
 
@@ -37,7 +40,10 @@ export function addNextButton(quiz: Quiz) {
         hideButton('submit');
 
         if (quiz.hasReachedEnd()) {
+            
             fill_result(quiz.score);
+            hideButton('submit');
+            nextQuizRound(quiz);
         }
         else {
             let questionCards = quiz.questions;
