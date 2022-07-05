@@ -1,7 +1,7 @@
 import { Question } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
-import { fill_template, fill_result } from "./fill_template";
-import { addNextButton, addSubmitButton } from "./addButton";
+import { fillTemplate } from "./fetchTemplate";
+import { displayNextButton, displaySubmitButton } from "./addButton";
 
 window.onload = function () {
     buildQuizPage();
@@ -32,8 +32,8 @@ function buildQuizPage(): void {
     let header: HTMLElement = document.getElementsByTagName('header')[0];
     header.appendChild(scoreBar);
 
-    fill_template(questionCards[quiz.round])
+    fillTemplate(questionCards[quiz.round])
 
-    addSubmitButton(quizMaster, quiz);
-    addNextButton(quiz);
+    displaySubmitButton(quizMaster, quiz);
+    displayNextButton(quiz);
 };

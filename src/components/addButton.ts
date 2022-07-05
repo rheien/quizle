@@ -3,7 +3,7 @@ import { Quiz } from "./Quiz";
 import { QuizMaster } from "./QuizMaster";
 import { submitAnswer } from "./submitAnswer";
 
-export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
+export function displaySubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     let button = document.createElement('button');
     button.className = 'btn submit';
     button.id = 'submit';
@@ -21,16 +21,32 @@ export function addSubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     container?.appendChild(buttonContainer);
 };
 
-export function addNextButton(quiz: Quiz) {
+export function displayNextButton(quiz: Quiz) {
     let button = document.createElement('button');
     button.className = 'btn next';
     button.id = 'next';
     button.type = 'button';
     button.textContent = 'NEXT';
+<<<<<<< HEAD
     button.setAttribute("hidden", "hidden");
     
     button.addEventListener("click",function() {
         nextQuestion(quiz);
+=======
+    button.setAttribute("hidden", "true");
+    button.addEventListener("click",function() {
+        hideButton('next');
+        hideButton('submit');
+
+        if (quiz.hasReachedEnd()) {
+            fillResult(quiz.score);
+        }
+        else {
+            let questionCards = quiz.questions;
+
+            fillTemplate(questionCards[quiz.round]);
+        }
+>>>>>>> main
     });
     
     let buttonContainer = document.getElementById('buttonContainer')
