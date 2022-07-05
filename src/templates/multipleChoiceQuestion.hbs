@@ -2,7 +2,7 @@
 <div class="answerType">
 
     {{#each answers}}
-    <div id="answer_{{@index}}">
+    <div class="answer" id="answer_{{@index}}">
         <input id={{@index}} type="checkbox" name="answer_btn_checkbox" value="{{this}}">
         <label for="answer_btn_{{@index}}">{{this}}</label>
     </div>
