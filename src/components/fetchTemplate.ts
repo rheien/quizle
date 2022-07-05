@@ -2,7 +2,7 @@ import { Question, QuestionType } from "../questions/types";
 import { compile } from "handlebars";
 
 /* fetch templates to quiz page */
-export function fill_template(question: Question) {
+export function fillTemplate(question: Question) {
     let data = {
         question: question.question,
         answers: question.answers,
@@ -35,7 +35,7 @@ export function fill_template(question: Question) {
 /**
  * after the quiz the result template will show up
  */
-export function fill_result(score: number) {
+export function fillResult(score: number) {
     fetch('quizResult.hbs')
         .then(response => {
             if (!response.ok) {
