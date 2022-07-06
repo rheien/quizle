@@ -15,7 +15,8 @@ describe('QuizMaster', () => {
                     '95'
                 ],
                 correctAnswers: ['92'],
-                type: QuestionType.MULTIPLE_CHOICE
+                type: QuestionType.MULTIPLE_CHOICE,
+                repeatQuestion: 'yes'
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -35,7 +36,8 @@ describe('QuizMaster', () => {
                     'FIAT'
                 ],
                 correctAnswers: ['OPEL', 'FIAT'],
-                type: QuestionType.MULTIPLE_CHOICE
+                type: QuestionType.MULTIPLE_CHOICE,
+                repeatQuestion: 'yes'
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -55,7 +57,8 @@ describe('QuizMaster', () => {
                     '95'
                 ],
                 correctAnswers: ['92'],
-                type: QuestionType.MULTIPLE_CHOICE
+                type: QuestionType.MULTIPLE_CHOICE,
+                repeatQuestion: 'yes'
             };
             const incorrectAnswers: string[] = ['incorrect answer'];
 
@@ -70,6 +73,9 @@ describe('QuizMaster', () => {
 
 
         it('should score 0 when answer incorrectly', () => {
+            
+            
+            
             const quizMaster = new QuizMaster();
             const quiz = quizMaster.newQuiz();
 

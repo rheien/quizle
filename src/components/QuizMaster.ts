@@ -22,6 +22,7 @@ export class QuizMaster {
     handleQuizScore(quiz: Quiz, selectedAnswers: string[]) {
         if (this.evaluateAnswers(quiz.questions[quiz.round], selectedAnswers)) {
             quiz.score++;
+            quiz.questions[quiz.round].repeatQuestion = "no";
         }
         quiz.round++;
     };
