@@ -2,24 +2,29 @@ import { Question } from "../questions/types";
 import { QuizMaster } from "./QuizMaster";
 import { fillTemplate } from "./fetchTemplate";
 import { displayNextButton, displaySubmitButton } from "./addButton";
+import { Quiz } from "./Quiz";
 
 window.onload = function () {
-    buildQuizPage();
+    const quizMaster = new QuizMaster();
+    let quiz = quizMaster.newQuiz();
+    
+    let scoreSession = sessionStorage.getItem("quizScore");
+    if(scoreSession !== null){
+        quiz.score= JSON.parse(scoreSession);
+    }
+    buildQuizPage(quizMaster, quiz);
 };
 
 /**
  * Build the Quiz Page 
  */
-function buildQuizPage(): void {
-    const quizMaster = new QuizMaster();
-    const quiz = quizMaster.newQuiz();
+export function buildQuizPage(quizMaster: QuizMaster, quiz: Quiz): void {
     const questionCards: Question[] = quiz.questions;
-
-    let body: HTMLElement = document.body;
 
     /* create score bar */
     let scoreBar: HTMLElement = document.createElement('div');
     scoreBar.className = 'center bar';
+    scoreBar.id = 'scorebar';
     scoreBar.textContent = 'Number of answered questions:';
     scoreBar.appendChild(document.createElement('br'));
 

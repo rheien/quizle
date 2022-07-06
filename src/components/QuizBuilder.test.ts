@@ -1,3 +1,4 @@
+import { Question, QuestionType } from "../questions/types";
 import { QuizBuilder } from "./QuizBuilder";
 
 
@@ -25,5 +26,16 @@ describe('QuizBuilder', () => {
         expect(quiz.questions.length).toBe(uniqueQuestion.size);
     });
 
-    /** test shuffle */
+    it ('Quiz has questions which have not yet been answered correctly', () => {
+        const nonRepeatQuestions =["Wie lautet der Vorname von Frau Springer?"];
+        sessionStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
+
+        const quizBuilder = new QuizBuilder();
+        const quiz = quizBuilder.buildQuiz();
+        const quiz2 = quizBuilder.buildQuiz();
+        const quiz3 = quizBuilder.buildQuiz();
+        
+        
+        expect(quiz.questions).toEqual(expect.not.arrayContaining(nonRepeatQuestions));
+    });
 });

@@ -18,7 +18,14 @@ export class QuizBuilder {
         const quiz: Quiz = new Quiz();
         let questions : Question[] = [];
 
-        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
+        /*let mCQuestions = multipleChoiceQuestions;
+        let multipleChoiceSession = sessionStorage.getItem("multipleChoice");
+        console.log(multipleChoiceSession)
+        if(multipleChoiceSession !== null){
+            mCQuestions = JSON.parse(multipleChoiceSession);
+        }*/
+
+        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions)); //multipleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(textInputQuestions));
 
@@ -31,10 +38,19 @@ export class QuizBuilder {
      */
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
+        
+        const nonRepeatQuestions = sessionStorage.getItem('nonRepeatQuestions');
+        let notThisQuestionAgain: string[] = [];
+        if(nonRepeatQuestions !== null){
+            notThisQuestionAgain = JSON.parse(nonRepeatQuestions);
+        }
+
         for (let index = 0; index < 2; index++) {
             let pickNumber: number = this.randomNumber(typeOfAnswers);
 
-            while (picks.includes(typeOfAnswers[pickNumber])) {
+            while (picks.includes(typeOfAnswers[pickNumber]) 
+                || notThisQuestionAgain.includes(typeOfAnswers[pickNumber].question)) {
+
                 pickNumber = this.randomNumber(typeOfAnswers);
             };
 

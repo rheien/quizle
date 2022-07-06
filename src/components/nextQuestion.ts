@@ -13,7 +13,6 @@ export function nextQuestion(quiz: Quiz) {
     }
     else {
         let questionCards = quiz.questions;
-
         fillTemplate(questionCards[quiz.round]);
     }
 
