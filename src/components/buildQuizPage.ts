@@ -23,7 +23,7 @@ function buildQuizPage(): void {
     scoreBar.textContent = 'Number of answered questions:';
     scoreBar.appendChild(document.createElement('br'));
 
-    for (let i = 1; i < quiz.maxRound+1; i++) {
+    for (let i = 1; i <= quiz.maxRound; i++) {
         let circle: HTMLElement = document.createElement('span');
         circle.className = 'circle';
         circle.id = 'Question' + i;

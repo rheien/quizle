@@ -46,6 +46,6 @@ export function fillResult(score: number) {
         .then(response => {
             const template = compile(response);
             const filled = template(score);
-            document.getElementById('container').innerHTML = filled;
+            document.getElementById('questionContainer').innerHTML = filled;
         });
 };

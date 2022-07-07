@@ -1,8 +1,7 @@
-import { collectSelectedAnswers } from "./collectSelectedAnswers";
-import { fillResult, fillTemplate } from "./fetchTemplate";
-import { hideButton } from "./hideButton";
+import { nextQuestion } from "./nextQuestion";
 import { Quiz } from "./Quiz";
 import { QuizMaster } from "./QuizMaster";
+import { submitAnswer } from "./submitAnswer";
 
 export function displaySubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     let button = document.createElement('button');
@@ -10,19 +9,16 @@ export function displaySubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
     button.id = 'submit';
     button.type = 'button';
     button.textContent = 'SUBMIT';
+    
     button.addEventListener("click", function () {
-        hideButton('submit');
-        hideButton('next');
-
-        let questions = quiz.questions[quiz.round];
-        let collectedAnswers = collectSelectedAnswers(questions);
-        quizMaster.handleQuizScore(quiz, collectedAnswers);
+        submitAnswer(quizMaster, quiz);
     });
+    
     let buttonContainer = document.createElement('div');
     buttonContainer.id = ('buttonContainer');
     buttonContainer.appendChild(button);
     let container = document.getElementById('container');
-    container.appendChild(buttonContainer);
+    container?.appendChild(buttonContainer);
 };
 
 export function displayNextButton(quiz: Quiz) {
@@ -32,21 +28,13 @@ export function displayNextButton(quiz: Quiz) {
     button.type = 'button';
     button.textContent = 'NEXT';
     button.setAttribute("hidden", "true");
+    
     button.addEventListener("click",function() {
-        hideButton('next');
-        hideButton('submit');
-
-        if (quiz.hasReachedEnd()) {
-            fillResult(quiz.score);
-        }
-        else {
-            let questionCards = quiz.questions;
-
-            fillTemplate(questionCards[quiz.round]);
-        }
+        nextQuestion(quiz);
     });
+    
     let buttonContainer = document.getElementById('buttonContainer')
-    buttonContainer.appendChild(button);
+    buttonContainer?.appendChild(button);
     let container = document.getElementById('container');
-    container.appendChild(buttonContainer);
+    container?.appendChild(buttonContainer);
 };

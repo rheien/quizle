@@ -136,10 +136,25 @@ body {
     justify-content: space-evenly;
 }
 
+.answer{
+    
+}
+
 #correct{
     border: 5px solid green;
 }
 
 #wrong{
     border: 5px solid red;
+}
+
+.result{
+    font-size: medium;
+    font-weight:bold;
+    padding: 2px;
+}
+
+.score{
+    font-size: medium;
+    padding: 1px;
 }
