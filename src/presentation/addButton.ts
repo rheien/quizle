@@ -21,7 +21,7 @@ export class AddButton {
         let buttonContainer = document.createElement('div');
         buttonContainer.id = ('buttonContainer');
         buttonContainer.appendChild(button);
-        let container = document.getElementById('container');
+        let container = document.getElementById('container')!;
         container.appendChild(buttonContainer);
     };
 
@@ -38,7 +38,7 @@ export class AddButton {
             fetchTemplate.nextQuestion(quiz);
         });
 
-        let buttonContainer = document.getElementById('buttonContainer')
+        let buttonContainer = document.getElementById('buttonContainer');
         buttonContainer.appendChild(button);
         let container = document.getElementById('container');
         container.appendChild(buttonContainer);

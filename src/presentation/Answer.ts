@@ -46,7 +46,6 @@ export class Answer{
         return input.value.length !== 0
     };
 
-
     markTheAnswers(quiz: Quiz, collectedAnswers: string[]) {
         let question = quiz.questions[quiz.round];
         collectedAnswers.forEach(answer => {
@@ -54,19 +53,23 @@ export class Answer{
             let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString());
     
             if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
-                coloredAnswer.setAttribute("id", "correct");
                 
                 // in case of lower case answer in free text input
                 if (indexAnswer === -1) {
                     coloredAnswer = document.getElementById("answer_0");
                     coloredAnswer.setAttribute("id", "correct");
                 }
+                else{
+                    coloredAnswer.setAttribute("id", "correct");
+                }
+                
             }
             else {
-                coloredAnswer.setAttribute("id", "wrong");
-                
                 if (indexAnswer === -1) {
                     coloredAnswer = document.getElementById("answer_0");
+                    coloredAnswer.setAttribute("id", "wrong");
+                }
+                else{
                     coloredAnswer.setAttribute("id", "wrong");
                 }
             }

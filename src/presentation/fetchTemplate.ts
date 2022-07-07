@@ -32,7 +32,7 @@ export class FetchTemplate {
             .then(response => {
                 let template = compile(response);
                 let filled = template(data);
-                document.getElementById('questionContainer').innerHTML = filled;
+                document.getElementById('questionContainer')!.innerHTML = filled;
             });
     };
 
@@ -50,7 +50,7 @@ export class FetchTemplate {
             .then(response => {
                 const template = compile(response);
                 const filled = template(score);
-                document.getElementById('questionContainer').innerHTML = filled;
+                document.getElementById('questionContainer')!.innerHTML = filled;
             });
     };
 
