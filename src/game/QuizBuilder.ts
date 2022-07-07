@@ -19,7 +19,7 @@ export class QuizBuilder {
         let questions : Question[] = [];
 
         /*let mCQuestions = multipleChoiceQuestions;
-        let multipleChoiceSession = sessionStorage.getItem("multipleChoice");
+        let multipleChoiceSession = localStorage.getItem("multipleChoice");
         console.log(multipleChoiceSession)
         if(multipleChoiceSession !== null){
             mCQuestions = JSON.parse(multipleChoiceSession);
@@ -39,7 +39,7 @@ export class QuizBuilder {
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
         
-        //const nonRepeatQuestions = sessionStorage.getItem('nonRepeatQuestions');
+        //const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
         let notThisQuestionAgain: string[] = [];
         /*if(nonRepeatQuestions !== null){
             notThisQuestionAgain = JSON.parse(nonRepeatQuestions);

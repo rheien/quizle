@@ -28,7 +28,7 @@ describe('QuizBuilder', () => {
 
     /*it ('Quiz has questions which have not yet been answered correctly', () => {
         const nonRepeatQuestions =["Wie lautet der Vorname von Frau Springer?"];
-        sessionStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
+        localStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
 
         const quizBuilder = new QuizBuilder();
         const quiz = quizBuilder.buildQuiz();

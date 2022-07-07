@@ -1,16 +1,16 @@
 import { Question } from "../questions/types";
 import { QuizMaster } from "../game/QuizMaster";
-import { fillTemplate } from "./fetchTemplate";
-import { displayNextButton, displaySubmitButton } from "./addButton";
+import { FetchTemplate } from "./FetchTemplate";
+import { AddButton } from "./AddButton";
 import { Quiz } from "../game/Quiz";
 
 window.onload = function () {
     const quizMaster = new QuizMaster();
     let quiz = quizMaster.newQuiz();
     
-    let scoreSession = sessionStorage.getItem("quizScore");
-    if(scoreSession !== null){
-        quiz.score= JSON.parse(scoreSession);
+    let storageScore = localStorage.getItem("quizScore");
+    if(storageScore !== null){
+        quiz.score= JSON.parse(storageScore);
     }
     buildQuizPage(quizMaster, quiz);
 };
@@ -37,8 +37,10 @@ export function buildQuizPage(quizMaster: QuizMaster, quiz: Quiz): void {
     let header: HTMLElement = document.getElementsByTagName('header')[0];
     header.appendChild(scoreBar);
 
-    fillTemplate(questionCards[quiz.round])
-
-    displaySubmitButton(quizMaster, quiz);
-    displayNextButton(quiz);
+    const fetchTemplate = new FetchTemplate();
+    fetchTemplate.fillTemplate(questionCards[quiz.round])
+    
+    const addButton = new AddButton();
+    addButton.displaySubmitButton(quizMaster, quiz);
+    addButton.displayNextButton(quiz);
 };
