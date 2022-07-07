@@ -1,7 +1,7 @@
 import { fillResult, fillTemplate } from "./fetchTemplate";
 import { hideButton } from "./hideButton";
 import { nextQuizRound } from "./nextQuizRound";
-import { Quiz } from "./Quiz";
+import { Quiz } from "../game/Quiz";
 
 export function nextQuestion(quiz: Quiz) {
 

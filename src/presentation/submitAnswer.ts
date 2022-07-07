@@ -1,8 +1,8 @@
 import { collectSelectedAnswers } from "./collectSelectedAnswers";
 import { hideButton } from "./hideButton";
 import { markTheAnswers } from "./markTheAnswers";
-import { Quiz } from "./Quiz";
-import { QuizMaster } from "./QuizMaster";
+import { Quiz } from "../game/Quiz";
+import { QuizMaster } from "../game/QuizMaster";
 
 export function submitAnswer(quizMaster: QuizMaster, quiz: Quiz) {
     

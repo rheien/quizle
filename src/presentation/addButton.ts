@@ -1,6 +1,6 @@
 import { nextQuestion } from "./nextQuestion";
-import { Quiz } from "./Quiz";
-import { QuizMaster } from "./QuizMaster";
+import { Quiz } from "../game/Quiz";
+import { QuizMaster } from "../game/QuizMaster";
 import { submitAnswer } from "./submitAnswer";
 
 export function displaySubmitButton(quizMaster: QuizMaster, quiz: Quiz) {

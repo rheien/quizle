@@ -1,4 +1,4 @@
-import { Quiz } from "./Quiz";
+import { Quiz } from "../game/Quiz";
 
 /** set id for selected answers */
 export function markTheAnswers(quiz: Quiz, collectedAnswers: string[]) {

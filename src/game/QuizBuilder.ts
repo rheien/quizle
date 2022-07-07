@@ -39,11 +39,11 @@ export class QuizBuilder {
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
         
-        const nonRepeatQuestions = sessionStorage.getItem('nonRepeatQuestions');
+        //const nonRepeatQuestions = sessionStorage.getItem('nonRepeatQuestions');
         let notThisQuestionAgain: string[] = [];
-        if(nonRepeatQuestions !== null){
+        /*if(nonRepeatQuestions !== null){
             notThisQuestionAgain = JSON.parse(nonRepeatQuestions);
-        }
+        }*/
 
         for (let index = 0; index < 2; index++) {
             let pickNumber: number = this.randomNumber(typeOfAnswers);

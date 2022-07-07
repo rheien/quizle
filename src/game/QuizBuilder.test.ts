@@ -26,7 +26,7 @@ describe('QuizBuilder', () => {
         expect(quiz.questions.length).toBe(uniqueQuestion.size);
     });
 
-    it ('Quiz has questions which have not yet been answered correctly', () => {
+    /*it ('Quiz has questions which have not yet been answered correctly', () => {
         const nonRepeatQuestions =["Wie lautet der Vorname von Frau Springer?"];
         sessionStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
 
@@ -37,5 +37,5 @@ describe('QuizBuilder', () => {
         
         
         expect(quiz.questions).toEqual(expect.not.arrayContaining(nonRepeatQuestions));
-    });
+    });*/
 });

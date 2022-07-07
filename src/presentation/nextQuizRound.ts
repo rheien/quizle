@@ -2,7 +2,7 @@ import { multipleChoiceQuestions } from "../questions/multipleChoiceQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 import { textInputQuestions } from "../questions/textInputQuestions";
 import { Question } from "../questions/types";
-import { Quiz } from "./Quiz";
+import { Quiz } from "../game/Quiz";
 
 export function nextQuizRound(quiz: Quiz) {
     let restartButton = document.createElement('button');

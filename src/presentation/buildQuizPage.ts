@@ -1,8 +1,8 @@
 import { Question } from "../questions/types";
-import { QuizMaster } from "./QuizMaster";
+import { QuizMaster } from "../game/QuizMaster";
 import { fillTemplate } from "./fetchTemplate";
 import { displayNextButton, displaySubmitButton } from "./addButton";
-import { Quiz } from "./Quiz";
+import { Quiz } from "../game/Quiz";
 
 window.onload = function () {
     const quizMaster = new QuizMaster();
