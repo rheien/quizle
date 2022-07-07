@@ -67,11 +67,16 @@ export class AddButton {
         restartButton.addEventListener("click", function () {
 
             localStorage.setItem("quizScore", JSON.stringify(quiz.score));
-            //localStorage.setItem("multipleChoice", JSON.stringify(multipleChoiceQuestions));
-            //localStorage.setItem("singleChoice", JSON.stringify(singleChoiceQuestions));
-            //localStorage.setItem("textInput", JSON.stringify(textInputQuestions));
 
+            //loads correct answered questions from previous round and adds the new ones
             let nonRepeatQuestions: string[] = [];
+            let storageQuestions = localStorage.getItem("nonRepeatQuestions");
+            if(storageQuestions !== null){
+                JSON.parse(storageQuestions).forEach(question =>{
+                    nonRepeatQuestions.push(question);
+                });
+            };
+            
             quiz.questions.forEach(question => {
                 if (question.repeatQuestion === 'no') {
                     nonRepeatQuestions.push(question.question);

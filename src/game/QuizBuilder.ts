@@ -39,15 +39,17 @@ export class QuizBuilder {
     poseQuestions(typeOfAnswers: Question[]): Question[] {
         const picks: Question[] = [];
         
-        //const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
+        //loads correct answered questions
+        const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
         let notThisQuestionAgain: string[] = [];
-        /*if(nonRepeatQuestions !== null){
+        if(nonRepeatQuestions !== null){
             notThisQuestionAgain = JSON.parse(nonRepeatQuestions);
-        }*/
+        }
 
         for (let index = 0; index < 2; index++) {
             let pickNumber: number = this.randomNumber(typeOfAnswers);
 
+            //when question appears twice or has already been answered correctly
             while (picks.includes(typeOfAnswers[pickNumber]) 
                 || notThisQuestionAgain.includes(typeOfAnswers[pickNumber].question)) {
 

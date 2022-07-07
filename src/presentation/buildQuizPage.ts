@@ -9,6 +9,7 @@ window.onload = function () {
     let quiz = quizMaster.newQuiz();
     
     let storageScore = localStorage.getItem("quizScore");
+    //localStorage.clear();
     if(storageScore !== null){
         quiz.score= JSON.parse(storageScore);
     }
