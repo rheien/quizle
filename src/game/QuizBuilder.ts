@@ -13,19 +13,14 @@ import { shuffleOrder } from "./shuffle";
  */
 export class QuizBuilder {
 
+    private readonly QUESTIONS_PER_TYPE = 2;
+
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
         const quiz: Quiz = new Quiz();
         let questions : Question[] = [];
 
-        /*let mCQuestions = multipleChoiceQuestions;
-        let multipleChoiceSession = localStorage.getItem("multipleChoice");
-        console.log(multipleChoiceSession)
-        if(multipleChoiceSession !== null){
-            mCQuestions = JSON.parse(multipleChoiceSession);
-        }*/
-
-        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions)); //multipleChoiceQuestions));
+        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(textInputQuestions));
 
@@ -36,34 +31,40 @@ export class QuizBuilder {
     /** This method pick two random questions for the question list
      *  and shuffle the order of the given answers
      */
-    poseQuestions(typeOfAnswers: Question[]): Question[] {
+    poseQuestions(questions: Question[]): Question[] {
         const picks: Question[] = [];
-        
-        //loads correct answered questions
-        const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
-        let notThisQuestionAgain: string[] = [];
-        if(nonRepeatQuestions !== null){
-            notThisQuestionAgain = JSON.parse(nonRepeatQuestions);
-        }
 
-        for (let index = 0; index < 2; index++) {
-            let pickNumber: number = this.randomNumber(typeOfAnswers);
+        for (let index = 0; index < this.QUESTIONS_PER_TYPE; index++) {
+            let pickNumber: number = this.randomNumber(questions.length);
 
             //when question appears twice or has already been answered correctly
-            while (picks.includes(typeOfAnswers[pickNumber]) 
-                || notThisQuestionAgain.includes(typeOfAnswers[pickNumber].question)) {
-
-                pickNumber = this.randomNumber(typeOfAnswers);
+            while (this.hasBeenPicked(picks,questions[pickNumber]) || this.hasBeenAnswered(questions[pickNumber])){
+                pickNumber = this.randomNumber(questions.length);
             };
 
-            typeOfAnswers[pickNumber].answers = shuffleOrder(typeOfAnswers[pickNumber].answers);
-            picks.push(typeOfAnswers[pickNumber]);
+            const pick = questions[pickNumber];
+            pick.answers = shuffleOrder(pick.answers);
+            picks.push(pick);
         };
         return picks;
     }
 
+    hasBeenPicked(picks: Question[], newPick: Question): boolean{
+        return picks.find(question => question.question === newPick.question) !== undefined
+    }
+
+    hasBeenAnswered(newPick: Question): boolean{
+        const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
+        let answeredQuestions: string[] = [];
+        if(nonRepeatQuestions !== null){
+            answeredQuestions = JSON.parse(nonRepeatQuestions) as string[];
+        }
+
+        return answeredQuestions.includes(newPick.question)
+    }
+
     /** This method give a random number back */
-    randomNumber(questions: Question[]): number {
-        return Math.floor(Math.random() * questions.length)
+    randomNumber(max: number): number {
+        return Math.floor(Math.random() * max)
     }
 }
