@@ -4,17 +4,32 @@ import { FetchTemplate } from "./FetchTemplate";
 import { AddButton } from "./AddButton";
 import { Quiz } from "../game/Quiz";
 
-window.onload = function () {
+/*
+window.onbeforeunload = function () {
+    localStorage.clear()
+};*/
 
+window.onload = function () {
+    //localStorage.clear()
     const quizMaster = new QuizMaster();
     let quiz = quizMaster.newQuiz();
     
+    if(quiz.hasQuestionsLeft()){
+        buildQuizPage(quizMaster, quiz);
+    }
+    else{
+        localStorage.clear()
+        //window.location.pathname = 'gameEnds.html';
+    }
+
+
+/*
     let retrievePreviousScore = localStorage.getItem("quizScore");
     localStorage.removeItem('quizScore');
     if(retrievePreviousScore !== null){
         quiz.score= JSON.parse(retrievePreviousScore);
     }
-    buildQuizPage(quizMaster, quiz);
+*/
 };
 
 /**

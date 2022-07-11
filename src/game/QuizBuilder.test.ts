@@ -38,71 +38,73 @@ describe('QuizBuilder', () => {
     describe('poseQuestions', () => {
 
         describe('hasBeenPicked', () => {
-            it('should check for duplicate questions', () => {
-                const pickedQuestion : Question[] = [
-                    {
-                        question: "Wie lautet der Vorname von Frau Springer?",
-                        answers: ["Friede"],
-                        correctAnswers: ['Friede'],
-                        type: QuestionType.FREE_TEXT,
-                        repeatQuestion: "yes"
-                    }
-                ];
-
-                const newPick: Question = {
-                    question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
-                    answers: ["Sommerrolle"],
-                    correctAnswers: ['Sommerrolle'],
+            const pickedQuestion: Question[] = [
+                {
+                    question: "Wie lautet der Vorname von Frau Springer?",
+                    answers: ["Friede"],
+                    correctAnswers: ['Friede'],
                     type: QuestionType.FREE_TEXT,
                     repeatQuestion: "yes"
-                };
+                }
+            ];
+
+            const newPick: Question = {
+                question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
+                answers: ["Sommerrolle"],
+                correctAnswers: ['Sommerrolle'],
+                type: QuestionType.FREE_TEXT,
+                repeatQuestion: "yes"
+            };
+
+            it('should allow for a new question', () => {
 
                 const quizBuilder = new QuizBuilder();
-                
+
                 const hasBeenPicked = quizBuilder.hasBeenPicked(pickedQuestion, newPick);
                 expect(hasBeenPicked).toBe(false);
 
-                const duplicatedPick = quizBuilder.hasBeenPicked(pickedQuestion,pickedQuestion[0]);
+            });
+
+            it('should not allow duplicate questions', () => {
+                const quizBuilder = new QuizBuilder();
+
+                const duplicatedPick = quizBuilder.hasBeenPicked(pickedQuestion, pickedQuestion[0]);
                 expect(duplicatedPick).toBe(true);
             });
         });
 
         describe('hasBeenAnswered', () => {
 
-            it('should check the questions of textInputQuestions if question already answered correctly', () => {
-                
-                const nonRepeatQuestions = ["Wie lautet der Vorname von Frau Springer?",
-                    "In welcher Sportart nutzt man den 'Fadeaway'?",
-                    "In welcher Stadt befindet sich die Goldelse?",
-                    "Wie heißt die eSport News App von Upday?"];
+            const sampleQuestion: Question =
+            {
+                question: "Wie lautet der Vorname von Frau Springer?",
+                answers: ["Friede"],
+                correctAnswers: ['Friede'],
+                type: QuestionType.FREE_TEXT,
+                repeatQuestion: "yes"
+            };
+
+            it('should not allow to pick question cause already answered correctly', () => {
+
+                const nonRepeatQuestions = [sampleQuestion.question];
                 localStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
 
-                const textInputQuestions : Question[] = [
-                    {
-                        question: "Wie lautet der Vorname von Frau Springer?",
-                        answers: ["Friede"],
-                        correctAnswers: ['Friede'],
-                        type: QuestionType.FREE_TEXT,
-                        repeatQuestion: "yes"
-                    },
+                const quizBuilder = new QuizBuilder();
 
-                    {
-                        question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
-                        answers: ["Sommerrolle"],
-                        correctAnswers: ['Sommerrolle'],
-                        type: QuestionType.FREE_TEXT,
-                        repeatQuestion: "yes"
-                    }
-                ];
+                const alreadyAnswered = quizBuilder.hasBeenAnswered(sampleQuestion);
+                expect(alreadyAnswered).toBe(true);
+            });
+
+            it('should allow to pick question not already answered correctly', () => {
+                localStorage.clear();
 
                 const quizBuilder = new QuizBuilder();
-                const alreadyAnswered = quizBuilder.hasBeenAnswered(textInputQuestions[0]);
-                expect(alreadyAnswered).toBe(true);
 
-                const shouldBePick = quizBuilder.hasBeenAnswered(textInputQuestions[1]);
+                const shouldBePick = quizBuilder.hasBeenAnswered(sampleQuestion);
                 expect(shouldBePick).toBe(false);
+            
             });
         });
-    });
 
-});
+    });
+})

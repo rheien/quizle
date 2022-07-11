@@ -73,4 +73,7 @@ export class FetchTemplate {
         addButton.hideButton('next');
         addButton.hideButton('submit');
     };
+
+
+    
 }

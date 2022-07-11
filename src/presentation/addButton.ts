@@ -71,9 +71,10 @@ export class AddButton {
             //loads correct answered questions from previous round and adds the new ones
             let nonRepeatQuestions: string[] = [];
             let retrieveAnsweredQuestions = localStorage.getItem("nonRepeatQuestions");
-            localStorage.removeItem('nonRepeatQuestions');
+   
             if(retrieveAnsweredQuestions !== null){
                 let correctAnsweredQuestions: string[] = JSON.parse(retrieveAnsweredQuestions);
+                
                 correctAnsweredQuestions.forEach(question =>{
                     nonRepeatQuestions.push(question);
                 });

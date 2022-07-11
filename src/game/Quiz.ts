@@ -10,6 +10,10 @@ export class Quiz {
         return this.round === this.maxRound;
     };
 
+    hasQuestionsLeft(): boolean {
+        return this.questions.length === this.maxRound;
+    };
+
     answeredCorrectly(correctAnswers: string[], answer: string): boolean {
         correctAnswers = correctAnswers.map(element => element.toLowerCase());
         answer = answer.toLowerCase();
