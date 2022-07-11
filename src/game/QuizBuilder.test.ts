@@ -1,19 +1,21 @@
-import { textInputQuestions } from "../questions/textInputQuestions";
 import { Question, QuestionType } from "../questions/types";
 import { QuizBuilder } from "./QuizBuilder";
-                
+import { Quiz } from "./Quiz";
+
 describe('QuizBuilder', () => {
-    beforeEach(() =>{
-       
+    beforeEach(() => {
+
         localStorage.clear();
     });
-    
-    
+
+
     it('Quiz has 6 questions', () => {
         const quizBuilder = new QuizBuilder();
         const quiz = quizBuilder.buildQuiz();
+        const quizGame = new Quiz();
+        const maxRound = quizGame.maxRound;
 
-        expect(quiz.questions).toHaveLength(6)
+        expect(quiz.questions).toHaveLength(maxRound)
     });
 
     it('Quiz has random questions', () => {
@@ -35,21 +37,45 @@ describe('QuizBuilder', () => {
 
     describe('poseQuestions', () => {
 
+        describe('hasBeenPicked', () => {
+            it('should check for duplicate questions', () => {
+
+            });
+        });
+
         describe('hasBeenAnswered', () => {
-            
-            it('should check the questions of textInputQuestions if already answered correctly', () => {
-                localStorage.clear();
+
+            it('should check the questions of textInputQuestions if question already answered correctly', () => {
+                
                 const nonRepeatQuestions = ["Wie lautet der Vorname von Frau Springer?",
-                "In welcher Sportart nutzt man den 'Fadeaway'?",
-                "In welcher Stadt befindet sich die Goldelse?",
-                "Wie heißt die eSport News App von Upday?"];
+                    "In welcher Sportart nutzt man den 'Fadeaway'?",
+                    "In welcher Stadt befindet sich die Goldelse?",
+                    "Wie heißt die eSport News App von Upday?"];
                 localStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
+
+                const textInputQuestions : Question[] = [
+                    {
+                        question: "Wie lautet der Vorname von Frau Springer?",
+                        answers: ["Friede"],
+                        correctAnswers: ['Friede'],
+                        type: QuestionType.FREE_TEXT,
+                        repeatQuestion: "yes"
+                    },
+
+                    {
+                        question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
+                        answers: ["Sommerrolle"],
+                        correctAnswers: ['Sommerrolle'],
+                        type: QuestionType.FREE_TEXT,
+                        repeatQuestion: "yes"
+                    }
+                ]
 
                 const quizBuilder = new QuizBuilder();
                 const alreadyAnswered = quizBuilder.hasBeenAnswered(textInputQuestions[0]);
-                const shouldBePick = quizBuilder.hasBeenAnswered(textInputQuestions[1]);
-
                 expect(alreadyAnswered).toBe(true);
+
+                const shouldBePick = quizBuilder.hasBeenAnswered(textInputQuestions[1]);
                 expect(shouldBePick).toBe(false);
             });
         });
