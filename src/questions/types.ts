@@ -3,7 +3,6 @@ export interface Question {
     answers: string[];
     correctAnswers: string[];
     type: QuestionType;
-    repeatQuestion: string;
 };
 
 export enum QuestionType {

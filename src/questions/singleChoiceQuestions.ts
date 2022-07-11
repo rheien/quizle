@@ -9,8 +9,7 @@ export const singleChoiceQuestions : Question[]= [
              'Portemonaie'
         ], 
         correctAnswers : ['Portemonnaie'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -21,8 +20,7 @@ export const singleChoiceQuestions : Question[]= [
              'Lappalie'
         ],
         correctAnswers : ['Lappalie'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -33,8 +31,7 @@ export const singleChoiceQuestions : Question[]= [
             'dilettantisch'
         ], 
         correctAnswers : ['dilettantisch'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -45,8 +42,7 @@ export const singleChoiceQuestions : Question[]= [
             'unendgeltlich'
         ], 
         correctAnswers : ['unentgeltlich'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -57,8 +53,7 @@ export const singleChoiceQuestions : Question[]= [
             'Renomme'
         ], 
         correctAnswers : ['Renommee'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 
     {
@@ -69,7 +64,6 @@ export const singleChoiceQuestions : Question[]= [
             'Le Duc Anh'
         ], 
         correctAnswers : ['Le Duc Anh'],
-        type: QuestionType.SINGLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.SINGLE_CHOICE
     },
 ];

@@ -11,8 +11,7 @@ export const multipleChoiceQuestions : Question[]= [
             '95'
         ], 
         correctAnswers : ['92'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 
     {
@@ -24,8 +23,7 @@ export const multipleChoiceQuestions : Question[]= [
             'FIAT'
         ], 
         correctAnswers : ['OPEL','FIAT'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 
     {
@@ -37,8 +35,7 @@ export const multipleChoiceQuestions : Question[]= [
             'Weizenbrot'
         ], 
         correctAnswers : ['Bier','Nougat','Panaden'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 
     {
@@ -50,8 +47,7 @@ export const multipleChoiceQuestions : Question[]= [
             'Wir müssen Wurst wie Stulle kaufen!'
         ], 
         correctAnswers : ['Das ist meine Wurst mit Stulle!','Es ist Wurst mit Stulle','Wir müssen Wurst wie Stulle kaufen!'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 
     {
@@ -63,8 +59,7 @@ export const multipleChoiceQuestions : Question[]= [
             'Stulle'
         ], 
         correctAnswers : ['Belegte Brotscheibe','Stulle'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 
     {
@@ -76,7 +71,6 @@ export const multipleChoiceQuestions : Question[]= [
             'Rhein'
         ], 
         correctAnswers : ['Reiner','Ryani','Le Rien','Rhein'],
-        type: QuestionType.MULTIPLE_CHOICE,
-        repeatQuestion : "yes"
+        type: QuestionType.MULTIPLE_CHOICE
     },
 ];
