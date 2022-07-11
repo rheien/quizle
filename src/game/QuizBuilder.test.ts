@@ -35,9 +35,9 @@ describe('QuizBuilder', () => {
 
     describe('poseQuestions', () => {
 
-        describe('isARepetition', () => {
+        describe('hasBeenAnswered', () => {
             
-            it('should only return the rest of the question of textInputQuestions', () => {
+            it('should check the questions of textInputQuestions if already answered correctly', () => {
                 localStorage.clear();
                 const nonRepeatQuestions = ["Wie lautet der Vorname von Frau Springer?",
                 "In welcher Sportart nutzt man den 'Fadeaway'?",
@@ -46,10 +46,11 @@ describe('QuizBuilder', () => {
                 localStorage.setItem("nonRepeatQuestions", JSON.stringify(nonRepeatQuestions));
 
                 const quizBuilder = new QuizBuilder();
-                const question = quizBuilder.isARepetition([],textInputQuestions,0,nonRepeatQuestions);
-                const question = quizBuilder.hasBeenPicked(nonRepeatQuestions,quizBuilder.poseQuestions(textInputQuestions))
+                const alreadyAnswered = quizBuilder.hasBeenAnswered(textInputQuestions[0]);
+                const shouldBePick = quizBuilder.hasBeenAnswered(textInputQuestions[1]);
 
-                expect(question).toBe(false);
+                expect(alreadyAnswered).toBe(true);
+                expect(shouldBePick).toBe(false);
             });
         });
     });
