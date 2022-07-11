@@ -39,7 +39,31 @@ describe('QuizBuilder', () => {
 
         describe('hasBeenPicked', () => {
             it('should check for duplicate questions', () => {
+                const pickedQuestion : Question[] = [
+                    {
+                        question: "Wie lautet der Vorname von Frau Springer?",
+                        answers: ["Friede"],
+                        correctAnswers: ['Friede'],
+                        type: QuestionType.FREE_TEXT,
+                        repeatQuestion: "yes"
+                    }
+                ];
 
+                const newPick: Question = {
+                    question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
+                    answers: ["Sommerrolle"],
+                    correctAnswers: ['Sommerrolle'],
+                    type: QuestionType.FREE_TEXT,
+                    repeatQuestion: "yes"
+                };
+
+                const quizBuilder = new QuizBuilder();
+                
+                const hasBeenPicked = quizBuilder.hasBeenPicked(pickedQuestion, newPick);
+                expect(hasBeenPicked).toBe(false);
+
+                const duplicatedPick = quizBuilder.hasBeenPicked(pickedQuestion,pickedQuestion[0]);
+                expect(duplicatedPick).toBe(true);
             });
         });
 
@@ -69,7 +93,7 @@ describe('QuizBuilder', () => {
                         type: QuestionType.FREE_TEXT,
                         repeatQuestion: "yes"
                     }
-                ]
+                ];
 
                 const quizBuilder = new QuizBuilder();
                 const alreadyAnswered = quizBuilder.hasBeenAnswered(textInputQuestions[0]);
