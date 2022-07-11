@@ -77,17 +77,17 @@ export class Answer{
     };
 
 
-    submitAnswer(quizMaster: QuizMaster, quiz: Quiz) {
+    submitAnswer(quizMaster: QuizMaster) {
     
-        let questions = quiz.questions[quiz.round];
+        let questions = quizMaster.quiz.questions[quizMaster.quiz.round];
         let collectedAnswers = this.collectSelectedAnswers(questions);
         
         const addButton = new AddButton();
         if(collectedAnswers.length !== 0){
             addButton.hideButton('submit');
             addButton.hideButton('next');
-            this.markTheAnswers(quiz,collectedAnswers);
-            quizMaster.handleQuizScore(quiz, collectedAnswers);
+            this.markTheAnswers(quizMaster.quiz,collectedAnswers);
+            quizMaster.handleQuizScore(collectedAnswers);
         }
     };
 }

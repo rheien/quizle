@@ -2,41 +2,27 @@ import { Question } from "../questions/types";
 import { QuizMaster } from "../game/QuizMaster";
 import { FetchTemplate } from "./FetchTemplate";
 import { AddButton } from "./AddButton";
-import { Quiz } from "../game/Quiz";
 
-/*
-window.onbeforeunload = function () {
-    localStorage.clear()
-};*/
 
 window.onload = function () {
     //localStorage.clear()
     const quizMaster = new QuizMaster();
-    let quiz = quizMaster.newQuiz();
+    try {
+        quizMaster.newQuiz();
+        buildQuizPage(quizMaster);
+    } catch (error) {
+        console.error(error)
+        //TODO: -handle error case
+    }
     
-    if(quiz.hasQuestionsLeft()){
-        buildQuizPage(quizMaster, quiz);
-    }
-    else{
-        localStorage.clear()
-        //window.location.pathname = 'gameEnds.html';
-    }
-
-
-/*
-    let retrievePreviousScore = localStorage.getItem("quizScore");
-    localStorage.removeItem('quizScore');
-    if(retrievePreviousScore !== null){
-        quiz.score= JSON.parse(retrievePreviousScore);
-    }
-*/
+    //window.location.pathname = 'gameEnds.html';
 };
 
 /**
  * Build the Quiz Page 
  */
-export function buildQuizPage(quizMaster: QuizMaster, quiz: Quiz): void {
-    const questionCards: Question[] = quiz.questions;
+export function buildQuizPage(quizMaster: QuizMaster): void {
+    const questionCards: Question[] = quizMaster.quiz.questions;
 
     /* create score bar */
     let scoreBar: HTMLElement = document.createElement('div');
@@ -45,7 +31,7 @@ export function buildQuizPage(quizMaster: QuizMaster, quiz: Quiz): void {
     scoreBar.textContent = 'Number of answered questions:';
     scoreBar.appendChild(document.createElement('br'));
 
-    for (let i = 1; i <= quiz.maxRound; i++) {
+    for (let i = 1; i <= quizMaster.quiz.maxRound; i++) {
         let circle: HTMLElement = document.createElement('span');
         circle.className = 'circle';
         circle.id = 'Question' + i;
@@ -55,9 +41,9 @@ export function buildQuizPage(quizMaster: QuizMaster, quiz: Quiz): void {
     header.appendChild(scoreBar);
 
     const fetchTemplate = new FetchTemplate();
-    fetchTemplate.fillTemplate(questionCards[quiz.round])
+    fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round])
     
     const addButton = new AddButton();
-    addButton.displaySubmitButton(quizMaster, quiz);
-    addButton.displayNextButton(quiz);
+    addButton.displaySubmitButton(quizMaster);
+    addButton.displayNextButton(quizMaster.quiz);
 };

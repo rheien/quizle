@@ -5,7 +5,7 @@ import { FetchTemplate } from "./FetchTemplate";
 
 export class AddButton {
 
-    displaySubmitButton(quizMaster: QuizMaster, quiz: Quiz) {
+    displaySubmitButton(quizMaster: QuizMaster) {
         let button = document.createElement('button');
         button.className = 'btn submit';
         button.id = 'submit';
@@ -15,7 +15,7 @@ export class AddButton {
 
         const answer = new Answer();
         button.addEventListener("click", function () {
-            answer.submitAnswer(quizMaster, quiz);
+            answer.submitAnswer(quizMaster);
         });
 
         let buttonContainer = document.createElement('div');
