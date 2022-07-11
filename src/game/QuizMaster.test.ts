@@ -15,8 +15,7 @@ describe('QuizMaster', () => {
                     '95'
                 ],
                 correctAnswers: ['92'],
-                type: QuestionType.MULTIPLE_CHOICE,
-                repeatQuestion: 'yes'
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -36,8 +35,7 @@ describe('QuizMaster', () => {
                     'FIAT'
                 ],
                 correctAnswers: ['OPEL', 'FIAT'],
-                type: QuestionType.MULTIPLE_CHOICE,
-                repeatQuestion: 'yes'
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const correctAnswers: string[] = question.correctAnswers;
 
@@ -57,8 +55,7 @@ describe('QuizMaster', () => {
                     '95'
                 ],
                 correctAnswers: ['92'],
-                type: QuestionType.MULTIPLE_CHOICE,
-                repeatQuestion: 'yes'
+                type: QuestionType.MULTIPLE_CHOICE
             };
             const incorrectAnswers: string[] = ['incorrect answer'];
 
@@ -81,7 +78,7 @@ describe('QuizMaster', () => {
 
             const incorrectAnswers: string[] = ['incorrect answer'];
 
-            quizMaster.handleQuizScore(quiz,  incorrectAnswers);
+            quizMaster.handleQuizScore(incorrectAnswers);
 
             expect(quiz.score).toBe(0);
         });
@@ -94,7 +91,7 @@ describe('QuizMaster', () => {
             quiz.round = Math.floor(Math.random() * quiz.questions.length);
             const correctAnswers = quiz.questions[quiz.round].correctAnswers;
 
-            quizMaster.handleQuizScore(quiz,  correctAnswers);
+            quizMaster.handleQuizScore(correctAnswers);
 
             expect(quiz.score).toBe(1);
         });
@@ -105,7 +102,7 @@ describe('QuizMaster', () => {
             
             const correctAnswers = ['null'];
 
-            quizMaster.handleQuizScore(quiz,  correctAnswers);
+            quizMaster.handleQuizScore(correctAnswers);
 
             expect(quiz.round).toBe(1);
         });

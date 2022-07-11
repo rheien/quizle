@@ -17,16 +17,24 @@ export class QuizBuilder {
 
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
-        const quiz: Quiz = new Quiz();
+        if(!this.enoughQuestionsLeft(multipleChoiceQuestions, singleChoiceQuestions, textInputQuestions)){
+            throw new Error ('no more questions left');
+        }
+        
         let questions : Question[] = [];
-
         questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
         questions = questions.concat(this.poseQuestions(textInputQuestions));
-
+        
+        const quiz: Quiz = new Quiz();
         quiz.questions = shuffleOrder(questions);
         return quiz;
     };
+
+
+    enoughQuestionsLeft(...questions: Question[][]): boolean {
+        return true
+    }
 
     /** This method pick two random questions for the question list
      *  and shuffle the order of the given answers

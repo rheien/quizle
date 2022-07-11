@@ -10,21 +10,23 @@ import { Quiz } from "./Quiz";
  */
 export class QuizMaster {
 
+    private _quiz: Quiz;
+
+    get quiz() : Quiz {
+        return this._quiz
+    }
+    
     newQuiz(): Quiz {
-
         const quizBuilder = new QuizBuilder();
-        const quiz: Quiz = quizBuilder.buildQuiz();
-
-        return quiz
+        return this._quiz = quizBuilder.buildQuiz();
     }
 
     /** change the number of rounds and manage the points */
-    handleQuizScore(quiz: Quiz, selectedAnswers: string[]) {
-        if (this.evaluateAnswers(quiz.questions[quiz.round], selectedAnswers)) {
-            quiz.score++;
-            quiz.questions[quiz.round].repeatQuestion = "no";
+    handleQuizScore(selectedAnswers: string[]) {
+        if (this.evaluateAnswers(this.quiz.questions[this.quiz.round], selectedAnswers)) {
+            this.quiz.score++;
         }
-        quiz.round++;
+        this.quiz.round++;
     };
 
 

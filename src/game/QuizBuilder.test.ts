@@ -43,8 +43,7 @@ describe('QuizBuilder', () => {
                     question: "Wie lautet der Vorname von Frau Springer?",
                     answers: ["Friede"],
                     correctAnswers: ['Friede'],
-                    type: QuestionType.FREE_TEXT,
-                    repeatQuestion: "yes"
+                    type: QuestionType.FREE_TEXT
                 }
             ];
 
@@ -52,8 +51,7 @@ describe('QuizBuilder', () => {
                 question: "Wie heißt die nicht frittierte Variante von der Frühlingsrolle?",
                 answers: ["Sommerrolle"],
                 correctAnswers: ['Sommerrolle'],
-                type: QuestionType.FREE_TEXT,
-                repeatQuestion: "yes"
+                type: QuestionType.FREE_TEXT
             };
 
             it('should allow for a new question', () => {
@@ -80,8 +78,7 @@ describe('QuizBuilder', () => {
                 question: "Wie lautet der Vorname von Frau Springer?",
                 answers: ["Friede"],
                 correctAnswers: ['Friede'],
-                type: QuestionType.FREE_TEXT,
-                repeatQuestion: "yes"
+                type: QuestionType.FREE_TEXT
             };
 
             it('should not allow to pick question cause already answered correctly', () => {
