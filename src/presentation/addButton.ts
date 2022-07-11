@@ -40,7 +40,7 @@ export class AddButton {
 
         let buttonContainer = document.getElementById('buttonContainer');
         buttonContainer.appendChild(button);
-        let container = document.getElementById('container');
+        let container = document.getElementById('container')!;
         container.appendChild(buttonContainer);
     };
 
@@ -70,9 +70,11 @@ export class AddButton {
 
             //loads correct answered questions from previous round and adds the new ones
             let nonRepeatQuestions: string[] = [];
-            let storageQuestions = localStorage.getItem("nonRepeatQuestions");
-            if(storageQuestions !== null){
-                JSON.parse(storageQuestions).forEach(question =>{
+            let retrieveAnsweredQuestions = localStorage.getItem("nonRepeatQuestions");
+            localStorage.removeItem('nonRepeatQuestions');
+            if(retrieveAnsweredQuestions !== null){
+                let correctAnsweredQuestions: string[] = JSON.parse(retrieveAnsweredQuestions);
+                correctAnsweredQuestions.forEach(question =>{
                     nonRepeatQuestions.push(question);
                 });
             };
@@ -88,8 +90,10 @@ export class AddButton {
         });
 
         let buttonContainer = document.getElementById('buttonContainer');
-        buttonContainer.appendChild(restartButton);
-        let container = document.getElementById('container')!;
-        container.appendChild(buttonContainer);
+        if(buttonContainer !== null){
+            buttonContainer.appendChild(restartButton);
+            let container = document.getElementById('container')!;
+            container.appendChild(buttonContainer);
+        }
     };
 }

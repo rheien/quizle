@@ -5,13 +5,14 @@ import { AddButton } from "./AddButton";
 import { Quiz } from "../game/Quiz";
 
 window.onload = function () {
+
     const quizMaster = new QuizMaster();
     let quiz = quizMaster.newQuiz();
     
-    let storageScore = localStorage.getItem("quizScore");
-    //localStorage.clear();
-    if(storageScore !== null){
-        quiz.score= JSON.parse(storageScore);
+    let retrievePreviousScore = localStorage.getItem("quizScore");
+    localStorage.removeItem('quizScore');
+    if(retrievePreviousScore !== null){
+        quiz.score= JSON.parse(retrievePreviousScore);
     }
     buildQuizPage(quizMaster, quiz);
 };
