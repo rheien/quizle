@@ -6,10 +6,9 @@ import { textInputQuestions } from "../questions/textInputQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 
 describe('QuizBuilder', () => {
-    beforeEach(() => {
-
+    /*beforeEach(() => {
         localStorage.clear();
-    });
+    });*/
 
 
     it('Quiz has 6 questions', () => {
@@ -41,16 +40,16 @@ describe('QuizBuilder', () => {
         describe('enoughQuestionsLeft', () => {
             
             it('should allow to build a quiz since there is still enough questions left', () => {
-                /*const questions: Question[][] = [
+                const questions: Question[][] = [
                     multipleChoiceQuestions,
                     singleChoiceQuestions, 
                     textInputQuestions
-                ];*/
+                ];
+                
                 localStorage.clear();
+
                 const quizBuilder = new QuizBuilder();
-                const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(multipleChoiceQuestions,
-                    singleChoiceQuestions, 
-                    textInputQuestions);
+                const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
                 
                 expect(enoughQuestionsLeft).toBe(true);
             });
