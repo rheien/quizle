@@ -6,9 +6,9 @@ import { textInputQuestions } from "../questions/textInputQuestions";
 import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 
 describe('QuizBuilder', () => {
-    /*beforeEach(() => {
+    beforeEach(() => {
         localStorage.clear();
-    });*/
+    });
 
 
     it('Quiz has 6 questions', () => {
@@ -39,12 +39,14 @@ describe('QuizBuilder', () => {
     describe('buildQuiz', () => {
         describe('enoughQuestionsLeft', () => {
             
-            it('should allow to build a quiz since there is still enough questions left', () => {
-                const questions: Question[][] = [
+            const questions: Question[][] = [
                     multipleChoiceQuestions,
                     singleChoiceQuestions, 
                     textInputQuestions
                 ];
+
+            it('should allow to build a quiz since there is still enough questions left', () => {
+                
                 
                 localStorage.clear();
 
@@ -53,20 +55,20 @@ describe('QuizBuilder', () => {
                 
                 expect(enoughQuestionsLeft).toBe(true);
             });
-/*
+
             const repeatedQuestions :string[]=[];
             multipleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
             singleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
             textInputQuestions.forEach(element => repeatedQuestions.push(element.question));
 
             it('should throw an error since there is not enough questions left for a quiz', () => {
-                const nonRepeatQuestions: string[] = repeatedQuestions
-                localStorage.setItem('nonRepeatQuestions', JSON.stringify(nonRepeatQuestions));
+        
+                localStorage.setItem('nonRepeatQuestions', JSON.stringify(repeatedQuestions));
                 const quizBuilder = new QuizBuilder();
-                const notQuizable = quizBuilder.buildQuiz();
+                const quizable = quizBuilder.enoughQuestionsLeft(...questions);
 
-                expect(notQuizable).toThrow('no more questions left');
-            });*/
+                expect(quizable).toBe(false);
+            });
         });
     });
 

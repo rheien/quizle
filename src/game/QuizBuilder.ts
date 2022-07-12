@@ -43,8 +43,8 @@ export class QuizBuilder {
             questions.forEach(questions => 
                 questions.forEach(question => 
                     checkQuestions.add(question.question)));
-            const quiz = new Quiz();
-            return checkQuestions.size >= quiz.maxRound;
+            
+            return checkQuestions.size >= nonRepeatQuestions.length;
         }
         
         return true

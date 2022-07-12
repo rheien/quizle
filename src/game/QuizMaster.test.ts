@@ -3,6 +3,11 @@ import { QuizMaster } from "./QuizMaster";
 
 
 describe('QuizMaster', () => {
+    beforeEach(() => {
+        localStorage.clear();
+    });
+
+
     describe('evaluateAnswer()', () => {
         it('evaluateAnswers should return true for one correct Answer', () => {
             const quizMaster = new QuizMaster();
