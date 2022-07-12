@@ -13,9 +13,10 @@ window.onload = function () {
     } catch (error) {
         console.error(error)
         //TODO: -handle error case
+        window.location.pathname = '/gameEnds.html';
     }
     
-    //window.location.pathname = 'gameEnds.html';
+    
 };
 
 /**

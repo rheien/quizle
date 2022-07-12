@@ -13,7 +13,7 @@ import { shuffleOrder } from "./shuffle";
  */
 export class QuizBuilder {
 
-    private readonly QUESTIONS_PER_TYPE = 2;
+    static readonly QUESTIONS_PER_TYPE = 2;
 
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
@@ -34,18 +34,21 @@ export class QuizBuilder {
 
     enoughQuestionsLeft(...questions: Question[][]): boolean {
         const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
-        if(nonRepeatQuestions !== null){
-            const checkQuestions = new Set();
-            const correctAnsweredQuestions: string[] = JSON.parse(nonRepeatQuestions);
-            correctAnsweredQuestions.forEach(question => 
-                checkQuestions.add(question));
+        if(nonRepeatQuestions === null){
+            return true
+        }
+/*
+        const checkQuestions = new Set();
+        const correctAnsweredQuestions: string[] = JSON.parse(nonRepeatQuestions);
+        correctAnsweredQuestions.forEach(question => 
+            checkQuestions.add(question));
 
-            questions.forEach(questions => 
-                questions.forEach(question => 
-                    checkQuestions.add(question.question)));
-            
-            return checkQuestions.size >= nonRepeatQuestions.length;
-        }   
+        questions.forEach(questions => 
+            questions.forEach(question => 
+                checkQuestions.add(question.question)));
+        
+        return checkQuestions.size >= nonRepeatQuestions.length;
+     */     
         return true
     }
 
@@ -55,7 +58,7 @@ export class QuizBuilder {
     poseQuestions(questions: Question[]): Question[] {
         const picks: Question[] = [];
 
-        for (let index = 0; index < this.QUESTIONS_PER_TYPE; index++) {
+        for (let index = 0; index < QuizBuilder.QUESTIONS_PER_TYPE; index++) {
             let pickNumber: number = this.randomNumber(questions.length);
 
             //when question appears twice or has already been answered correctly

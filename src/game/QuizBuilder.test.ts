@@ -45,29 +45,37 @@ describe('QuizBuilder', () => {
                     textInputQuestions
                 ];
 
-            it('should allow to build a quiz since there is still enough questions left', () => {
+            it('should allow to build a quiz since there are still enough questions left', () => {
 
-                localStorage.clear();
-
+                const pickedQuestions :string[]=multipleChoiceQuestions
+                    .map(element => element.question)
+                    .slice(0, multipleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE - 1);
+                
+                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+                
                 const quizBuilder = new QuizBuilder();
                 const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
-                
+
+                expect(pickedQuestions.length).toBe(QuizBuilder.QUESTIONS_PER_TYPE);
                 expect(enoughQuestionsLeft).toBe(true);
             });
 
-            const pickAllQuestions :string[]=[];
-            multipleChoiceQuestions.forEach(element => pickAllQuestions.push(element.question));
-            singleChoiceQuestions.forEach(element => pickAllQuestions.push(element.question));
-            textInputQuestions.forEach(element => pickAllQuestions.push(element.question));
-
-            it('should throw an error since there is not enough questions left for a quiz', () => {
+            it('should be false since there are not enough questions left ', () => {
                 
-                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickAllQuestions));
+                const pickedQuestions :string[]=multipleChoiceQuestions
+                    .map(element => element.question)
+                    .slice(0, multipleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE-1));
+                
+                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
                 const quizBuilder = new QuizBuilder();
                 const quizable = quizBuilder.enoughQuestionsLeft(...questions);
 
+                expect(pickedQuestions.length).toBe(QuizBuilder.QUESTIONS_PER_TYPE - 1);
                 expect(quizable).toBe(false);
             });
+
+
         });
     });
 
