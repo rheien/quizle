@@ -1,4 +1,3 @@
-import { Quiz } from "../game/Quiz";
 import { QuizMaster } from "../game/QuizMaster";
 import { Answer } from "./Answer";
 import { FetchTemplate } from "./FetchTemplate";
@@ -25,7 +24,7 @@ export class AddButton {
         container.appendChild(buttonContainer);
     };
 
-    displayNextButton(quiz: Quiz) {
+    displayNextButton(quizMaster: QuizMaster) {
         let button = document.createElement('button');
         button.className = 'btn next';
         button.id = 'next';
@@ -35,7 +34,7 @@ export class AddButton {
 
         const fetchTemplate = new FetchTemplate();
         button.addEventListener("click", function () {
-            fetchTemplate.nextQuestion(quiz);
+            fetchTemplate.nextQuestion(quizMaster);
         });
 
         let buttonContainer = document.getElementById('buttonContainer');
@@ -57,7 +56,7 @@ export class AddButton {
         }
     };
 
-    nextQuizRound(quiz: Quiz) {
+    nextQuizRound() {
         let restartButton = document.createElement('button');
         restartButton.className = 'btn restart';
         restartButton.id = 'restart';
@@ -66,7 +65,7 @@ export class AddButton {
 
         restartButton.addEventListener("click", function () {
 
-            localStorage.setItem("quizScore", JSON.stringify(quiz.score));
+            //localStorage.setItem("quizScore", JSON.stringify(quiz.score));
             window.location.reload();
         });
 

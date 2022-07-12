@@ -46,8 +46,7 @@ describe('QuizBuilder', () => {
                 ];
 
             it('should allow to build a quiz since there is still enough questions left', () => {
-                
-                
+
                 localStorage.clear();
 
                 const quizBuilder = new QuizBuilder();
@@ -56,14 +55,14 @@ describe('QuizBuilder', () => {
                 expect(enoughQuestionsLeft).toBe(true);
             });
 
-            const repeatedQuestions :string[]=[];
-            multipleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
-            singleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
-            textInputQuestions.forEach(element => repeatedQuestions.push(element.question));
+            const pickAllQuestions :string[]=[];
+            multipleChoiceQuestions.forEach(element => pickAllQuestions.push(element.question));
+            singleChoiceQuestions.forEach(element => pickAllQuestions.push(element.question));
+            textInputQuestions.forEach(element => pickAllQuestions.push(element.question));
 
             it('should throw an error since there is not enough questions left for a quiz', () => {
-        
-                localStorage.setItem('nonRepeatQuestions', JSON.stringify(repeatedQuestions));
+                
+                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickAllQuestions));
                 const quizBuilder = new QuizBuilder();
                 const quizable = quizBuilder.enoughQuestionsLeft(...questions);
 

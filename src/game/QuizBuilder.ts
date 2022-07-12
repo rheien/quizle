@@ -45,8 +45,7 @@ export class QuizBuilder {
                     checkQuestions.add(question.question)));
             
             return checkQuestions.size >= nonRepeatQuestions.length;
-        }
-        
+        }   
         return true
     }
 

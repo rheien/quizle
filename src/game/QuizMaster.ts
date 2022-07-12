@@ -23,19 +23,19 @@ export class QuizMaster {
 
     /** change the number of rounds and manage the points */
     handleQuizScore(selectedAnswers: string[]) {
-        if (this.evaluateAnswers(this.quiz.questions[this.quiz.round], selectedAnswers)) {
-            this.quiz.score++;
+        if (this.evaluateAnswers(this.quiz.questions[this._quiz.round], selectedAnswers)) {
+            this._quiz.score++;
             
             let correctAnsweredQuestions: string[]= [];
             const retrieveAnsweredQuestions = localStorage.getItem("nonRepeatQuestions");
             if(retrieveAnsweredQuestions !== null){
                 correctAnsweredQuestions = JSON.parse(retrieveAnsweredQuestions);
             }
-            let answeredQuestionsCorrectly = this.quiz.questions[this.quiz.round].question;
+            let answeredQuestionsCorrectly = this.quiz.questions[this._quiz.round].question;
             correctAnsweredQuestions.push(answeredQuestionsCorrectly);
             localStorage.setItem("nonRepeatQuestions", JSON.stringify(correctAnsweredQuestions));
         }
-        this.quiz.round++;
+        this._quiz.round++;
     };
 
 

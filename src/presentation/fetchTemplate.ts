@@ -2,6 +2,7 @@ import { Question, QuestionType } from "../questions/types";
 import { compile } from "handlebars";
 import { Quiz } from "../game/Quiz";
 import { AddButton } from "./AddButton";
+import { QuizMaster } from "../game/QuizMaster";
 
 export class FetchTemplate {
 
@@ -55,19 +56,19 @@ export class FetchTemplate {
     };
 
 
-    nextQuestion(quiz: Quiz) {
+    nextQuestion(quizMaster: QuizMaster) {
         const addButton = new AddButton();
 
 
-        if (quiz.hasReachedEnd()) {
+        if (quizMaster.quiz.hasReachedEnd()) {
     
-            this.fillResult(quiz.score);
+            this.fillResult(quizMaster.quiz.score);
             addButton.hideButton('submit');
-            addButton.nextQuizRound(quiz);
+            addButton.nextQuizRound();
         }
         else {
-            let questionCards = quiz.questions;
-            this.fillTemplate(questionCards[quiz.round]);
+            let questionCards = quizMaster.quiz.questions;
+            this.fillTemplate(questionCards[quizMaster.quiz.round]);
         }
     
         addButton.hideButton('next');

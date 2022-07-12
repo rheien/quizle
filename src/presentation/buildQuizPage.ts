@@ -45,5 +45,5 @@ export function buildQuizPage(quizMaster: QuizMaster): void {
     
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);
-    addButton.displayNextButton(quizMaster.quiz);
+    addButton.displayNextButton(quizMaster);
 };
