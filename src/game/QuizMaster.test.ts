@@ -68,11 +68,7 @@ describe('QuizMaster', () => {
     
     describe('handleQuizScore()', () => {
 
-
         it('should score 0 when answer incorrectly', () => {
-            
-            
-            
             const quizMaster = new QuizMaster();
             const quiz = quizMaster.newQuiz();
 

@@ -25,6 +25,15 @@ export class QuizMaster {
     handleQuizScore(selectedAnswers: string[]) {
         if (this.evaluateAnswers(this.quiz.questions[this.quiz.round], selectedAnswers)) {
             this.quiz.score++;
+            
+            let correctAnsweredQuestions: string[]= [];
+            const retrieveAnsweredQuestions = localStorage.getItem("nonRepeatQuestions");
+            if(retrieveAnsweredQuestions !== null){
+                correctAnsweredQuestions = JSON.parse(retrieveAnsweredQuestions);
+            }
+            let answeredQuestionsCorrectly = this.quiz.questions[this.quiz.round].question;
+            correctAnsweredQuestions.push(answeredQuestionsCorrectly);
+            localStorage.setItem("nonRepeatQuestions", JSON.stringify(correctAnsweredQuestions));
         }
         this.quiz.round++;
     };

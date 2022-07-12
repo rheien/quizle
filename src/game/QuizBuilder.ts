@@ -33,6 +33,20 @@ export class QuizBuilder {
 
 
     enoughQuestionsLeft(...questions: Question[][]): boolean {
+        const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');
+        if(nonRepeatQuestions !== null){
+            const checkQuestions = new Set();
+            const correctAnsweredQuestions: string[] = JSON.parse(nonRepeatQuestions);
+            correctAnsweredQuestions.forEach(question => 
+                checkQuestions.add(question));
+
+            questions.forEach(questions => 
+                questions.forEach(question => 
+                    checkQuestions.add(question.question)));
+            const quiz = new Quiz();
+            return checkQuestions.size >= quiz.maxRound;
+        }
+        
         return true
     }
 

@@ -1,6 +1,9 @@
 import { Question, QuestionType } from "../questions/types";
 import { QuizBuilder } from "./QuizBuilder";
 import { Quiz } from "./Quiz";
+import { multipleChoiceQuestions } from "../questions/multipleChoiceQuestions";
+import { textInputQuestions } from "../questions/textInputQuestions";
+import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 
 describe('QuizBuilder', () => {
     beforeEach(() => {
@@ -32,6 +35,40 @@ describe('QuizBuilder', () => {
         const uniqueQuestion = new Set(quiz.questions);
 
         expect(quiz.questions.length).toBe(uniqueQuestion.size);
+    });
+
+    describe('buildQuiz', () => {
+        describe('enoughQuestionsLeft', () => {
+            
+            it('should allow to build a quiz since there is still enough questions left', () => {
+                /*const questions: Question[][] = [
+                    multipleChoiceQuestions,
+                    singleChoiceQuestions, 
+                    textInputQuestions
+                ];*/
+                localStorage.clear();
+                const quizBuilder = new QuizBuilder();
+                const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(multipleChoiceQuestions,
+                    singleChoiceQuestions, 
+                    textInputQuestions);
+                
+                expect(enoughQuestionsLeft).toBe(true);
+            });
+/*
+            const repeatedQuestions :string[]=[];
+            multipleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
+            singleChoiceQuestions.forEach(element => repeatedQuestions.push(element.question));
+            textInputQuestions.forEach(element => repeatedQuestions.push(element.question));
+
+            it('should throw an error since there is not enough questions left for a quiz', () => {
+                const nonRepeatQuestions: string[] = repeatedQuestions
+                localStorage.setItem('nonRepeatQuestions', JSON.stringify(nonRepeatQuestions));
+                const quizBuilder = new QuizBuilder();
+                const notQuizable = quizBuilder.buildQuiz();
+
+                expect(notQuizable).toThrow('no more questions left');
+            });*/
+        });
     });
 
 
