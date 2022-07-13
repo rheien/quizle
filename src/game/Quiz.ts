@@ -5,6 +5,7 @@ export class Quiz {
     score: number = 0;
     round: number = 0;
     maxRound: number = 6;
+    attempts: number = 0;
 
     hasReachedEnd(): boolean {
         return this.round === this.maxRound;

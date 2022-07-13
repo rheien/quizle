@@ -62,4 +62,20 @@ export class QuizMaster {
         };
         return false;
     };
+
+    /**
+     * Instead of comparing the points, the attempts to complete the quiz are counted
+     */
+    quizAttempts() {
+        let attempts: number = 0;
+        let quizAttempts = localStorage.getItem("quizAttempts");
+        if (quizAttempts !== null) {
+            console.log(JSON.parse(quizAttempts)[0])
+            attempts = parseInt(JSON.parse(quizAttempts)[0]);
+        }
+
+        this._quiz.attempts = attempts++;
+        localStorage.setItem("quizAttempts", JSON.stringify(this._quiz.attempts));
+
+    }
 }

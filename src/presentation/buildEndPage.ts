@@ -6,6 +6,7 @@ function buildEndPage(): void {
     let questionContainer = document.getElementById('questionContainer')!;
     questionContainer.textContent = 'The quiz has been completed. Do you want to play again?';
     
+    //TODO: add attempts for completing quiz  
     
     let newGameButton = document.createElement('button');
     newGameButton.className = 'btn newGame';
