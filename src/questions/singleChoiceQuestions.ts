@@ -13,7 +13,7 @@ export const singleChoiceQuestions : Question[]= [
     },
 
     {
-        question : "Wie schreibt man",
+        question : "Sich über eine ... aufregen.",
         answers : [
              'Lapallie',
              'Lapalie',
@@ -24,7 +24,7 @@ export const singleChoiceQuestions : Question[]= [
     },
 
     {
-        question : "Wie schreibt man",
+        question : "Die Lösung war",
         answers : [
             'dillettantisch',
             'dilletantisch',
@@ -35,7 +35,7 @@ export const singleChoiceQuestions : Question[]= [
     },
 
     {
-        question : "Wie schreibt man",
+        question : "Andere Bedeutung für ohne geldliche Gegenleistung",
         answers : [
             'unentgeltlich',
             'unentgeldlich',
@@ -46,7 +46,7 @@ export const singleChoiceQuestions : Question[]= [
     },
 
     {
-        question : "Wie schreibt man",
+        question : "ASIdeas haben ein sehr gutes",
         answers : [
             'Renomee',
             'Renommee',
