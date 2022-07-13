@@ -10,3 +10,8 @@ export function shuffleOrder(array: any[]) {
     };
     return array;
 };
+
+/** This method gives a random number back */
+export function randomNumber(max: number): number {
+    return Math.floor(Math.random() * max)
+};

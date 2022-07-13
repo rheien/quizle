@@ -3,6 +3,11 @@ import { QuizMaster } from "./QuizMaster";
 
 
 describe('QuizMaster', () => {
+    beforeEach(() => {
+        localStorage.clear();
+    });
+
+
     describe('evaluateAnswer()', () => {
         it('evaluateAnswers should return true for one correct Answer', () => {
             const quizMaster = new QuizMaster();
@@ -68,14 +73,13 @@ describe('QuizMaster', () => {
     
     describe('handleQuizScore()', () => {
 
-
         it('should score 0 when answer incorrectly', () => {
             const quizMaster = new QuizMaster();
             const quiz = quizMaster.newQuiz();
 
             const incorrectAnswers: string[] = ['incorrect answer'];
 
-            quizMaster.handleQuizScore(quiz,  incorrectAnswers);
+            quizMaster.handleQuizScore(incorrectAnswers);
 
             expect(quiz.score).toBe(0);
         });
@@ -88,7 +92,7 @@ describe('QuizMaster', () => {
             quiz.round = Math.floor(Math.random() * quiz.questions.length);
             const correctAnswers = quiz.questions[quiz.round].correctAnswers;
 
-            quizMaster.handleQuizScore(quiz,  correctAnswers);
+            quizMaster.handleQuizScore(correctAnswers);
 
             expect(quiz.score).toBe(1);
         });
@@ -99,7 +103,7 @@ describe('QuizMaster', () => {
             
             const correctAnswers = ['null'];
 
-            quizMaster.handleQuizScore(quiz,  correctAnswers);
+            quizMaster.handleQuizScore(correctAnswers);
 
             expect(quiz.round).toBe(1);
         });
