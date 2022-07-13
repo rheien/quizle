@@ -1,6 +1,5 @@
 import { Question, QuestionType } from "../questions/types";
 import { compile } from "handlebars";
-import { Quiz } from "../game/Quiz";
 import { AddButton } from "./AddButton";
 import { QuizMaster } from "../game/QuizMaster";
 

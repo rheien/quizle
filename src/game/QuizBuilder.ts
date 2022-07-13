@@ -3,7 +3,7 @@ import { singleChoiceQuestions } from "../questions/singleChoiceQuestions";
 import { textInputQuestions } from "../questions/textInputQuestions";
 import { Question } from "../questions/types";
 import { Quiz } from "./Quiz";
-import { shuffleOrder, randomNumber } from "./extraFeatureForBuildQuiz";
+import { shuffleOrder, randomNumber } from "./extraFeature";
 
 /**
  * 
@@ -32,7 +32,7 @@ export class QuizBuilder {
     };
 
     /** 
-     * 
+     * This method checks if there are enough questions for the quiz game
     */
     enoughQuestionsLeft(...questions: Question[][]): boolean {
         const nonRepeatQuestions = localStorage.getItem('nonRepeatQuestions');

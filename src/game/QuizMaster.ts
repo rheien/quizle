@@ -17,7 +17,7 @@ export class QuizMaster {
         return this._quiz
     }
 
-    game() {
+    quizGameFlow() {
         const quizMaster = new QuizMaster();
         try {
             quizMaster.newQuiz();

@@ -1,4 +1,3 @@
-import { Quiz } from "../game/Quiz";
 import { QuizMaster } from "../game/QuizMaster";
 import { Question, QuestionType } from "../questions/types";
 import { AddButton } from "./AddButton";
@@ -46,13 +45,13 @@ export class Answer{
         return input.value.length !== 0
     };
 
-    markTheAnswers(quiz: Quiz, collectedAnswers: string[]) {
-        let question = quiz.questions[quiz.round];
+    markTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
+        let question = quizMaster.quiz.questions[quizMaster.quiz.round];
         collectedAnswers.forEach(answer => {
             let indexAnswer = question.answers.indexOf(answer);
             let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString());
     
-            if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
+            if (quizMaster.quiz.answeredCorrectly(question.correctAnswers, answer)) {
                 
                 // in case of lower case answer in free text input
                 if (indexAnswer === -1) {
@@ -86,7 +85,7 @@ export class Answer{
         if(collectedAnswers.length !== 0){
             addButton.hideButton('submit');
             addButton.hideButton('next');
-            this.markTheAnswers(quizMaster.quiz,collectedAnswers);
+            this.markTheAnswers(quizMaster,collectedAnswers);
             quizMaster.handleQuizScore(collectedAnswers);
         }
     };

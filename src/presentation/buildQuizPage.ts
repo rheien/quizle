@@ -5,7 +5,7 @@ import { AddButton } from "./AddButton";
 
 window.onload = function () {
     const quizMaster = new QuizMaster();
-    quizMaster.game();
+    quizMaster.quizGameFlow();
 };
 
 /**
