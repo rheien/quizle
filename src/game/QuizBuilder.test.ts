@@ -10,7 +10,6 @@ describe('QuizBuilder', () => {
         localStorage.clear();
     });
 
-
     it('Quiz has 6 questions', () => {
         const quizBuilder = new QuizBuilder();
         const quiz = quizBuilder.buildQuiz();
@@ -38,7 +37,6 @@ describe('QuizBuilder', () => {
 
     describe('buildQuiz', () => {
         describe('enoughQuestionsLeft', () => {
-
             const questions: Question[][] = [
                 multipleChoiceQuestions,
                 singleChoiceQuestions,
@@ -46,13 +44,12 @@ describe('QuizBuilder', () => {
             ];
 
             describe('for multipleChoiceQuestions', () => {
-
+                
                 it('should allow to build a quiz since there are still enough questions left', () => {
-                    localStorage.clear();
+                    
                     const pickedQuestions: string[] = multipleChoiceQuestions
                         .map(element => element.question)
                         .slice(0, multipleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
-
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
@@ -62,28 +59,26 @@ describe('QuizBuilder', () => {
                 });
 
                 it('should be false since there are not enough questions left ', () => {
-                    localStorage.clear();
+                    
                     const pickedQuestions: string[] = multipleChoiceQuestions
                         .map(element => element.question)
                         .slice(0, multipleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
-
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
                     const quizable = quizBuilder.enoughQuestionsLeft(...questions);
-                    
+
                     expect(quizable).toBe(false);
                 });
             });
 
             describe('for singleChoiceQuestions', () => {
-                localStorage.clear();
-                it('should allow to build a quiz since there are still enough questions left', () => {
 
+                it('should allow to build a quiz since there are still enough questions left', () => {
+                    
                     const pickedQuestions: string[] = singleChoiceQuestions
                         .map(element => element.question)
                         .slice(0, singleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
-
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
@@ -93,11 +88,10 @@ describe('QuizBuilder', () => {
                 });
 
                 it('should be false since there are not enough questions left ', () => {
-                    localStorage.clear();
+                    
                     const pickedQuestions: string[] = singleChoiceQuestions
                         .map(element => element.question)
                         .slice(0, singleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
-
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
@@ -110,11 +104,10 @@ describe('QuizBuilder', () => {
             describe('for testInputQuestions', () => {
                 
                 it('should allow to build a quiz since there are still enough questions left', () => {
-                    localStorage.clear();
+                    
                     const pickedQuestions: string[] = textInputQuestions
                         .map(element => element.question)
                         .slice(0, textInputQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
-
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
@@ -124,11 +117,10 @@ describe('QuizBuilder', () => {
                 });
 
                 it('should be false since there are not enough questions left ', () => {
-                    localStorage.clear();
+                    
                     const pickedQuestions: string[] = textInputQuestions
                         .map(element => element.question)
                         .slice(0, textInputQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
-                    
                     localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
 
                     const quizBuilder = new QuizBuilder();
