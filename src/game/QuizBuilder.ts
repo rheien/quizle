@@ -37,19 +37,21 @@ export class QuizBuilder {
         if(nonRepeatQuestions === null){
             return true
         }
-/*
-        const checkQuestions = new Set();
-        const correctAnsweredQuestions: string[] = JSON.parse(nonRepeatQuestions);
-        correctAnsweredQuestions.forEach(question => 
-            checkQuestions.add(question));
 
-        questions.forEach(questions => 
-            questions.forEach(question => 
-                checkQuestions.add(question.question)));
-        
-        return checkQuestions.size >= nonRepeatQuestions.length;
-     */     
-        return true
+        const correctAnsweredQuestions: string[] = JSON.parse(nonRepeatQuestions);
+        let quizable: boolean = true;
+        questions.some(questions => {
+            let checkRepeatedQuestions: string[] = [];
+            questions.forEach(question => {
+                if (!correctAnsweredQuestions.includes(question.question)){
+                    checkRepeatedQuestions.push(question.question)
+                    }
+                })
+            if (checkRepeatedQuestions.length < QuizBuilder.QUESTIONS_PER_TYPE){
+                quizable = false;
+            }
+        });
+        return quizable;
     }
 
     /** This method pick two random questions for the question list

@@ -38,44 +38,105 @@ describe('QuizBuilder', () => {
 
     describe('buildQuiz', () => {
         describe('enoughQuestionsLeft', () => {
-            
+
             const questions: Question[][] = [
-                    multipleChoiceQuestions,
-                    singleChoiceQuestions, 
-                    textInputQuestions
-                ];
+                multipleChoiceQuestions,
+                singleChoiceQuestions,
+                textInputQuestions
+            ];
 
-            it('should allow to build a quiz since there are still enough questions left', () => {
+            describe('for multipleChoiceQuestions', () => {
 
-                const pickedQuestions :string[]=multipleChoiceQuestions
-                    .map(element => element.question)
-                    .slice(0, multipleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE - 1);
-                
-                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
-                
-                const quizBuilder = new QuizBuilder();
-                const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
+                it('should allow to build a quiz since there are still enough questions left', () => {
+                    localStorage.clear();
+                    const pickedQuestions: string[] = multipleChoiceQuestions
+                        .map(element => element.question)
+                        .slice(0, multipleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
 
-                expect(pickedQuestions.length).toBe(QuizBuilder.QUESTIONS_PER_TYPE);
-                expect(enoughQuestionsLeft).toBe(true);
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
+
+                    expect(enoughQuestionsLeft).toBe(true);
+                });
+
+                it('should be false since there are not enough questions left ', () => {
+                    localStorage.clear();
+                    const pickedQuestions: string[] = multipleChoiceQuestions
+                        .map(element => element.question)
+                        .slice(0, multipleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
+
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const quizable = quizBuilder.enoughQuestionsLeft(...questions);
+                    
+                    expect(quizable).toBe(false);
+                });
             });
 
-            it('should be false since there are not enough questions left ', () => {
-                
-                const pickedQuestions :string[]=multipleChoiceQuestions
-                    .map(element => element.question)
-                    .slice(0, multipleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE-1));
-                
-                localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+            describe('for singleChoiceQuestions', () => {
+                localStorage.clear();
+                it('should allow to build a quiz since there are still enough questions left', () => {
 
-                const quizBuilder = new QuizBuilder();
-                const quizable = quizBuilder.enoughQuestionsLeft(...questions);
+                    const pickedQuestions: string[] = singleChoiceQuestions
+                        .map(element => element.question)
+                        .slice(0, singleChoiceQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
 
-                expect(pickedQuestions.length).toBe(QuizBuilder.QUESTIONS_PER_TYPE - 1);
-                expect(quizable).toBe(false);
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
+
+                    expect(enoughQuestionsLeft).toBe(true);
+                });
+
+                it('should be false since there are not enough questions left ', () => {
+                    localStorage.clear();
+                    const pickedQuestions: string[] = singleChoiceQuestions
+                        .map(element => element.question)
+                        .slice(0, singleChoiceQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
+
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const quizable = quizBuilder.enoughQuestionsLeft(...questions);
+
+                    expect(quizable).toBe(false);
+                });
             });
 
+            describe('for testInputQuestions', () => {
+                
+                it('should allow to build a quiz since there are still enough questions left', () => {
+                    localStorage.clear();
+                    const pickedQuestions: string[] = textInputQuestions
+                        .map(element => element.question)
+                        .slice(0, textInputQuestions.length - QuizBuilder.QUESTIONS_PER_TYPE);
 
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const enoughQuestionsLeft = quizBuilder.enoughQuestionsLeft(...questions);
+
+                    expect(enoughQuestionsLeft).toBe(true);
+                });
+
+                it('should be false since there are not enough questions left ', () => {
+                    localStorage.clear();
+                    const pickedQuestions: string[] = textInputQuestions
+                        .map(element => element.question)
+                        .slice(0, textInputQuestions.length - (QuizBuilder.QUESTIONS_PER_TYPE - 1));
+                    
+                    localStorage.setItem('nonRepeatQuestions', JSON.stringify(pickedQuestions));
+
+                    const quizBuilder = new QuizBuilder();
+                    const quizable = quizBuilder.enoughQuestionsLeft(...questions);
+
+                    expect(quizable).toBe(false);
+                });
+            });
         });
     });
 
@@ -144,7 +205,7 @@ describe('QuizBuilder', () => {
 
                 const shouldBePick = quizBuilder.hasBeenAnswered(sampleQuestion);
                 expect(shouldBePick).toBe(false);
-            
+
             });
         });
 
