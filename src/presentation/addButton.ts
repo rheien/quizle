@@ -11,7 +11,6 @@ export class AddButton {
         button.type = 'button';
         button.textContent = 'SUBMIT';
 
-
         const answer = new Answer();
         button.addEventListener("click", function () {
             answer.submitAnswer(quizMaster);
@@ -57,13 +56,13 @@ export class AddButton {
     };
 
     nextQuizRound() {
-        let restartButton = document.createElement('button');
-        restartButton.className = 'btn restart';
-        restartButton.id = 'restart';
-        restartButton.type = 'button';
-        restartButton.textContent = 'NEXT QUIZ';
+        let nextQuizButton = document.createElement('button');
+        nextQuizButton.className = 'btn nextQuiz';
+        nextQuizButton.id = 'nextQuiz';
+        nextQuizButton.type = 'button';
+        nextQuizButton.textContent = 'NEXT QUIZ';
 
-        restartButton.addEventListener("click", function () {
+        nextQuizButton.addEventListener("click", function () {
 
             //localStorage.setItem("quizScore", JSON.stringify(quiz.score));
             window.location.reload();
@@ -71,7 +70,7 @@ export class AddButton {
 
         let buttonContainer = document.getElementById('buttonContainer');
         if(buttonContainer !== null){
-            buttonContainer.appendChild(restartButton);
+            buttonContainer.appendChild(nextQuizButton);
             let container = document.getElementById('container')!;
             container.appendChild(buttonContainer);
         }

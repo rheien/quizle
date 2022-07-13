@@ -1,6 +1,7 @@
 import { Question } from "../questions/types";
 import { QuizBuilder } from "./QuizBuilder";
 import { Quiz } from "./Quiz";
+import { buildQuizPage } from "../presentation/buildQuizPage";
 
 /**
  * 
@@ -12,10 +13,20 @@ export class QuizMaster {
 
     private _quiz: Quiz;
 
-    get quiz() : Quiz {
+    get quiz(): Quiz {
         return this._quiz
     }
-    
+
+    game() {
+        const quizMaster = new QuizMaster();
+        try {
+            quizMaster.newQuiz();
+            buildQuizPage(quizMaster);
+        } catch (error) {
+            window.location.pathname = 'gameEnds.html';
+        }
+    }
+
     newQuiz(): Quiz {
         const quizBuilder = new QuizBuilder();
         return this._quiz = quizBuilder.buildQuiz();
@@ -25,10 +36,10 @@ export class QuizMaster {
     handleQuizScore(selectedAnswers: string[]) {
         if (this.evaluateAnswers(this.quiz.questions[this._quiz.round], selectedAnswers)) {
             this._quiz.score++;
-            
-            let correctAnsweredQuestions: string[]= [];
+
+            let correctAnsweredQuestions: string[] = [];
             const retrieveAnsweredQuestions = localStorage.getItem("nonRepeatQuestions");
-            if(retrieveAnsweredQuestions !== null){
+            if (retrieveAnsweredQuestions !== null) {
                 correctAnsweredQuestions = JSON.parse(retrieveAnsweredQuestions);
             }
             let answeredQuestionsCorrectly = this.quiz.questions[this._quiz.round].question;

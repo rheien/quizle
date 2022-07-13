@@ -3,20 +3,9 @@ import { QuizMaster } from "../game/QuizMaster";
 import { FetchTemplate } from "./FetchTemplate";
 import { AddButton } from "./AddButton";
 
-
 window.onload = function () {
-    //localStorage.clear()
     const quizMaster = new QuizMaster();
-    try {
-        quizMaster.newQuiz();
-        buildQuizPage(quizMaster);
-    } catch (error) {
-        console.error(error)
-        //TODO: -handle error case
-        window.location.pathname = '/gameEnds.html';
-    }
-    
-    
+    quizMaster.game();
 };
 
 /**
