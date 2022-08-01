@@ -7,19 +7,21 @@
     <meta name="author" content="Ryan Le" />
     <meta name="description" content="LeMer, Azubi Project, Quiz App, Quiz, Quizle" />
     <link rel="stylesheet" href="style.css">
+
+    <script type="module" src="./presentation/buildEndPage.ts"></script>
+    
 </head>
 
 <body>
     <header>
         <div class="logo color--green">LeMer</div>
     </header>
-    <div>
-        <h1 class="center color--green">Welcome to the Quiz App LeMer</h1>
-        <p class="center color--green">It stands for my daughter Merle</p>
-        <div class="center">
-            <a href="quiz.html" class="btn color--green" id="start">START</a>
-        </div>
+
+    <div class="center container" id="container">
+        <div id="questionContainer">No questions available</div>
     </div>
+
+    
 </body>
 
 </html>
