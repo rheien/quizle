@@ -6,4 +6,4 @@ coverage
 OOA_LeMer.drawio
 
 # dotenv environment variables file
-.env
+.env*
