@@ -4,10 +4,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-let port;
-process.env.STATUS === 'production'
-    ? (port = process.env.PROD_PORT)
-    : (port = process.env.DEV_PORT);
+const port = process.env.PORT || 3000;
 
 app.use(express.static('dist'));
 
@@ -22,5 +19,5 @@ app.get('/', (req, res ) => {
 })
 
 app.listen(port, () => {
-    console.log(`${process.env.STATUS} Server running at http://localhost:${port}`)
+    console.log(`Server running at http://localhost:${port}`)
 });
