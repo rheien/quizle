@@ -16,7 +16,7 @@ describe('QuizBuilder', () => {
         const quizGame = new Quiz();
         const maxRound = quizGame.maxRound;
 
-        expect(quiz.questions).toHaveLength(5)
+        expect(quiz.questions).toHaveLength(maxRound)
     });
 
     it('Quiz has random questions', () => {
