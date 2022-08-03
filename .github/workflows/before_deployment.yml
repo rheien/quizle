@@ -1,22 +1,24 @@
 name: CI
+
 on:
   push:
     branches:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
-  workflow_dispatch:  
+
 jobs:
-  tests:
+  test-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Run tests
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with: 
-          node-version: 16
-      - run: npm ci
-      - run: npm test
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: run tests
+        run: |
+          npm ci
+          npm test
 
       - name: Deploy after tests succeeded
         uses: netlify/actions/cli@master
