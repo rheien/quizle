@@ -3,7 +3,6 @@
   "description": "2nd Azubi Project - Quiz App",
   "version": "1.0.0",
   "scripts": {
-    "prestart": "npm run build",
     "start": "node ./src/index.ts",
     "build": "parcel build ./src/*.html",
     "test": "jest"

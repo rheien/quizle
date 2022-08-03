@@ -12,15 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo
+      - name: 'checkout repo'
         uses: actions/checkout@v3
 
-      - name: run tests
+      - name: 'run tests'
         run: |
           npm ci
           npm test
 
-      - name: Deploy after tests succeeded
+      - name: 'Deploy after tests succeeded'
+        id: deployment
         uses: netlify/actions/cli@master
         with: 
           args: deploy --build
