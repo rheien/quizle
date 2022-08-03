@@ -16,10 +16,9 @@ jobs:
         with: 
           node-version: 16
       - run: npm ci
-      - run : npm test
+      - run: npm test
 
       - name: Deploy after tests succeeded
-        if: success()
         uses: netlify/actions/cli@master
         with: 
           args: deploy --build
