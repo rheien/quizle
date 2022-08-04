@@ -20,15 +20,11 @@ jobs:
           npm ci
           npm test
 
-      - name: 'run build'
-        run: |
-          npm run build
-
       - name: 'Deploy after tests succeeded'
         id: deployment
         uses: netlify/actions/cli@master
         with: 
-          args: deploy --dir=dist --prod
+          args: deploy --build --context deploy-preview
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
