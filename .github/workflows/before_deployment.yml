@@ -20,9 +20,11 @@ jobs:
           npm ci
           npm test
 
-      - name: 'Deploy after tests succeeded'
+      - name: 'run build'
         run: |
           npm run build
+
+      - name: 'Deploy after tests succeeded'
         id: deployment
         uses: netlify/actions/cli@master
         with: 
