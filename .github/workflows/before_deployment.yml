@@ -20,7 +20,8 @@ jobs:
           npm ci
           npm test
 
-      - name: |
+      - name: 'run build'
+        run: |
           npm run build
 
       - name: 'Deploy after tests succeeded'
