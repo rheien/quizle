@@ -88,7 +88,7 @@ body {
 #questionContainer{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-evenly center;
 }
 
 .submit {
@@ -133,7 +133,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    justify-content: space-evenly;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .answer{

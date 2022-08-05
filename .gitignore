@@ -4,3 +4,6 @@ dist
 node_modules
 coverage
 OOA_LeMer.drawio
+
+# dotenv environment variables file
+.env*
