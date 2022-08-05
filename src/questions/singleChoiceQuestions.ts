@@ -66,4 +66,26 @@ export const singleChoiceQuestions : Question[]= [
         correctAnswers : ['Le Duc Anh'],
         type: QuestionType.SINGLE_CHOICE
     },
+
+    {
+        question : "Welches Land hat die drittgrößte Fläche?",
+        answers : [
+             'Vereinigten Staaten von Amerika',
+             'Brasilien',
+             'China'
+        ], 
+        correctAnswers : ['Vereinigten Staaten von Amerika'],
+        type: QuestionType.SINGLE_CHOICE
+    },
+
+    {
+        question : "Welche Kaffeeart hat den höchsten Koffeinanteil?",
+        answers : [
+             'Arabica',
+             'Robusta',
+             'Liberica'
+        ], 
+        correctAnswers : ['Liberica'],
+        type: QuestionType.SINGLE_CHOICE
+    },
 ];
