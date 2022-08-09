@@ -42,4 +42,32 @@ export const textInputQuestions : Question[] = [
         correctAnswers : ['2020'],
         type: QuestionType.FREE_TEXT
     },
+
+    {
+        question : "Wie lautet die Antwort von dem Supercomputer Deep Thought?",
+        answers : ["42"], 
+        correctAnswers : ['42'],
+        type: QuestionType.FREE_TEXT
+    },
+
+    {
+        question : "Wie lautet die Dezimalzahl 42 in Binär?",
+        answers : ["101010"], 
+        correctAnswers : ['101010'],
+        type: QuestionType.FREE_TEXT
+    },
+
+    {
+        question : "Wie lautet die Dezimalzahl 42 in Hexadezimal?",
+        answers : ["2A"], 
+        correctAnswers : ['2A'],
+        type: QuestionType.FREE_TEXT
+    },
+
+    {
+        question : "Wie lautet die Dezimalzahl 42 in Oktal?",
+        answers : ["52"], 
+        correctAnswers : ['52'],
+        type: QuestionType.FREE_TEXT
+    },
 ];
