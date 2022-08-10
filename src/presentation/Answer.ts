@@ -45,6 +45,20 @@ export class Answer{
         return input.value.length !== 0
     };
 
+    colorScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]){
+        let question: Question = quizMaster.quiz.questions[quizMaster.quiz.round];
+        let coloredAnswer = document.getElementById("Question"+(quizMaster.quiz.round+1).toString());
+        
+        console.log(quizMaster.evaluateAnswers(question,collectedAnswers))
+        if(quizMaster.evaluateAnswers(question,collectedAnswers)){
+            coloredAnswer.setAttribute("id", "circle_correct");
+        }
+        else{
+            coloredAnswer.setAttribute("id", "circle_wrong");
+        }
+            
+    };
+
     markTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
         let question = quizMaster.quiz.questions[quizMaster.quiz.round];
         collectedAnswers.forEach(answer => {
@@ -86,6 +100,7 @@ export class Answer{
             addButton.hideButton('submit');
             addButton.hideButton('next');
             this.markTheAnswers(quizMaster,collectedAnswers);
+            this.colorScoreBar(quizMaster,collectedAnswers);
             quizMaster.handleQuizScore(collectedAnswers);
         }
     };
