@@ -90,18 +90,30 @@ export class Answer{
         });
     };
 
+    noticeBox(): void{
+        alert("Some answers are missing!!!");
+        //const note = document.getElementById("");
+    }
 
     submitsAnswer(quizMaster: QuizMaster) {
     
         let questions = quizMaster.quiz.questions[quizMaster.quiz.round];
         let collectedAnswers = this.collectSelectedAnswers(questions);
         
+
+
         const addButton = new AddButton();
         if(collectedAnswers.length !== 0){
             addButton.hideButton('submit');
             addButton.hideButton('next');
+
             this.marksTheAnswers(quizMaster,collectedAnswers);
             this.coloursScoreBar(quizMaster,collectedAnswers);
+            if(questions.type === QuestionType.MULTIPLE_CHOICE){
+                if(!quizMaster.evaluateAnswers(quizMaster.quiz.questions[quizMaster.quiz.round],collectedAnswers)){
+                    this.noticeBox();
+                }
+            }
             quizMaster.handleQuizScore(collectedAnswers);
         }
     };
