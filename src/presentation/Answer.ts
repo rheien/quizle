@@ -46,15 +46,16 @@ export class Answer{
     };
 
     colorScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]){
-        let question: Question = quizMaster.quiz.questions[quizMaster.quiz.round];
-        let coloredAnswer = document.getElementById("Question"+(quizMaster.quiz.round+1).toString());
+        let round = quizMaster.quiz.round;
+        let question: Question = quizMaster.quiz.questions[round];
+
+        let coloredScoreBar = document.getElementById("Question"+(round+1).toString()) as HTMLSpanElement;
         
-        console.log(quizMaster.evaluateAnswers(question,collectedAnswers))
         if(quizMaster.evaluateAnswers(question,collectedAnswers)){
-            coloredAnswer.setAttribute("id", "circle_correct");
+            coloredScoreBar.setAttribute("id", "circle_correct");
         }
         else{
-            coloredAnswer.setAttribute("id", "circle_wrong");
+            coloredScoreBar.setAttribute("id", "circle_wrong");
         }
             
     };
