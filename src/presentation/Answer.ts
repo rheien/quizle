@@ -45,7 +45,7 @@ export class Answer{
         return input.value.length !== 0
     };
 
-    colorScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]){
+    coloursScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]){
         let round = quizMaster.quiz.round;
         let question: Question = quizMaster.quiz.questions[round];
 
@@ -60,17 +60,17 @@ export class Answer{
             
     };
 
-    markTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
+    marksTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
         let question = quizMaster.quiz.questions[quizMaster.quiz.round];
         collectedAnswers.forEach(answer => {
             let indexAnswer = question.answers.indexOf(answer);
-            let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString());
+            let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString()) as HTMLDivElement;
     
             if (quizMaster.quiz.answeredCorrectly(question.correctAnswers, answer)) {
                 
                 // in case of lower case answer in free text input
                 if (indexAnswer === -1) {
-                    coloredAnswer = document.getElementById("answer_0");
+                    coloredAnswer = document.getElementById("answer_0") as HTMLDivElement;
                     coloredAnswer.setAttribute("id", "correct");
                 }
                 else{
@@ -80,7 +80,7 @@ export class Answer{
             }
             else {
                 if (indexAnswer === -1) {
-                    coloredAnswer = document.getElementById("answer_0");
+                    coloredAnswer = document.getElementById("answer_0") as HTMLDivElement;
                     coloredAnswer.setAttribute("id", "wrong");
                 }
                 else{
@@ -91,7 +91,7 @@ export class Answer{
     };
 
 
-    submitAnswer(quizMaster: QuizMaster) {
+    submitsAnswer(quizMaster: QuizMaster) {
     
         let questions = quizMaster.quiz.questions[quizMaster.quiz.round];
         let collectedAnswers = this.collectSelectedAnswers(questions);
@@ -100,8 +100,8 @@ export class Answer{
         if(collectedAnswers.length !== 0){
             addButton.hideButton('submit');
             addButton.hideButton('next');
-            this.markTheAnswers(quizMaster,collectedAnswers);
-            this.colorScoreBar(quizMaster,collectedAnswers);
+            this.marksTheAnswers(quizMaster,collectedAnswers);
+            this.coloursScoreBar(quizMaster,collectedAnswers);
             quizMaster.handleQuizScore(collectedAnswers);
         }
     };
