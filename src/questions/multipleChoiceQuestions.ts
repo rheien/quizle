@@ -73,4 +73,30 @@ export const multipleChoiceQuestions : Question[]= [
         correctAnswers : ['Reiner','Ryani','Le Rien','Rhein'],
         type: QuestionType.MULTIPLE_CHOICE
     },
+
+    {
+        question : "Wo wird die Schreibweise 'Whisky' genutzt?",
+        answers : [
+            'USA',
+            'Kanada',
+            'Schottland',
+            'Irland'
+        ], 
+        correctAnswers : ['Schottland','Kanada','USA'],
+        type: QuestionType.MULTIPLE_CHOICE
+    },
+
+    {
+        question : "Wo wird die Schreibweise 'Whiskey' genutzt?",
+        answers : [
+            'USA',
+            'Kanada',
+            'Schottland',
+            'Irland'
+        ], 
+        correctAnswers : ['Irland','USA'],
+        type: QuestionType.MULTIPLE_CHOICE
+    },
+
+    
 ];

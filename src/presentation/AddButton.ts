@@ -36,7 +36,7 @@ export class AddButton {
             fetchTemplate.nextQuestion(quizMaster);
         });
 
-        let buttonContainer = document.getElementById('buttonContainer');
+        let buttonContainer = document.getElementById('buttonContainer') as HTMLDivElement;
         buttonContainer.appendChild(button);
         let container = document.getElementById('container')!;
         container.appendChild(buttonContainer);
@@ -44,7 +44,7 @@ export class AddButton {
 
     /** changes the visibility of the buttons */
     hideButton(button: string) {
-        let element = document.getElementById(button);
+        let element = document.getElementById(button)  as HTMLButtonElement;
         let hidden = element.getAttribute("hidden");
 
         if (hidden) {

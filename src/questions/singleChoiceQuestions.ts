@@ -66,4 +66,59 @@ export const singleChoiceQuestions : Question[]= [
         correctAnswers : ['Le Duc Anh'],
         type: QuestionType.SINGLE_CHOICE
     },
+
+    {
+        question : "Welches Land hat die drittgrößte Fläche?",
+        answers : [
+             'Vereinigten Staaten von Amerika',
+             'Brasilien',
+             'China'
+        ], 
+        correctAnswers : ['Vereinigten Staaten von Amerika'],
+        type: QuestionType.SINGLE_CHOICE
+    },
+
+    {
+        question : "Welche Kaffeeart hat den höchsten Koffeinanteil?",
+        answers : [
+             'Arabica',
+             'Robusta',
+             'Liberica'
+        ], 
+        correctAnswers : ['Liberica'],
+        type: QuestionType.SINGLE_CHOICE
+    },
+
+    {
+        question : "Welchen Passierschein benötigen Asterix & Obelix?",
+        answers : [
+             'A38',
+             'M38',
+             'L38'
+        ], 
+        correctAnswers : ['A38'],
+        type: QuestionType.SINGLE_CHOICE
+    },
+
+    {
+        question : "Wie lautet der Spitzname für Absinth?",
+        answers : [
+             'die grüne Fee',
+             'der grüne Kobold',
+             'der grüne Zwerg'
+        ], 
+        correctAnswers : ['die grüne Fee'],
+        type: QuestionType.SINGLE_CHOICE
+    },
+
+    {
+        question : "Wie lautet der Spitzname für Absinth?",
+        answers : [
+             'die grüne Fee',
+             'der grüne Kobold',
+             'der grüne Zwerg'
+        ], 
+        correctAnswers : ['die grüne Fee'],
+        type: QuestionType.SINGLE_CHOICE
+    },
 ];
