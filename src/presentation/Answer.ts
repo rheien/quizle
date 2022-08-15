@@ -91,9 +91,29 @@ export class Answer {
     };
 
     noticeBox(): void {
-        alert("Some answers are missing!!!");
+        //alert("Some answers are missing!!!");
         //TODO: replace alert with a better solution?
         //const note = document.getElementById("");
+
+        let noteContent = document.createElement("div");
+        noteContent.className = 'note-content';
+
+        let closeButton = document.createElement("span");
+        closeButton.className = 'close';
+        closeButton.textContent = 'close';
+        noteContent.appendChild(closeButton);
+
+        let noteText = document.createElement("p");
+        noteText.textContent = 'Some answers are missing';
+        noteContent.appendChild(noteText);
+
+        let note = document.createElement("div");
+        note.className = "note";
+        note.id = "popUp";
+        note.appendChild(noteContent);
+
+        let container = document.getElementById("container");
+        container.appendChild(note);
     };
 
     submitsAnswer(quizMaster: QuizMaster) {
@@ -111,6 +131,7 @@ export class Answer {
             if (questions.type === QuestionType.MULTIPLE_CHOICE) {
                 if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
                     this.noticeBox();
+                    addButton.closeNote();
                 }
             }
             quizMaster.handleQuizScore(collectedAnswers);

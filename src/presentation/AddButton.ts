@@ -75,4 +75,12 @@ export class AddButton {
             container.appendChild(buttonContainer);
         }
     };
+
+    closeNote () {
+        const closeButton = document.getElementsByClassName("close")[0];
+        closeButton.addEventListener("click", function () {
+            const note = document.getElementById("popUp");
+            note.style.display = "none";
+        });
+    };
 }
