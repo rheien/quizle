@@ -90,11 +90,7 @@ export class Answer {
         });
     };
 
-    noticeBox(): void {
-        //alert("Some answers are missing!!!");
-        //TODO: replace alert with a better solution?
-        //const note = document.getElementById("");
-
+    noteBox(): void {
         let noteContent = document.createElement("div");
         noteContent.className = 'note-content';
 
@@ -130,7 +126,8 @@ export class Answer {
             this.coloursScoreBar(quizMaster, collectedAnswers);
             if (questions.type === QuestionType.MULTIPLE_CHOICE) {
                 if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
-                    this.noticeBox();
+                    this.noteBox();
+                    addButton.showNote();
                     addButton.closeNote();
                 }
             }

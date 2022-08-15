@@ -76,6 +76,11 @@ export class AddButton {
         }
     };
 
+    showNote () {
+        const noteBox = document.getElementById('popUp');
+        noteBox.style.display = 'block';
+    };
+
     closeNote () {
         const closeButton = document.getElementsByClassName("close")[0];
         closeButton.addEventListener("click", function () {
