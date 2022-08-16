@@ -44,7 +44,7 @@ export class AddButton {
 
     /** changes the visibility of the buttons */
     hideButton(button: string) {
-        let element = document.getElementById(button)  as HTMLButtonElement;
+        let element = document.getElementById(button) as HTMLButtonElement;
         let hidden = element.getAttribute("hidden");
 
         if (hidden) {
@@ -69,22 +69,22 @@ export class AddButton {
         });
 
         let buttonContainer = document.getElementById('buttonContainer');
-        if(buttonContainer !== null){
+        if (buttonContainer !== null) {
             buttonContainer.appendChild(nextQuizButton);
             let container = document.getElementById('container')!;
             container.appendChild(buttonContainer);
         }
     };
 
-    showNote () {
-        const noteBox = document.getElementById('popUp');
+    showNote() {
+        const noteBox = document.getElementById('popUp') as HTMLDivElement;
         noteBox.style.display = 'block';
     };
 
-    closeNote () {
+    closeNote() {
         const closeButton = document.getElementsByClassName("close")[0];
         closeButton.addEventListener("click", function () {
-            const note = document.getElementById("popUp");
+            const note = document.getElementById("popUp") as HTMLDivElement;
             note.style.display = "none";
         });
     };

@@ -54,13 +54,11 @@ export class FetchTemplate {
             });
     };
 
-
     nextQuestion(quizMaster: QuizMaster) {
         const addButton = new AddButton();
 
-
         if (quizMaster.quiz.hasReachedEnd()) {
-    
+
             this.fillResult(quizMaster.quiz.score);
             addButton.hideButton('submit');
             addButton.nextQuizRound();
@@ -69,11 +67,8 @@ export class FetchTemplate {
             let questionCards = quizMaster.quiz.questions;
             this.fillTemplate(questionCards[quizMaster.quiz.round]);
         }
-    
+
         addButton.hideButton('next');
         addButton.hideButton('submit');
     };
-
-
-    
 }

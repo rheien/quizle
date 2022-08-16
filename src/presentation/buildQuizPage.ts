@@ -32,7 +32,7 @@ export function buildQuizPage(quizMaster: QuizMaster): void {
 
     const fetchTemplate = new FetchTemplate();
     fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round])
-    
+
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);
     addButton.displayNextButton(quizMaster);

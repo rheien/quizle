@@ -37,7 +37,6 @@ export class Answer {
             }
             return collectedAnswers;
         }
-
         throw new Error(`Unsupported questionType: ${question.type}`)
     };
 
@@ -48,7 +47,6 @@ export class Answer {
     coloursScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]) {
         let round = quizMaster.quiz.round;
         let question: Question = quizMaster.quiz.questions[round];
-
         let coloredScoreBar = document.getElementById("Question" + (round + 1).toString()) as HTMLSpanElement;
 
         if (quizMaster.evaluateAnswers(question, collectedAnswers)) {
@@ -68,7 +66,7 @@ export class Answer {
 
             if (quizMaster.quiz.answeredCorrectly(question.correctAnswers, answer)) {
 
-                // in case of lower case answer in free text input
+                // in case of free text input by zero answer
                 if (indexAnswer === -1) {
                     coloredAnswer = document.getElementById("answer_0") as HTMLDivElement;
                     coloredAnswer.setAttribute("id", "correct");
@@ -76,7 +74,6 @@ export class Answer {
                 else {
                     coloredAnswer.setAttribute("id", "correct");
                 }
-
             }
             else {
                 if (indexAnswer === -1) {
@@ -90,30 +87,7 @@ export class Answer {
         });
     };
 
-    noteBox(): void {
-        let noteContent = document.createElement("div");
-        noteContent.className = 'note-content';
-
-        let closeButton = document.createElement("span");
-        closeButton.className = 'close';
-        closeButton.textContent = 'close';
-        noteContent.appendChild(closeButton);
-
-        let noteText = document.createElement("p");
-        noteText.textContent = 'Some answers are missing';
-        noteContent.appendChild(noteText);
-
-        let note = document.createElement("div");
-        note.className = "note";
-        note.id = "popUp";
-        note.appendChild(noteContent);
-
-        let container = document.getElementById("container");
-        container.appendChild(note);
-    };
-
     submitsAnswer(quizMaster: QuizMaster) {
-
         let questions = quizMaster.quiz.questions[quizMaster.quiz.round];
         let collectedAnswers = this.collectSelectedAnswers(questions);
 
@@ -122,11 +96,13 @@ export class Answer {
             addButton.hideButton('submit');
             addButton.hideButton('next');
 
+            /* Highlight the selected answers and the circle in the score bar */
             this.marksTheAnswers(quizMaster, collectedAnswers);
             this.coloursScoreBar(quizMaster, collectedAnswers);
+            
+            /* User get a note if some answers are missing */
             if (questions.type === QuestionType.MULTIPLE_CHOICE) {
                 if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
-                    this.noteBox();
                     addButton.showNote();
                     addButton.closeNote();
                 }
