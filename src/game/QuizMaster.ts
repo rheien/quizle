@@ -63,6 +63,12 @@ export class QuizMaster {
         return false;
     };
 
+    /** This method returns a number of missing answers for multiple choice questions. */
+    missesAnswers(question: Question, selectedAnswers: string[]): number {
+        let correctAnswers: string[] = question.correctAnswers;
+        return correctAnswers.length - selectedAnswers.length;
+    };
+
     /**
      * Instead of comparing the points, the attempts to complete the quiz are counted
      */

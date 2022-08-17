@@ -7,6 +7,47 @@ describe('QuizMaster', () => {
         localStorage.clear();
     });
 
+    describe('missesAnswers()', () => {
+        it('should return 0 for correct answers', () => {
+            const quizMaster = new QuizMaster();
+            const question: Question = {
+                question: "Welche Automarken gehören nicht zu Volkswagen?",
+                answers: [
+                      'SKODA',
+                      'OPEL',
+                      'PORSCHE',
+                      'FIAT'
+                ],
+                correctAnswers: ['OPEL', 'FIAT'],
+                type: QuestionType.MULTIPLE_CHOICE
+            };
+            const correctAnswers: string[] = question.correctAnswers;
+
+            const result = quizMaster.missesAnswers(question, correctAnswers);
+
+            expect(result).toEqual(0);
+        });
+
+        it('should return 1 for 1 missing answer', () => {
+            const quizMaster = new QuizMaster();
+            const question: Question = {
+                question: "Welche Automarken gehören nicht zu Volkswagen?",
+                answers: [
+                      'SKODA',
+                      'OPEL',
+                      'PORSCHE',
+                      'FIAT'
+                ],
+                correctAnswers: ['OPEL', 'FIAT'],
+                type: QuestionType.MULTIPLE_CHOICE
+            };
+            let incorrectAnswers: string[] = question.correctAnswers.slice(0,1);
+
+            const result = quizMaster.missesAnswers(question, incorrectAnswers);
+
+            expect(result).toEqual(1);
+        });
+    });
 
     describe('evaluateAnswer()', () => {
         it('evaluateAnswers should return true for one correct Answer', () => {
