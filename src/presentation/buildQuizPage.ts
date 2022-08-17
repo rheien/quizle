@@ -30,10 +30,38 @@ export function buildQuizPage(quizMaster: QuizMaster): void {
     let header: HTMLElement = document.getElementsByTagName('header')[0];
     header.appendChild(scoreBar);
 
+    noteBox();
+
     const fetchTemplate = new FetchTemplate();
     fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round])
 
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);
     addButton.displayNextButton(quizMaster);
+};
+
+/**
+ * This note will show up if the submitted answers for 
+ * multiple choice are not fully answered
+ */
+function noteBox(): void {
+    let noteContent = document.createElement("div");
+    noteContent.className = 'note-content';
+
+    let closeButton = document.createElement("span");
+    closeButton.className = 'close';
+    closeButton.innerHTML = '&times;';
+    noteContent.appendChild(closeButton);
+    
+    let noteText = document.createElement("p");
+    noteText.textContent = 'Some answers are missing';
+    noteContent.appendChild(noteText);
+    
+    let note = document.createElement("div");
+    note.className = "note";
+    note.id = "popUp";
+    note.appendChild(noteContent);
+    
+    let container = document.getElementById("container") as HTMLDivElement;
+    container.appendChild(note);
 };
