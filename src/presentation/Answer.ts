@@ -99,12 +99,19 @@ export class Answer {
             /* Highlight the selected answers and the circle in the score bar */
             this.marksTheAnswers(quizMaster, collectedAnswers);
             this.coloursScoreBar(quizMaster, collectedAnswers);
-            
+
             /* User get a note if some answers are missing */
             if (questions.type === QuestionType.MULTIPLE_CHOICE) {
                 if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
-                    addButton.showNote();
-                    addButton.closeNote();
+                    let numberOfMissingAnswers = quizMaster.numberOfMissingAnswers(questions, collectedAnswers);
+                    let givenAnswersLength = questions.answers.length;
+                    if(1 < numberOfMissingAnswers && 1 < givenAnswersLength){
+                        let hintForMissingAnswers = document.getElementById("missingAnswers");
+                        hintForMissingAnswers.textContent = numberOfMissingAnswers.toString()+' answers missing';
+
+                        addButton.showNote();
+                        addButton.closeNote();
+                    }
                 }
             }
             quizMaster.handleQuizScore(collectedAnswers);

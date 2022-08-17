@@ -23,7 +23,7 @@ describe('QuizMaster', () => {
             };
             const correctAnswers: string[] = question.correctAnswers;
 
-            const result = quizMaster.missesAnswers(question, correctAnswers);
+            const result = quizMaster.numberOfMissingAnswers(question, correctAnswers);
 
             expect(result).toEqual(0);
         });
@@ -43,7 +43,7 @@ describe('QuizMaster', () => {
             };
             let incorrectAnswers: string[] = question.correctAnswers.slice(0,1);
 
-            const result = quizMaster.missesAnswers(question, incorrectAnswers);
+            const result = quizMaster.numberOfMissingAnswers(question, incorrectAnswers);
 
             expect(result).toEqual(1);
         });

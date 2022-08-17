@@ -52,16 +52,17 @@ function noteBox(): void {
     closeButton.className = 'close';
     closeButton.innerHTML = '&times;';
     noteContent.appendChild(closeButton);
-    
+
     let noteText = document.createElement("p");
+    noteText.id = 'missingAnswers';
     noteText.textContent = 'Some answers are missing';
     noteContent.appendChild(noteText);
-    
+
     let note = document.createElement("div");
     note.className = "note";
     note.id = "popUp";
     note.appendChild(noteContent);
-    
+
     let container = document.getElementById("container") as HTMLDivElement;
     container.appendChild(note);
 };
