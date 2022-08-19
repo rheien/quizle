@@ -13,7 +13,7 @@ export class AddButton {
 
         const answer = new Answer();
         button.addEventListener("click", function () {
-            answer.submitAnswer(quizMaster);
+            answer.submitsAnswer(quizMaster);
         });
 
         let buttonContainer = document.createElement('div');

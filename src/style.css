@@ -117,6 +117,14 @@ body {
     margin: 15px;
 }
 
+#circle_correct{
+    color: green;
+}
+
+#circle_wrong{
+    color: red;
+}
+
 .question{
     text-align: center;
     
