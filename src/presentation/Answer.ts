@@ -44,7 +44,7 @@ export class Answer {
         return input.value.length !== 0
     };
 
-    coloursScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]) {
+    colourScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]) {
         let round = quizMaster.quiz.round;
         let question: Question = quizMaster.quiz.questions[round];
         let coloredScoreBar = document.getElementById("Question" + (round + 1).toString()) as HTMLSpanElement;
@@ -58,7 +58,7 @@ export class Answer {
 
     };
 
-    marksTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
+    markTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
         let question = quizMaster.quiz.questions[quizMaster.quiz.round];
         collectedAnswers.forEach(answer => {
             let indexAnswer = question.answers.indexOf(answer);
@@ -87,7 +87,7 @@ export class Answer {
         });
     };
 
-    submitsAnswer(quizMaster: QuizMaster) {
+    submitAnswer(quizMaster: QuizMaster) {
         let questions = quizMaster.quiz.questions[quizMaster.quiz.round];
         let collectedAnswers = this.collectSelectedAnswers(questions);
 
@@ -97,17 +97,17 @@ export class Answer {
             addButton.hideButton('next');
 
             /* Highlight the selected answers and the circle in the score bar */
-            this.marksTheAnswers(quizMaster, collectedAnswers);
-            this.coloursScoreBar(quizMaster, collectedAnswers);
+            this.markTheAnswers(quizMaster, collectedAnswers);
+            this.colourScoreBar(quizMaster, collectedAnswers);
 
             /* User get a note if some answers are missing */
             if (questions.type === QuestionType.MULTIPLE_CHOICE) {
                 if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
                     let numberOfMissingAnswers = quizMaster.numberOfMissingAnswers(questions, collectedAnswers);
                     let givenAnswersLength = questions.answers.length;
-                    if(1 < numberOfMissingAnswers && 1 < givenAnswersLength){
-                        let hintForMissingAnswers = document.getElementById("missingAnswers");
-                        hintForMissingAnswers.textContent = numberOfMissingAnswers.toString()+' answers missing';
+                    if (1 < numberOfMissingAnswers && 1 < givenAnswersLength) {
+                        let hintForMissingAnswers = document.getElementById("missingAnswers") as HTMLParagraphElement;
+                        hintForMissingAnswers.textContent = numberOfMissingAnswers.toString() + ' answers missing';
 
                         addButton.showNote();
                         addButton.closeNote();
