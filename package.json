@@ -3,8 +3,9 @@
   "description": "2nd Azubi Project - Quiz App",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ./src/index.ts",
+    "start": "parcel ./src/*.html",
     "build": "parcel build ./src/*.html",
+    "serve": "node ./src/index.ts",
     "test": "jest"
   },
   "author": "Ryan Le",
