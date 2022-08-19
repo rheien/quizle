@@ -23,7 +23,7 @@ export class QuizMaster {
 
     /** change the number of rounds and manage the points */
     handleQuizScore(selectedAnswers: string[]) {
-        if (this.evaluateAnswers(this.quiz.questions[this._quiz.round], selectedAnswers)) {
+        if (this.evaluateAnswers(this._quiz.questions[this._quiz.round], selectedAnswers)) {
             this._quiz.score++;
 
             let correctAnsweredQuestions: string[] = [];
