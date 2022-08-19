@@ -1,7 +1,6 @@
 import { Question } from "../questions/types";
 import { QuizBuilder } from "./QuizBuilder";
 import { Quiz } from "./Quiz";
-import { buildQuizPage } from "../presentation/buildQuizPage";
 
 /**
  * 
@@ -15,16 +14,6 @@ export class QuizMaster {
 
     get quiz(): Quiz {
         return this._quiz
-    }
-
-    quizGameFlow() {
-        const quizMaster = new QuizMaster();
-        try {
-            quizMaster.newQuiz();
-            buildQuizPage(quizMaster);
-        } catch (error) {
-            window.location.pathname = 'gameEnds.html';
-        }
     }
 
     newQuiz(): Quiz {
@@ -61,6 +50,12 @@ export class QuizMaster {
             return checkAnswers.size === correctAnswers.length;
         };
         return false;
+    };
+
+    /** This method returns a number of missing answers for multiple choice questions. */
+    numberOfMissingAnswers(question: Question, selectedAnswers: string[]): number {
+        let correctAnswers: string[] = question.correctAnswers;
+        return correctAnswers.length - selectedAnswers.length;
     };
 
     /**

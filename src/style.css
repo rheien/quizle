@@ -105,6 +105,7 @@ body {
     align-items: flex-end;
 }
 
+/* Score Bar */
 .circle {
     width: 40px;
     height: 60px;
@@ -125,6 +126,7 @@ body {
     color: red;
 }
 
+/* Formatting Question */
 .question{
     text-align: center;
     
@@ -135,6 +137,7 @@ body {
     align-items: flex-start;
 }
 
+/* Given Answers and colour Submitted Answers */
 .answerType{
     padding: 5px ;
     text-align: center;
@@ -146,10 +149,6 @@ body {
     margin-right: auto;
 }
 
-.answer{
-    
-}
-
 #correct{
     border: 5px solid green;
 }
@@ -158,6 +157,7 @@ body {
     border: 5px solid red;
 }
 
+/* Result Text */
 .result{
     font-size: medium;
     font-weight:bold;
@@ -167,4 +167,43 @@ body {
 .score{
     font-size: medium;
     padding: 1px;
+}
+
+/* The Note (background) */
+.note {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Note Content */
+.note-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
