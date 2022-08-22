@@ -54,9 +54,20 @@ export class QuizMaster {
 
     /** This method returns a number of missing answers for multiple choice questions. */
     numberOfMissingAnswers(question: Question, selectedAnswers: string[]): number {
-        let correctAnswers: string[] = question.correctAnswers;
-        //TODO: return false hint, maybe check answer?
-        return correctAnswers.length - selectedAnswers.length;
+        const correctAnswers: string[] = question.correctAnswers;
+        let countingAnswers: number = 0;
+        selectedAnswers.forEach(answer => {
+            let result = correctAnswers.filter(correctAnswer => correctAnswer === answer);
+            if (result.length) {
+                countingAnswers++;
+            }
+        });
+
+        if(countingAnswers === 0) {
+            return countingAnswers;
+        }
+        
+        return correctAnswers.length - countingAnswers;
     };
 
     /**

@@ -7,45 +7,46 @@ describe('QuizMaster', () => {
         localStorage.clear();
     });
 
-    describe('missesAnswers()', () => {
-        it('should return 0 for correct answers', () => {
-            const quizMaster = new QuizMaster();
-            const question: Question = {
-                question: "Welche Automarken gehören nicht zu Volkswagen?",
-                answers: [
-                      'SKODA',
-                      'OPEL',
-                      'PORSCHE',
-                      'FIAT'
-                ],
-                correctAnswers: ['OPEL', 'FIAT'],
-                type: QuestionType.MULTIPLE_CHOICE
-            };
-            const correctAnswers: string[] = question.correctAnswers;
+    describe('numberOfMissesAnswers()', () => {
+        const question: Question = {
+            question : "Was meint der Berliner mit 'Dit ist mir Wurscht wie Stulle!' nicht?",
+            answers : [
+                'Das ist meine Wurst mit Stulle!',
+                'Es ist Wurst mit Stulle',
+                'Es ist mir egal!',
+                'Wir müssen Wurst wie Stulle kaufen!'
+            ], 
+            correctAnswers : ['Das ist meine Wurst mit Stulle!','Es ist Wurst mit Stulle','Wir müssen Wurst wie Stulle kaufen!'],
+            type: QuestionType.MULTIPLE_CHOICE
+        };
 
+        it('should return 0 for wrong answers', () => {
+            const correctAnswers: string[] = ['incorrect'];
+            
+            const quizMaster = new QuizMaster();
             const result = quizMaster.numberOfMissingAnswers(question, correctAnswers);
 
             expect(result).toEqual(0);
         });
 
-        it('should return 1 for 1 missing answer', () => {
+        it('answered 1 correctly and should return the number of missing answers', () => {
+            let partlyCorrect: string[] = question.correctAnswers.slice(0,1);
+
             const quizMaster = new QuizMaster();
-            const question: Question = {
-                question: "Welche Automarken gehören nicht zu Volkswagen?",
-                answers: [
-                      'SKODA',
-                      'OPEL',
-                      'PORSCHE',
-                      'FIAT'
-                ],
-                correctAnswers: ['OPEL', 'FIAT'],
-                type: QuestionType.MULTIPLE_CHOICE
-            };
-            let incorrectAnswers: string[] = question.correctAnswers.slice(0,1);
+            const result = quizMaster.numberOfMissingAnswers(question, partlyCorrect);
 
-            const result = quizMaster.numberOfMissingAnswers(question, incorrectAnswers);
+            let expectedMissingAnswers: number = question.correctAnswers.length - partlyCorrect.length;
+            expect(result).toEqual(expectedMissingAnswers);
+        });
 
-            expect(result).toEqual(1);
+        it('answered 2 correctly and should return the number of the missing answers', () => {
+            let partlyCorrect: string[] = question.correctAnswers.slice(0,2);
+
+            const quizMaster = new QuizMaster();
+            const result = quizMaster.numberOfMissingAnswers(question, partlyCorrect);
+
+            let expectedMissingAnswers: number = question.correctAnswers.length - partlyCorrect.length;
+            expect(result).toEqual(expectedMissingAnswers);
         });
     });
 
