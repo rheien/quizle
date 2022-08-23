@@ -23,6 +23,20 @@ export class AddButton {
         container.appendChild(buttonContainer);
     };
 
+    triggerButtonOnEnter() {
+        let input = document.getElementById('0') as HTMLInputElement;
+        console.log(input)
+        if(input){
+            input.addEventListener("keydown", event => {
+                if(event.key === "Enter"){
+                    event.preventDefault;
+                    let submit =  document.getElementById('submit') as HTMLButtonElement;
+                    submit.click();
+                }
+            });
+        }
+    };
+
     displayNextButton(quizMaster: QuizMaster) {
         let button = document.createElement('button');
         button.className = 'btn next';

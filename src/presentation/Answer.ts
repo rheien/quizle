@@ -118,10 +118,10 @@ export class Answer {
         if (questions.type === QuestionType.MULTIPLE_CHOICE) {
             if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
                 let numberOfMissingAnswers = quizMaster.numberOfMissingAnswers(questions, collectedAnswers);
-                
+
                 /* get only a hint if more than one answer is needed */
                 let givenAnswersLength = questions.answers.length;
-                if (0 < numberOfMissingAnswers  && 1 < givenAnswersLength) {
+                if (0 < numberOfMissingAnswers && 1 < givenAnswersLength) {
                     let hintForMissingAnswers = document.getElementById("missingAnswers") as HTMLParagraphElement;
                     hintForMissingAnswers.textContent = numberOfMissingAnswers.toString() + ' answers missing';
 

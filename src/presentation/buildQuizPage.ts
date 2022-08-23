@@ -3,7 +3,11 @@ import { QuizMaster } from "../game/QuizMaster";
 import { FetchTemplate } from "./FetchTemplate";
 import { AddButton } from "./AddButton";
 
-window.onload = buildQuizPage;
+document.addEventListener("DOMContentLoaded", buildQuizPage);
+window.onload = function(){
+    const addButton = new AddButton();
+    addButton.triggerButtonOnEnter();
+};
 
 /**
  * Build the Quiz Page 
