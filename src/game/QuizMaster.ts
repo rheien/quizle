@@ -23,7 +23,7 @@ export class QuizMaster {
 
     /** change the number of rounds and manage the points */
     handleQuizScore(selectedAnswers: string[]) {
-        if (this.evaluateAnswers(this.quiz.questions[this._quiz.round], selectedAnswers)) {
+        if (this.evaluateAnswers(this._quiz.questions[this._quiz.round], selectedAnswers)) {
             this._quiz.score++;
 
             let correctAnsweredQuestions: string[] = [];
@@ -54,8 +54,20 @@ export class QuizMaster {
 
     /** This method returns a number of missing answers for multiple choice questions. */
     numberOfMissingAnswers(question: Question, selectedAnswers: string[]): number {
-        let correctAnswers: string[] = question.correctAnswers;
-        return correctAnswers.length - selectedAnswers.length;
+        const correctAnswers: string[] = question.correctAnswers;
+        let countingAnswers: number = 0;
+        selectedAnswers.forEach(answer => {
+            let result = correctAnswers.filter(correctAnswer => correctAnswer === answer);
+            if (result.length) {
+                countingAnswers++;
+            }
+        });
+
+        if(countingAnswers === 0) {
+            return countingAnswers;
+        }
+        
+        return correctAnswers.length - countingAnswers;
     };
 
     /**
