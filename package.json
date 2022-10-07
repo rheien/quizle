@@ -29,7 +29,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "request": "^2.88.2"
   },
   "staticFiles": {
     "staticPath": "src/templates"
