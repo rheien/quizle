@@ -1,22 +1,31 @@
 const express = require('express');
+const request = require('request');
+
 const app = express();
 
 const dotenv = require('dotenv');
 dotenv.config();
 
-const port = process.env.PORT || 3000;
+//app.use(express.static('dist'));
 
-app.use(express.static('dist'));
-
-app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    //res.status(404).send('Something broke!');
-    next(err);
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
 });
 
-app.get('/', (req, res ) => {
-    res.send('index');
-})
+app.get('/api/v1/questions/', (req, res) => {
+    request(
+        { url: 'http://localhost:8888/api/v1/questions/'},
+        (error, response, body) => {
+            if  (error || response.statusCode !== 200) {
+                return res.status(500).json({ type: 'error', message: err.message });
+            }
+            res.json(JSON.parse(body));
+        }
+    )
+});
+
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`)
