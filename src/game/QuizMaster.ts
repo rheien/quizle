@@ -63,10 +63,10 @@ export class QuizMaster {
             }
         });
 
-        if(countingAnswers === 0) {
+        if (countingAnswers === 0) {
             return countingAnswers;
         }
-        
+
         return correctAnswers.length - countingAnswers;
     };
 
