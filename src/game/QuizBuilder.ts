@@ -13,22 +13,29 @@ import { shuffleOrder, randomNumber } from "./extraFeature";
  */
 export class QuizBuilder {
 
+    //static BASE_URL = "https://quizle-api-production.up.railway.app/api/v1/questions/"
+    static BASE_URL = 'http://localhost:3000/api/v1/questions/';
+
     static readonly QUESTIONS_PER_TYPE = 2;
 
     /** This method assemble a list of questions for the quiz */
     buildQuiz(): Quiz {
-        if (!this.enoughQuestionsLeft(multipleChoiceQuestions, singleChoiceQuestions, textInputQuestions)) {
-            throw new Error('no more questions left');
-        }
+        let questions : Question[] = [];
+        return fetch(QuizBuilder.BASE_URL)
+            .then(response =>{
+                if(!response.ok){
+                    throw new Error("no questions available")
+                }
+                return response.json();
+            })
+            .then(response => {
+                questions = questions.concat(response.questions);
 
-        let questions: Question[] = [];
-        questions = questions.concat(this.poseQuestions(multipleChoiceQuestions));
-        questions = questions.concat(this.poseQuestions(singleChoiceQuestions));
-        questions = questions.concat(this.poseQuestions(textInputQuestions));
-
-        const quiz: Quiz = new Quiz();
-        quiz.questions = shuffleOrder(questions);
-        return quiz;
+                const quiz: Quiz = new Quiz();
+                quiz.questions = shuffleOrder(questions);
+                console.log(quiz);
+                return quiz;
+            });
     };
 
     /** 
