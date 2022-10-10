@@ -6,13 +6,9 @@ import { QuizMaster } from "../game/QuizMaster";
 export class FetchTemplate {
 
     /* fetch templates to quiz page */
-    fillTemplate(question: Question) {
-        let data = {
-            question: question.question,
-            answers: question.answers,
-        };
+    async fillTemplate(question: Question) {
 
-        let questionTemplate: string = "null";
+        let questionTemplate: string = await 'freeTextQuestion.hbs';
         if (question.type === QuestionType.FREE_TEXT) {
             questionTemplate = 'freeTextQuestion.hbs';
         } else if (question.type === QuestionType.SINGLE_CHOICE) {
@@ -20,7 +16,6 @@ export class FetchTemplate {
         } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
             questionTemplate = 'multipleChoiceQuestion.hbs';
         }
-
 
         fetch(questionTemplate)
             .then(response => {
@@ -31,6 +26,10 @@ export class FetchTemplate {
             })
             .then(response => {
                 let template = compile(response);
+                let data = {
+                    question: question.question,
+                    answers: question.answers,
+                };
                 let filled = template(data);
                 document.getElementById('questionContainer')!.innerHTML = filled;
             });

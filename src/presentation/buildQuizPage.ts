@@ -8,10 +8,10 @@ window.onload = buildQuizPage;
 /**
  * Build the Quiz Page 
  */
-function buildQuizPage() {
+async function buildQuizPage() {
     const quizMaster = new QuizMaster();
     try {
-        quizMaster.newQuiz();
+        await quizMaster.newQuiz();
     } catch (error) {
         window.location.pathname = 'gameEnds.html';
     }
@@ -20,8 +20,8 @@ function buildQuizPage() {
     noteBox();
 
     const fetchTemplate = new FetchTemplate();
-    const questionCards: Question[] = quizMaster.quiz.questions;
-    fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round])
+    const questionCards: Question[] = await quizMaster.quiz.questions;
+    await fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round]);
 
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);

@@ -19,23 +19,20 @@ export class QuizBuilder {
     static readonly QUESTIONS_PER_TYPE = 2;
 
     /** This method assemble a list of questions for the quiz */
-    buildQuiz(): Quiz {
-        let questions : Question[] = [];
-        return fetch(QuizBuilder.BASE_URL)
-            .then(response =>{
-                if(!response.ok){
-                    throw new Error("no questions available")
-                }
-                return response.json();
-            })
-            .then(response => {
-                questions = questions.concat(response.questions);
+    async buildQuiz(): Quiz {
+        const fetchQuestions = await fetch(QuizBuilder.BASE_URL);
+        if(!fetchQuestions.ok){
+            throw new Error("no questions available")
+        }
+        let response = await fetchQuestions.json();
 
-                const quiz: Quiz = new Quiz();
-                quiz.questions = shuffleOrder(questions);
-                console.log(quiz);
-                return quiz;
-            });
+        let questions : Question[] = [];
+        questions = await questions.concat(response.questions);
+
+        const quiz: Quiz = new Quiz();
+        quiz.questions = shuffleOrder(questions);
+        console.log(quiz);
+        return quiz;
     };
 
     /** 

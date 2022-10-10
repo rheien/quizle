@@ -16,9 +16,9 @@ export class QuizMaster {
         return this._quiz
     }
 
-    newQuiz(): Quiz {
+    async newQuiz(): Quiz {
         const quizBuilder = new QuizBuilder();
-        return this._quiz = quizBuilder.buildQuiz();
+        return this._quiz = await quizBuilder.buildQuiz();
     }
 
     /** change the number of rounds and manage the points */
