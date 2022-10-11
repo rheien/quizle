@@ -16,7 +16,7 @@ export class QuizMaster {
         return this._quiz
     }
 
-    async newQuiz(): Quiz {
+    async newQuiz(): Promise<Quiz> {
         const quizBuilder = new QuizBuilder();
         return this._quiz = await quizBuilder.buildQuiz();
     }

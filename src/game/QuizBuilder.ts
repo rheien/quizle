@@ -4,6 +4,7 @@ import { textInputQuestions } from "../questions/textInputQuestions";
 import { Question } from "../questions/types";
 import { Quiz } from "./Quiz";
 import { shuffleOrder, randomNumber } from "./extraFeature";
+import fetch from 'node-fetch';
 
 /**
  * 
@@ -19,19 +20,19 @@ export class QuizBuilder {
     static readonly QUESTIONS_PER_TYPE = 2;
 
     /** This method assemble a list of questions for the quiz */
-    async buildQuiz(): Quiz {
+    async buildQuiz(): Promise<Quiz> {
         const fetchQuestions = await fetch(QuizBuilder.BASE_URL);
         if(!fetchQuestions.ok){
             throw new Error("no questions available")
         }
+
         let response = await fetchQuestions.json();
 
         let questions : Question[] = [];
-        questions = await questions.concat(response.questions);
+        questions = questions.concat(response.questions);
 
         const quiz: Quiz = new Quiz();
         quiz.questions = shuffleOrder(questions);
-        console.log(quiz);
         return quiz;
     };
 

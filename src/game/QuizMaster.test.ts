@@ -115,9 +115,9 @@ describe('QuizMaster', () => {
     
     describe('handleQuizScore()', () => {
 
-        it('should score 0 when answer incorrectly', () => {
+        it('should score 0 when answer incorrectly', async () => {
             const quizMaster = new QuizMaster();
-            const quiz = quizMaster.newQuiz();
+            const quiz = await quizMaster.newQuiz();
 
             const incorrectAnswers: string[] = ['incorrect answer'];
 
@@ -127,9 +127,9 @@ describe('QuizMaster', () => {
         });
 
 
-        it('must score 1 when only one answer is correct', () => {
+        it('must score 1 when only one answer is correct', async () => {
             const quizMaster = new QuizMaster();
-            const quiz = quizMaster.newQuiz();
+            const quiz = await quizMaster.newQuiz();
             
             quiz.round = Math.floor(Math.random() * quiz.questions.length);
             const correctAnswers = quiz.questions[quiz.round].correctAnswers;
@@ -139,9 +139,9 @@ describe('QuizMaster', () => {
             expect(quiz.score).toBe(1);
         });
 
-        it('should change the number of rounds to 1 after answering once', () => {
+        it('should change the number of rounds to 1 after answering once', async () => {
             const quizMaster = new QuizMaster();
-            const quiz = quizMaster.newQuiz();
+            const quiz = await quizMaster.newQuiz();
             
             const correctAnswers = ['null'];
 
