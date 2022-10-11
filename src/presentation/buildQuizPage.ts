@@ -16,16 +16,17 @@ async function buildQuizPage() {
         window.location.pathname = 'gameEnds.html';
     }
 
-    scoreBar(quizMaster.quiz.maxRound);
+    const quiz = quizMaster.quiz;
+    scoreBar(quiz.maxRound);
     noteBox();
 
     const fetchTemplate = new FetchTemplate();
-    const questionCards: Question[] = await quizMaster.quiz.questions;
-    await fetchTemplate.fillTemplate(questionCards[quizMaster.quiz.round]);
+    const questionCards: Question[] = quiz.questions;
+    await fetchTemplate.fillTemplate(questionCards[quiz.round]);
 
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);
-    addButton.displayNextButton(quizMaster);
+    addButton.displayNextButton(quiz);
 };
 
 /**

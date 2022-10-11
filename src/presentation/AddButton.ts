@@ -1,3 +1,4 @@
+import { Quiz } from "../game/Quiz";
 import { QuizMaster } from "../game/QuizMaster";
 import { Answer } from "./Answer";
 import { FetchTemplate } from "./FetchTemplate";
@@ -23,7 +24,7 @@ export class AddButton {
         container.appendChild(buttonContainer);
     };
 
-    displayNextButton(quizMaster: QuizMaster) {
+    displayNextButton(quiz: Quiz) {
         let button = document.createElement('button');
         button.className = 'btn next';
         button.id = 'next';
@@ -33,7 +34,7 @@ export class AddButton {
 
         const fetchTemplate = new FetchTemplate();
         button.addEventListener("click", function () {
-            fetchTemplate.nextQuestion(quizMaster);
+            fetchTemplate.nextQuestion(quiz);
         });
 
         let buttonContainer = document.getElementById('buttonContainer') as HTMLDivElement;

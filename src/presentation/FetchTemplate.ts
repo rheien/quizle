@@ -1,19 +1,20 @@
 import { Question, QuestionType } from "../questions/types";
 import { compile } from "handlebars";
 import { AddButton } from "./AddButton";
-import { QuizMaster } from "../game/QuizMaster";
+import { Quiz } from "../game/Quiz";
 
 export class FetchTemplate {
 
     /* fetch templates to quiz page */
     async fillTemplate(question: Question) {
 
-        let questionTemplate: string = await 'freeTextQuestion.hbs';
-        if (question.type === QuestionType.FREE_TEXT) {
+        let questionTemplate: string = 'freeTextQuestion.hbs';
+        let questionType = await question.type;
+        if (questionType === QuestionType.FREE_TEXT) {
             questionTemplate = 'freeTextQuestion.hbs';
-        } else if (question.type === QuestionType.SINGLE_CHOICE) {
+        } else if (questionType === QuestionType.SINGLE_CHOICE) {
             questionTemplate = 'singleChoiceQuestion.hbs';
-        } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
+        } else if (questionType === QuestionType.MULTIPLE_CHOICE) {
             questionTemplate = 'multipleChoiceQuestion.hbs';
         }
 
@@ -53,18 +54,18 @@ export class FetchTemplate {
             });
     };
 
-    nextQuestion(quizMaster: QuizMaster) {
+    nextQuestion(quiz: Quiz) {
         const addButton = new AddButton();
 
-        if (quizMaster.quiz.hasReachedEnd()) {
+        if (quiz.hasReachedEnd()) {
 
-            this.fillResult(quizMaster.quiz.score);
+            this.fillResult(quiz.score);
             addButton.hideButton('submit');
             addButton.nextQuizRound();
         }
         else {
-            let questionCards = quizMaster.quiz.questions;
-            this.fillTemplate(questionCards[quizMaster.quiz.round]);
+            let questionCards = quiz.questions;
+            this.fillTemplate(questionCards[quiz.round]);
         }
 
         addButton.hideButton('next');
