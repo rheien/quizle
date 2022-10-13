@@ -117,7 +117,7 @@ export class Answer {
         let round: number = quiz.round;
         let questions: Question = quiz.questions[round];
 
-        if (questions.type === QuestionType.MULTIPLE_CHOICE) {
+        if (questions.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
             if (!QuizMaster.evaluateAnswers(questions, collectedAnswers)) {
                 let numberOfMissingAnswers = QuizMaster.numberOfMissingAnswers(questions, collectedAnswers);
                 
