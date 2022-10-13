@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 
 app.get('/api/v1/questions/', (req, res) => {
     request(
-        { url: 'http://localhost:8888/api/v1/questions/'},
+        { url: 'https://quizle-api-production.up.railway.app/api/v1/questions/'},
         (error, response, body) => {
             if  (error || response.statusCode !== 200) {
                 return res.status(500).json({ type: 'error', message: err.message });
