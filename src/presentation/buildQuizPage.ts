@@ -22,7 +22,7 @@ async function buildQuizPage() {
 
     const fetchTemplate = new FetchTemplate();
     const questionCards: Question[] = quiz.questions;
-    await fetchTemplate.fillTemplate(questionCards[quiz.round]);
+    fetchTemplate.fillTemplate(questionCards[quiz.round]);
 
     const addButton = new AddButton();
     addButton.displaySubmitButton(quizMaster);

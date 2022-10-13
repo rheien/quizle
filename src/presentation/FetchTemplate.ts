@@ -6,10 +6,10 @@ import { Quiz } from "../game/Quiz";
 export class FetchTemplate {
 
     /* fetch templates to quiz page */
-    async fillTemplate(question: Question) {
+    fillTemplate(question: Question) {
 
         let questionTemplate: string = 'freeTextQuestion.hbs';
-        let questionType = await question.type;
+        let questionType = question.type;
         if (questionType === QuestionType.FREE_TEXT) {
             questionTemplate = 'freeTextQuestion.hbs';
         } else if (questionType === QuestionType.SINGLE_CHOICE) {

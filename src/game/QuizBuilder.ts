@@ -30,7 +30,9 @@ export class QuizBuilder {
 
         const quiz: Quiz = new Quiz();
         quiz.questions = questions; //shuffleOrder(questions);
-        return quiz;
+        return new Promise<Quiz>(res => {
+            res(quiz);
+        });
     };
 
     /** 
