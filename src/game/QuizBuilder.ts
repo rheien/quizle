@@ -29,7 +29,7 @@ export class QuizBuilder {
         questions = questions.concat(response.questions);
 
         const quiz: Quiz = new Quiz();
-        quiz.questions = questions; //shuffleOrder(questions);
+        quiz.questions = shuffleOrder(questions);
         return new Promise<Quiz>(res => {
             res(quiz);
         });

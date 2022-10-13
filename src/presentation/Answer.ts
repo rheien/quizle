@@ -8,8 +8,8 @@ export class Answer {
     /* This method collect the answers for QuizMaster */
     collectSelectedAnswers(question: Question): string[] {
         let collectedAnswers: string[] = [];
-
-        if (question.type === QuestionType.FREE_TEXT) {
+        
+        if (question.type === QuestionType[QuestionType.FREE_TEXT].toString()) {
             const input = document.getElementById('0') as HTMLInputElement;
             if (this.hasAnswered(input)) {
                 collectedAnswers.push(input.value);
@@ -17,7 +17,7 @@ export class Answer {
             return collectedAnswers;
         }
 
-        else if (question.type === QuestionType.MULTIPLE_CHOICE) {
+        else if (question.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
             for (let index = 0; index < question.answers.length; index++) {
                 const answerType = document.getElementById(index.toString()) as HTMLInputElement;
 
@@ -28,7 +28,7 @@ export class Answer {
             return collectedAnswers;
         }
 
-        else if (question.type === QuestionType.SINGLE_CHOICE) {
+        else if (question.type === QuestionType[QuestionType.SINGLE_CHOICE].toString()) {
             for (let index = 0; index < question.answers.length; index++) {
                 const answerType = document.getElementById(index.toString()) as HTMLInputElement;
 

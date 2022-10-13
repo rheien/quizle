@@ -8,13 +8,12 @@ export class FetchTemplate {
     /* fetch templates to quiz page */
     fillTemplate(question: Question) {
 
-        let questionTemplate: string = 'freeTextQuestion.hbs';
-        let questionType = question.type;
-        if (questionType === QuestionType.FREE_TEXT) {
+        let questionTemplate: string = 'null';
+        if (question.type === QuestionType[QuestionType.FREE_TEXT].toString()) {
             questionTemplate = 'freeTextQuestion.hbs';
-        } else if (questionType === QuestionType.SINGLE_CHOICE) {
+        } else if (question.type === QuestionType[QuestionType.SINGLE_CHOICE].toString()) {
             questionTemplate = 'singleChoiceQuestion.hbs';
-        } else if (questionType === QuestionType.MULTIPLE_CHOICE) {
+        } else if (question.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
             questionTemplate = 'multipleChoiceQuestion.hbs';
         }
 
