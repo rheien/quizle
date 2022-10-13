@@ -12,18 +12,20 @@ export class QuizMaster {
 
     private _quiz: Quiz;
 
+    static _quiz: Quiz;
+
     get quiz(): Quiz {
         return this._quiz
     }
 
-    newQuiz(): Quiz {
+    async newQuiz(): Promise<Quiz> {
         const quizBuilder = new QuizBuilder();
-        return this._quiz = quizBuilder.buildQuiz();
+        return this._quiz = await quizBuilder.buildQuiz();
     }
 
     /** change the number of rounds and manage the points */
     handleQuizScore(selectedAnswers: string[]) {
-        if (this.evaluateAnswers(this._quiz.questions[this._quiz.round], selectedAnswers)) {
+        if (QuizMaster.evaluateAnswers(this._quiz.questions[this._quiz.round], selectedAnswers)) {
             this._quiz.score++;
 
             let correctAnsweredQuestions: string[] = [];
@@ -31,7 +33,7 @@ export class QuizMaster {
             if (retrieveAnsweredQuestions !== null) {
                 correctAnsweredQuestions = JSON.parse(retrieveAnsweredQuestions);
             }
-            let answeredQuestionsCorrectly = this.quiz.questions[this._quiz.round].question;
+            let answeredQuestionsCorrectly = this._quiz.questions[this._quiz.round].question;
             correctAnsweredQuestions.push(answeredQuestionsCorrectly);
             localStorage.setItem("nonRepeatQuestions", JSON.stringify(correctAnsweredQuestions));
         }
@@ -40,7 +42,7 @@ export class QuizMaster {
 
 
     /** This method evaluate the answers with the correct answers */
-    evaluateAnswers(question: Question, selectedAnswers: string[]): boolean {
+    static evaluateAnswers(question: Question, selectedAnswers: string[]): boolean {
         let correctAnswers: string[] = question.correctAnswers;
         if (correctAnswers.length === selectedAnswers.length) {
             const checkAnswers = new Set();
@@ -53,7 +55,7 @@ export class QuizMaster {
     };
 
     /** This method returns a number of missing answers for multiple choice questions. */
-    numberOfMissingAnswers(question: Question, selectedAnswers: string[]): number {
+    static numberOfMissingAnswers(question: Question, selectedAnswers: string[]): number {
         const correctAnswers: string[] = question.correctAnswers;
         let countingAnswers: number = 0;
         selectedAnswers.forEach(answer => {
@@ -63,10 +65,10 @@ export class QuizMaster {
             }
         });
 
-        if(countingAnswers === 0) {
+        if (countingAnswers === 0) {
             return countingAnswers;
         }
-        
+
         return correctAnswers.length - countingAnswers;
     };
 

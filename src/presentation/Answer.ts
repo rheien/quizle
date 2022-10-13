@@ -1,3 +1,4 @@
+import { Quiz } from "../game/Quiz";
 import { QuizMaster } from "../game/QuizMaster";
 import { Question, QuestionType } from "../questions/types";
 import { AddButton } from "./AddButton";
@@ -7,8 +8,8 @@ export class Answer {
     /* This method collect the answers for QuizMaster */
     collectSelectedAnswers(question: Question): string[] {
         let collectedAnswers: string[] = [];
-
-        if (question.type === QuestionType.FREE_TEXT) {
+        
+        if (question.type === QuestionType[QuestionType.FREE_TEXT].toString()) {
             const input = document.getElementById('0') as HTMLInputElement;
             if (this.hasAnswered(input)) {
                 collectedAnswers.push(input.value);
@@ -16,7 +17,7 @@ export class Answer {
             return collectedAnswers;
         }
 
-        else if (question.type === QuestionType.MULTIPLE_CHOICE) {
+        else if (question.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
             for (let index = 0; index < question.answers.length; index++) {
                 const answerType = document.getElementById(index.toString()) as HTMLInputElement;
 
@@ -27,7 +28,7 @@ export class Answer {
             return collectedAnswers;
         }
 
-        else if (question.type === QuestionType.SINGLE_CHOICE) {
+        else if (question.type === QuestionType[QuestionType.SINGLE_CHOICE].toString()) {
             for (let index = 0; index < question.answers.length; index++) {
                 const answerType = document.getElementById(index.toString()) as HTMLInputElement;
 
@@ -45,12 +46,12 @@ export class Answer {
     };
 
     /** Colour score bar after evaluation */
-    colourScoreBar(quizMaster: QuizMaster, collectedAnswers: string[]) {
-        let round = quizMaster.quiz.round;
-        let question: Question = quizMaster.quiz.questions[round];
+    colourScoreBar(quiz: Quiz, collectedAnswers: string[]) {
+        let round = quiz.round;
+        let question: Question = quiz.questions[round];
         let coloredScoreBar = document.getElementById("Question" + (round + 1).toString()) as HTMLSpanElement;
 
-        if (quizMaster.evaluateAnswers(question, collectedAnswers)) {
+        if (QuizMaster.evaluateAnswers(question, collectedAnswers)) {
             coloredScoreBar.setAttribute("id", "circle_correct");
         }
         else {
@@ -60,14 +61,14 @@ export class Answer {
     };
 
     /** Colour answers after evaluation */
-    markTheAnswers(quizMaster: QuizMaster, collectedAnswers: string[]) {
-        let round: number = quizMaster.quiz.round;
-        let question: Question = quizMaster.quiz.questions[round];
+    markTheAnswers(quiz: Quiz, collectedAnswers: string[]) {
+        let round: number = quiz.round;
+        let question: Question = quiz.questions[round];
         collectedAnswers.forEach(answer => {
             let indexAnswer = question.answers.indexOf(answer);
             let coloredAnswer = document.getElementById("answer_" + indexAnswer.toString()) as HTMLDivElement;
 
-            if (quizMaster.quiz.answeredCorrectly(question.correctAnswers, answer)) {
+            if (quiz.answeredCorrectly(question.correctAnswers, answer)) {
 
                 // in case of free text input by zero answer
                 if (indexAnswer === -1) {
@@ -91,8 +92,9 @@ export class Answer {
     };
 
     submitAnswer(quizMaster: QuizMaster) {
-        let round: number = quizMaster.quiz.round;
-        let questions: Question = quizMaster.quiz.questions[round];
+        let quiz = quizMaster.quiz;
+        let round: number = quiz.round;
+        let questions: Question = quiz.questions[round];
         let collectedAnswers: string[] = this.collectSelectedAnswers(questions);
 
         const addButton = new AddButton();
@@ -101,23 +103,23 @@ export class Answer {
             addButton.hideButton('next');
 
             /* Highlight the selected answers and the circle in the score bar */
-            this.markTheAnswers(quizMaster, collectedAnswers);
-            this.colourScoreBar(quizMaster, collectedAnswers);
+            this.markTheAnswers(quiz, collectedAnswers);
+            this.colourScoreBar(quiz, collectedAnswers);
 
-            this.noteForMultipleChoice(quizMaster, collectedAnswers);
+            this.noteForMultipleChoice(quiz, collectedAnswers);
 
             quizMaster.handleQuizScore(collectedAnswers);
         }
     };
 
     /** User get a note if some answers are missing */
-    noteForMultipleChoice(quizMaster: QuizMaster, collectedAnswers: string[]) {
-        let round: number = quizMaster.quiz.round;
-        let questions: Question = quizMaster.quiz.questions[round];
+    noteForMultipleChoice(quiz: Quiz, collectedAnswers: string[]) {
+        let round: number = quiz.round;
+        let questions: Question = quiz.questions[round];
 
-        if (questions.type === QuestionType.MULTIPLE_CHOICE) {
-            if (!quizMaster.evaluateAnswers(questions, collectedAnswers)) {
-                let numberOfMissingAnswers = quizMaster.numberOfMissingAnswers(questions, collectedAnswers);
+        if (questions.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
+            if (!QuizMaster.evaluateAnswers(questions, collectedAnswers)) {
+                let numberOfMissingAnswers = QuizMaster.numberOfMissingAnswers(questions, collectedAnswers);
                 
                 /* get only a hint if more than one answer is needed */
                 let givenAnswersLength = questions.answers.length;

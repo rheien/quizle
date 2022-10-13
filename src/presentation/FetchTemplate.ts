@@ -1,26 +1,21 @@
 import { Question, QuestionType } from "../questions/types";
 import { compile } from "handlebars";
 import { AddButton } from "./AddButton";
-import { QuizMaster } from "../game/QuizMaster";
+import { Quiz } from "../game/Quiz";
 
 export class FetchTemplate {
 
     /* fetch templates to quiz page */
     fillTemplate(question: Question) {
-        let data = {
-            question: question.question,
-            answers: question.answers,
-        };
 
-        let questionTemplate: string = "null";
-        if (question.type === QuestionType.FREE_TEXT) {
+        let questionTemplate: string = 'null';
+        if (question.type === QuestionType[QuestionType.FREE_TEXT].toString()) {
             questionTemplate = 'freeTextQuestion.hbs';
-        } else if (question.type === QuestionType.SINGLE_CHOICE) {
+        } else if (question.type === QuestionType[QuestionType.SINGLE_CHOICE].toString()) {
             questionTemplate = 'singleChoiceQuestion.hbs';
-        } else if (question.type === QuestionType.MULTIPLE_CHOICE) {
+        } else if (question.type === QuestionType[QuestionType.MULTIPLE_CHOICE].toString()) {
             questionTemplate = 'multipleChoiceQuestion.hbs';
         }
-
 
         fetch(questionTemplate)
             .then(response => {
@@ -31,6 +26,10 @@ export class FetchTemplate {
             })
             .then(response => {
                 let template = compile(response);
+                let data = {
+                    question: question.question,
+                    answers: question.answers,
+                };
                 let filled = template(data);
                 document.getElementById('questionContainer')!.innerHTML = filled;
             });
@@ -54,18 +53,18 @@ export class FetchTemplate {
             });
     };
 
-    nextQuestion(quizMaster: QuizMaster) {
+    nextQuestion(quiz: Quiz) {
         const addButton = new AddButton();
 
-        if (quizMaster.quiz.hasReachedEnd()) {
+        if (quiz.hasReachedEnd()) {
 
-            this.fillResult(quizMaster.quiz.score);
+            this.fillResult(quiz.score);
             addButton.hideButton('submit');
             addButton.nextQuizRound();
         }
         else {
-            let questionCards = quizMaster.quiz.questions;
-            this.fillTemplate(questionCards[quizMaster.quiz.round]);
+            let questionCards = quiz.questions;
+            this.fillTemplate(questionCards[quiz.round]);
         }
 
         addButton.hideButton('next');
