@@ -15,7 +15,7 @@ jobs:
       - name: 'run tests'
         run: |
           npm ci
-          npm run serve
+          npm run serve &
           npm test
 
       - name: 'run build'
